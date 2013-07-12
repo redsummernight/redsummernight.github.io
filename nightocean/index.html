@@ -114,8 +114,13 @@ function getVideoLink(videoID, apiName) {
 function init() {
 	var params = { allowScriptAccess: "always" };
 	var atts;
-	var track1 = getParameter("track1"),
-		track2 = getParameter("track2");
+	var urlTrack1 = getParameter("track1"),
+		urlTrack2 = getParameter("track2");
+	
+	if (urlTrack1)
+		track1 = urlTrack1;
+	if (urlTrack2)
+		track2 = urlTrack2;
 	
 	if (track1) {
 		atts = { id: "player1holder", styleclass: "player" };
