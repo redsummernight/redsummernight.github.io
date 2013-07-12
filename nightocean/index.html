@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Night Ocean</title>
+<meta name="author" content="redsummernight">
+<link rel="stylesheet" type="text/css" href="../common/reset.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body onload="init()">
+<div id="scene" onclick="void(0)">
+<div id="player1temp"></div>
+<div id="player2temp"></div>
+<div class="sky"></div>
+<div class="table">
+	<!--
+	<div class="table-row">
+		<div class="table-cell beyond">
+			<div class="swing">
+			<div class="beam"></div>
+			<div class="kid light">
+				<div class="kid-body bg-kid"></div>
+				<div class="kid-head bg-kid"></div>
+				<div class="kid-leg-1 bg-kid"></div>
+				<div class="kid-leg-2 bg-kid"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	-->
+	<div class="table-row">
+		<div class="table-cell lunar">
+			<div class="kid light float">
+				<div class="kid-body bg-kid"></div>
+				<div class="kid-head bg-kid"></div>
+				<div class="kid-leg-1 bg-kid"></div>
+				<div class="kid-leg-2 bg-kid"></div>
+			</div>
+			<div class="moon"></div>
+		</div>
+	</div>
+	<div class="table-row sea-level">
+		<div class="table-cell sea horizontal stripes">
+			<div class="kid dark">
+				<div class="kid-body bg-kid"></div>
+				<div class="kid-head bg-kid"></div>
+				<div class="kid-leg-1 bg-kid"></div>
+				<div class="kid-leg-2 bg-kid"></div>
+			</div>
+			<div class="shadow"></div>
+		</div>
+	</div>
+</div>
+<div class="noise"></div>
+</div>
+<script src="../common/js/classlist.js"></script>
+<script src="../common/js/swfobject.js"></script>
+<script type="text/javascript">
+var scene = document.getElementById("scene");
+var disabledKeys = new Array(33,34,35,36,37,38,39,40); // pgup,pgdn,end,home,left,up,right,down
+var player1 = false;
+var player2 = false;
+var track1 = "b0JkDxfV6LY";
+var track2 = "8vHNcNrojDM";
+
+// http://stackoverflow.com/a/1403909
+function getParameter(paramName) {
+	var searchString = window.location.search.substring(1),
+		i, val, params = searchString.split("&");
+	for (i = 0; i < params.length; i++) {
+		val = params[i].split("=");
+		if (val[0] == paramName)
+			return decodeURIComponent(val[1]);
+	}
+	return null;
+}
+
+function onYouTubePlayerReady(playerId) {
+	var frozen = scene.classList.contains("frozen");
+	var player = false;
+	if (playerId === "player1") {
+		player = player1 = document.getElementById("player1holder");
+		toggleMute(player1, frozen);
+	} else if (playerId === "player2") {
+		player = player2 = document.getElementById("player2holder");
+		toggleMute(player2, !frozen);
+	}
+	if (player) {
+		player.setPlaybackQuality("small");
+	}
+}
+
+function freeze() {
+	scene.classList.toggle("frozen");
+	var frozen = scene.classList.contains("frozen");
+	toggleMute(player1, frozen);
+	toggleMute(player2, !frozen);
+}
+
+function toggleMute(ytplayer, flag) {
+	if (ytplayer) {
+		if (flag)
+			ytplayer.mute();
+		else
+			ytplayer.unMute();
+	}
+}
+
+function getVideoLink(videoID, apiName) {
+	return "http://www.youtube.com/v/" + videoID
+		+ "?enablejsapi=1&playerapiid=" + apiName
+		+ "&version=3&autoplay=1&loop=1&playlist=" + videoID;
+}
+
+function init() {
+	var params = { allowScriptAccess: "always" };
+	var atts;
+	var track1 = getParameter("track1"),
+		track2 = getParameter("track2");
+	
+	if (track1) {
+		atts = { id: "player1holder", styleclass: "player" };
+		swfobject.embedSWF(getVideoLink(track1, "player1"), "player1temp", "1", "1", "8", null, null, params, atts);
+	}
+	if (track2) {
+		atts = { id: "player2holder", styleclass: "player" };
+		swfobject.embedSWF(getVideoLink(track2, "player2"), "player2temp", "1", "1", "8", null, null, params, atts);
+	}
+	
+	scene.onclick = freeze;
+	document.onkeydown = function(e) {
+		var i, k = e ? e.which : window.event.keyCode;
+		if (k == 32) {
+			e.preventDefault();
+			freeze();
+		}
+		for (i = 0; i < disabledKeys.length; i++)
+			if (k == disabledKeys[i])
+				e.preventDefault();
+	};
+}
+</script>
+</body>
+</html>

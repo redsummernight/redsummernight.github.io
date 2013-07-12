@@ -1,0 +1,283 @@
+@charset "utf-8";
+
+html, body {
+height: 100%;
+}
+
+body {
+padding: 0; margin: 0;
+overflow: hidden;
+font-family: Arial, sans-serif;
+}
+
+.table {
+display: table;
+border-collapse: collapse;
+width: 100%;
+height: 100%;
+position: absolute;
+}
+
+.table-row {
+display: table-row;
+}
+
+.table-cell {
+display: table-cell;
+vertical-align: middle;
+}
+
+.frozen .noise {
+/* http://www.mightymeta.co.uk/css-noise/ */
+background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==");
+position: absolute;
+top: 0; bottom: 0;
+left: 0; right: 0;
+}
+
+.player {
+position: absolute;
+top: 0;
+}
+
+@-webkit-keyframes rotate {
+0% { -webkit-transform: rotate(60deg); }
+100% { -webkit-transform: rotate(419deg); }
+}
+@-moz-keyframes rotate {
+0% { -moz-transform: rotate(60deg); }
+100% { -moz-transform: rotate(419deg); }
+}
+@keyframes rotate {
+0% { transform: rotate(60deg); }
+100% { transform: rotate(419deg); }
+}
+
+@-webkit-keyframes drift {
+0% { background-position: left top; }
+100% { background-position: left bottom; }
+}
+@-moz-keyframes drift {
+0% { background-position: left top; }
+100% { background-position: left bottom; }
+}
+@keyframes drift {
+0% { background-position: left top; }
+100% { background-position: left bottom; }
+}
+
+@-webkit-keyframes stars {
+from { top: 0; }
+to { top: -2000px; }
+}
+@-moz-keyframes stars {
+from { top: 0; }
+to { top: -2000px; }
+}
+@keyframes stars {
+from { top: 0; }
+to { top: -2000px; }
+}
+
+.table-cell.beyond { vertical-align: top; }
+.table-cell.sea { vertical-align: bottom; }
+.table-cell.lunar { vertical-align: middle; }
+
+.sky {
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+/* http://css-tricks.com/parallax-background-css3/ */
+/* background-image: url('http://css-tricks.com/examples/StarryNight/images/background.png'); */
+background-color: #000;
+/* http://lea.verou.me/css3patterns/ */
+/* polka dot */
+-webkit-animation: stars 200s linear infinite;
+-moz-animation: stars 200s linear infinite;
+animation: stars 200s linear infinite;
+background:
+	-moz-radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
+	-moz-radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
+	black;
+background:
+	-webkit-radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
+	-webkit-radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
+	black;
+background:
+	radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
+	radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
+	black;
+background-position: 0 0, 100px 100px;
+-webkit-background-size: 200px 200px;
+-moz-background-size: 200px 200px;
+background-size: 200px 200px;
+}
+
+.frozen .sky {
+/*background-color: #525252;*/
+}
+
+.moon {
+/*background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" version="1.1"><defs><mask id="masking" maskUnits="userSpaceOnUse"><circle cx="50%" cy="50%" r="50%" fill="white"/><circle cx="50%" cy="42%" r="44%" fill="black"/></mask></defs><circle cx="50%" cy="50%" r="50%" fill="white" mask="url(%23masking)" /></svg>');*/
+background-image: url(moon.svg);
+-webkit-animation: rotate 240s linear infinite;
+-moz-animation: rotate 240s linear infinite;
+animation: rotate 240s linear infinite;
+width: 200px;
+height: 200px;
+margin: 20px auto;
+transform: rotate(60deg);
+}
+
+.frozen .sky,
+.frozen .moon,
+.frozen .sea {
+-webkit-animation-play-state: paused;
+-moz-animation-play-state: paused;
+animation-play-state: paused;
+}
+
+.sea-level {
+height: 30%;
+}
+
+.sea {
+-webkit-animation: drift 15s linear infinite;
+-moz-animation: drift 15s linear infinite;
+animation: drift 15s linear infinite;
+}
+
+/* http://lea.verou.me/demos/css3-patterns.html */
+.horizontal {
+background-color: #B80D46;
+background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
+background-image: -webkit-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+background-image: -ms-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+}
+
+.frozen .horizontal {
+background-color: #616161;
+background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(204, 204, 204, .2)), color-stop(.5, transparent), to(transparent));
+background-image: -webkit-linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
+background-image: -moz-linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
+background-image: -ms-linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
+background-image: -o-linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
+background-image: linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
+}
+
+.stripes {
+background-size: 20% 25%; /* Controls the size of the stripes */
+}
+
+@-webkit-keyframes swing {
+0% { -webkit-transform: rotate(3deg); }
+50% { -webkit-transform: rotate(-3deg); }
+100%{ -webkit-transform: rotate(3deg); }
+}
+@-moz-keyframes swing {
+0% { -moz-transform: rotate(3deg); }
+50% { -moz-transform: rotate(-3deg); }
+100%{ -moz-transform: rotate(3deg); }
+}
+@keyframes swing {
+0% { transform: rotate(3deg); }
+50% { transform: rotate(-3deg); }
+100%{ transform: rotate(3deg); }
+}
+.swing {
+-webkit-animation: swing 5s ease infinite;
+-moz-animation: swing 5s ease infinite;
+animation: swing 5s ease infinite;
+-webkit-transform-origin: center top;
+-moz-transform-origin: center top;
+transform-origin: center top;
+}
+
+@-webkit-keyframes float {
+0% { -webkit-transform: none; }
+50% { -webkit-transform: translateY(4px); }
+100% { -webkit-transform: none; }
+}
+@-moz-keyframes float {
+0% { -moz-transform: none; }
+50% { -moz-transform: translateY(4px); }
+100% { -moz-transform: none; }
+}
+@keyframes float {
+0% { transform: none; }
+50% { transform: translateY(4px); }
+100% { transform: none; }
+}
+.float {
+-webkit-animation: float 2s ease infinite;
+-moz-animation: float 2s ease infinite;
+animation: float 2s ease infinite;
+}
+
+.frozen .shadow,
+.frozen .kid.dark {
+opacity: 0;
+}
+.frozen .kid.light,
+.frozen .beam {
+opacity: 1;
+}
+.lunar .kid.light {
+margin-top: 0;
+}
+
+.shadow {
+border-bottom: 50px solid rgba(60, 60, 60, 0.2);
+border-left: 15px solid transparent;
+border-right: 15px solid transparent;
+margin: 0 auto;
+width: 4px;
+}
+.beam {
+height: 20px;
+width: 0;
+margin: 0 auto;
+border: 1px solid #fff;
+opacity: 0;
+}
+
+.kid.dark .bg-kid { background-color: #000; }
+.kid.light .bg-kid { background-color: #fff; }
+
+.kid {
+	position: relative;
+	margin: 0 auto;
+	width: 30px; height: 40px;
+}
+.kid.dark {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.kid.light {
+margin-top: -5px;
+opacity: 0;
+}
+
+.kid div { position: absolute; }
+.kid-body {
+	width: 10px; height: 20px;
+	margin: 15px 0 0 10px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.kid-head {
+	width: 30px; height: 20px;
+	margin-top: 5px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border-radius: 30px;
+}
+.kid-leg-1, .kid-leg-2 {
+	width: 2px; height: 9px;
+	margin-top: 33px;
+}
+.kid-leg-1 { margin-left: 12px; }
+.kid-leg-2 { margin-left: 16px; }
