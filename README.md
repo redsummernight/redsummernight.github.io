@@ -1,4 +1,1 @@
-Single serving websites.
-
-- [nightocean](/nightocean)
-- [cloudysky](/cloudysky)
+[To the Wiki!](https://github.com/redsummernight/singular/wiki)
