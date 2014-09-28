@@ -1,8 +1,11 @@
-**Singular** contains artsy CSS/js projects.
+Artsy CSS/js projects. See also the [idea list](https://github.com/redsummernight/singular/issues/3).
+- [cloudysky](http://redsummernight.github.io/singular/cloudysky/)
+- [nightocean](http://redsummernight.github.io/singular/nightocean/): specify YouTube videos with `track1` and `track2`, e.g. [/singular/nightocean/?track1=AYw7eJYadco&track2=yOnG4BzRzPs](http://redsummernight.github.io/singular/nightocean/?track1=AYw7eJYadco&track2=yOnG4BzRzPs)
 
-demo | about | tagline
-:-----|:-----|:-----
-[cloudysky](http://redsummernight.github.io/singular/cloudysky/) | [2012](cloudysky/) | When the evening is spread out against the sky
-[nightocean](http://redsummernight.github.io/singular/nightocean/) | [2013](nightocean/) | We cannot think of a time that is oceanless
-
-See also the [wiki](https://github.com/redsummernight/singular/wiki) and the list of [project ideas](https://github.com/redsummernight/singular/issues/3).
+Reference:
+- [Rafaël Rozendaal](http://www.newrafael.com/websites)
+- [Realistic vector clouds](http://www.gtpdesigns.com/design-blog/view/tutorial-create-realistic-clouds-in-adobe-illustrator/)
+- Patterns for [the sea](http://lea.verou.me/demos/css3-patterns.html) and [the stars](http://lea.verou.me/css3patterns/)
+- [CSS masking](http://www.html5rocks.com/en/tutorials/masking/adobe/#toc-the-mask-property)
+- [CSS noise](http://www.mightymeta.co.uk/css-noise/)
+- [YouTube API](https://developers.google.com/youtube/js_api_reference), [SWFObject](http://code.google.com/p/swfobject/)
