@@ -1,4 +1,4 @@
-Artsy CSS/js projects. See also the [idea list](https://github.com/redsummernight/singular/issues/3).
+Artsy CSS/js projects.
 - [cloudysky](http://redsummernight.github.io/singular/cloudysky/)
 - [nightocean](http://redsummernight.github.io/singular/nightocean/): specify YouTube videos with `track1` and `track2`, e.g. [/singular/nightocean/?track1=AYw7eJYadco&track2=yOnG4BzRzPs](http://redsummernight.github.io/singular/nightocean/?track1=AYw7eJYadco&track2=yOnG4BzRzPs)
 
