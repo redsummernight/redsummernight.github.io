@@ -1,7 +1,15 @@
 baseurl: /singular
+
+# Ignore generated files to avoid watch regeneration loop
+exclude: [".sass-cache"]
+
+sass:
+  sass_dir: css/_sass
+
 defaults:
   -
     scope:
-      path: "" # all files in the project
+      # All files in the project
+      path: ""
     values:
       layout: "default"
