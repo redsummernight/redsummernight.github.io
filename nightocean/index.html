@@ -37,9 +37,6 @@ var disabledKeys = new Array(33,34,35,36,37,38,39,40); // pgup,pgdn,end,home,lef
 
 function freeze() {
 	scene.classList.toggle("frozen");
-	var frozen = scene.classList.contains("frozen");
-	toggleMute(player1, frozen);
-	toggleMute(player2, !frozen);
 }
 
 function init() {
