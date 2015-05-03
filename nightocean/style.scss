@@ -1,4 +1,6 @@
-@charset "utf-8";
+---
+---
+@import "kid";
 
 html, body {
 height: 100%;
@@ -210,23 +212,30 @@ transform-origin: center top;
 50% { transform: translateY(4px); }
 100% { transform: none; }
 }
-.float {
+.float, .kid#flyer {
 -webkit-animation: float 2s ease infinite;
 -moz-animation: float 2s ease infinite;
 animation: float 2s ease infinite;
 }
 
 .frozen .shadow,
-.frozen .kid.dark {
+.frozen .kid#swimmer {
 opacity: 0;
 }
-.frozen .kid.light,
+.frozen .kid#flyer,
 .frozen .beam {
 opacity: 1;
 }
-.lunar .kid.light {
-margin-top: 0;
+.kid { margin: 0 auto; }
+.kid#swimmer {
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
+.kid#flyer {
+	margin-top: -5px;
+	opacity: 0;
+}
+.kid#flyer .bg { background-color: white; }
 
 .shadow {
 border-bottom: 50px solid rgba(60, 60, 60, 0.2);
@@ -242,42 +251,3 @@ margin: 0 auto;
 border: 1px solid #fff;
 opacity: 0;
 }
-
-.kid.dark .bg-kid { background-color: #000; }
-.kid.light .bg-kid { background-color: #fff; }
-
-.kid {
-	position: relative;
-	margin: 0 auto;
-	width: 30px; height: 40px;
-}
-.kid.dark {
-	margin-top: 20px;
-	margin-bottom: 10px;
-}
-.kid.light {
-margin-top: -5px;
-opacity: 0;
-}
-
-.kid div { position: absolute; }
-.kid-body {
-	width: 10px; height: 20px;
-	margin: 15px 0 0 10px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-}
-.kid-head {
-	width: 30px; height: 20px;
-	margin-top: 5px;
-	-moz-border-radius: 30px;
-	-webkit-border-radius: 30px;
-	border-radius: 30px;
-}
-.kid-leg-1, .kid-leg-2 {
-	width: 2px; height: 9px;
-	margin-top: 33px;
-}
-.kid-leg-1 { margin-left: 12px; }
-.kid-leg-2 { margin-left: 16px; }

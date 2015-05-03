@@ -1,0 +1,26 @@
+.kid {
+	position: relative;
+	width: 30px; height: 40px;
+}
+.kid .bg { background-color: black; }
+.kid div { position: absolute; }
+.kid .body {
+	width: 10px; height: 20px;
+	margin: 15px 0 0 10px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.kid .head {
+	width: 30px; height: 20px;
+	margin-top: 5px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border-radius: 30px;
+}
+.kid .leg-1, .kid .leg-2 {
+	width: 2px; height: 9px;
+	margin-top: 33px;
+}
+.kid .leg-1 { margin-left: 12px; }
+.kid .leg-2 { margin-left: 16px; }

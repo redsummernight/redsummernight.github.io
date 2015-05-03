@@ -21,23 +21,13 @@ title: night ocean
 	-->
 	<div class="table-row">
 		<div class="table-cell lunar">
-			<div class="kid light float">
-				<div class="kid-body bg-kid"></div>
-				<div class="kid-head bg-kid"></div>
-				<div class="kid-leg-1 bg-kid"></div>
-				<div class="kid-leg-2 bg-kid"></div>
-			</div>
+			{% include kid.html id="flyer" %}
 			<div class="moon"></div>
 		</div>
 	</div>
 	<div class="table-row sea-level">
 		<div class="table-cell sea horizontal stripes">
-			<div class="kid dark">
-				<div class="kid-body bg-kid"></div>
-				<div class="kid-head bg-kid"></div>
-				<div class="kid-leg-1 bg-kid"></div>
-				<div class="kid-leg-2 bg-kid"></div>
-			</div>
+			{% include kid.html id="swimmer" %}
 			<div class="shadow"></div>
 		</div>
 	</div>
