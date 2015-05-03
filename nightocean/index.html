@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Night Ocean</title>
-<meta name="author" content="redsummernight">
-<link rel="stylesheet" type="text/css" href="../common/reset.css">
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body onload="init()">
+---
+title: night ocean
+---
 <div id="scene" onclick="void(0)">
 <div id="player1temp"></div>
 <div id="player2temp"></div>
@@ -52,8 +46,8 @@
 </div>
 <div class="noise"></div>
 </div>
-<script src="../common/js/classlist.js"></script>
-<script src="../common/js/swfobject.js"></script>
+<script src="{{ site.baseurl }}/js/classlist.js"></script>
+<script src="{{ site.baseurl }}/js/swfobject.js"></script>
 <script type="text/javascript">
 var scene = document.getElementById("scene");
 var disabledKeys = new Array(33,34,35,36,37,38,39,40); // pgup,pgdn,end,home,left,up,right,down
@@ -143,6 +137,6 @@ function init() {
 				e.preventDefault();
 	};
 }
+
+window.onload = init;
 </script>
-</body>
-</html>
