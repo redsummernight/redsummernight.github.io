@@ -1,33 +1,29 @@
 ---
 title: night ocean
+swinging: false
 ---
 <div id="scene">
 <div class="sky"></div>
 <div class="table">
-	<!--
+	{% if page.swinging %}
 	<div class="table-row">
 		<div class="table-cell beyond">
 			<div class="swing">
-			<div class="beam"></div>
-			<div class="kid light">
-				<div class="kid-body bg-kid"></div>
-				<div class="kid-head bg-kid"></div>
-				<div class="kid-leg-1 bg-kid"></div>
-				<div class="kid-leg-2 bg-kid"></div>
-			</div>
+				<div class="beam"></div>
+				{% include kid.html class="flyer" %}
 			</div>
 		</div>
 	</div>
-	-->
+	{% endif %}
 	<div class="table-row">
 		<div class="table-cell lunar">
-			{% include kid.html id="flyer" %}
+			{% if page.swinging == false %}{% include kid.html class="flyer float" %}{% endif %}
 			<div class="moon"></div>
 		</div>
 	</div>
 	<div class="table-row sea-level">
 		<div class="table-cell sea horizontal stripes">
-			{% include kid.html id="swimmer" %}
+			{% include kid.html class="swimmer" %}
 			<div class="shadow"></div>
 		</div>
 	</div>

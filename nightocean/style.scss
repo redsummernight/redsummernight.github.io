@@ -212,30 +212,30 @@ transform-origin: center top;
 50% { transform: translateY(4px); }
 100% { transform: none; }
 }
-.float, .kid#flyer {
+.float {
 -webkit-animation: float 2s ease infinite;
 -moz-animation: float 2s ease infinite;
 animation: float 2s ease infinite;
 }
 
 .frozen .shadow,
-.frozen .kid#swimmer {
+.frozen .kid.swimmer {
 opacity: 0;
 }
-.frozen .kid#flyer,
+.frozen .kid.flyer,
 .frozen .beam {
 opacity: 1;
 }
 .kid { margin: 0 auto; }
-.kid#swimmer {
+.kid.swimmer {
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
-.kid#flyer {
+.kid.flyer {
 	margin-top: -5px;
 	opacity: 0;
 }
-.kid#flyer .bg { background-color: white; }
+.kid.flyer .bg { background-color: white; }
 
 .shadow {
 border-bottom: 50px solid rgba(60, 60, 60, 0.2);
