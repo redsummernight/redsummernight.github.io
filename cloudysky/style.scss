@@ -1,42 +1,23 @@
 ---
 ---
+@import "base";
 @import "kid";
+
 .kid { left: 9%; bottom: 7%; }
 
 body {
-padding: 0; margin: 0;
 overflow: hidden;
 background-color: #1A99ED;
--webkit-animation: sky-time 30s linear infinite alternate;
--moz-animation: sky-time 30s linear infinite alternate;
-animation: sky-time 30s linear infinite alternate;
+@include animation(sky-time 30s linear infinite alternate);
 }
 
-@-webkit-keyframes sky-time {
-0% { background-color: #1A99ED; }
-50% { background-color: #0022bc; }
-100% { background-color: black; }
-}
-@-moz-keyframes sky-time {
-0% { background-color: #1A99ED; }
-50% { background-color: #0022bc; }
-100% { background-color: black; }
-}
-@keyframes sky-time {
+@include keyframes(sky-time) {
 0% { background-color: #1A99ED; }
 50% { background-color: #0022bc; }
 100% { background-color: black; }
 }
 
-@-webkit-keyframes kite-time {
-0% { background-color: #CC0000; }
-100% { background-color: red; }
-}
-@-moz-keyframes kite-time {
-0% { background-color: #CC0000; }
-100% { background-color: red; }
-}
-@keyframes kite-time {
+@include keyframes(kite-time) {
 0% { background-color: #CC0000; }
 100% { background-color: red; }
 }
@@ -72,16 +53,9 @@ background-color: #000000;
 width: 20px; height: 30px;
 right: 30%; top: 15%;
 background-color: #CC0000;
--moz-transform: skewY(45deg);
--webkit-transform: skewY(45deg);
--ms-transform: skewY(45deg);
--o-transform: skewY(45deg);
-transform: skewY(45deg);
-margin-right: -5px;
-margin-top: -10px;
--webkit-animation: kite-time 30s linear infinite alternate;
--moz-animation: kite-time 30s linear infinite alternate;
-animation: kite-time 30s linear infinite alternate;
+margin-right: -5px; margin-top: -10px;
+@include transform(skewY(45deg));
+@include animation(kite-time 30s linear infinite alternate);
 }
 #rope {
 width: auto;
@@ -111,53 +85,28 @@ background: radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%,rgb
 .cloud:after {
 position: relative; left: 50px; top: 50px;
 width: 130px; height: 80px;
--moz-transform: rotate(23deg);
--webkit-transform: rotate(23deg);
--ms-transform: rotate(23deg);
--o-transform: rotate(23deg);
-transform: rotate(23deg);
+@include transform(rotate(23deg));
 }
 .cloud:before {
 position: absolute; top: 20px;
 width: 170px; height: 110px;
--moz-transform: rotate(-67deg);
--webkit-transform: rotate(-67deg);
--ms-transform: rotate(-67deg);
--o-transform: rotate(-67deg);
-transform: rotate(-67deg);
+@include transform(rotate(-67deg));
 }
-/*.c1, .c2, .c3, .c4 { display: none; }*/
 .c1 {
 margin-top: -20px; margin-left: 80px;
--moz-transform: rotate(70deg);
--webkit-transform: rotate(70deg);
--ms-transform: rotate(70deg);
--o-transform: rotate(70deg);
-transform: rotate(70deg);
+@include transform(rotate(70deg));
 }
 .c2 {
 margin-top: 80px; margin-left: 90px;
--moz-transform: rotate(150deg);
--webkit-transform: rotate(150deg);
--ms-transform: rotate(150deg);
--o-transform: rotate(150deg);
-transform: rotate(150deg);
+@include transform(rotate(150deg));
 }
 .c3 {
 margin-top: 30px; margin-left: 130px;
--moz-transform: rotate(-40deg);
--webkit-transform: rotate(-40deg);
--ms-transform: rotate(-40deg);
--o-transform: rotate(-40deg);
-transform: rotate(-40deg);
+@include transform(rotate(-40deg));
 }
 .c4 {
 margin-top: 120px; margin-left: 180px;
--moz-transform: rotate(180deg);
--webkit-transform: rotate(180deg);
--ms-transform: rotate(180deg);
--o-transform: rotate(180deg);
-transform: rotate(180deg);
+@include transform(rotate(180deg));
 }
 #supercluster {
 margin-top: 2%;
@@ -169,19 +118,11 @@ height: 75%;
 right: 0;
 width: 50%;
 height: 45%;
--moz-transform: rotate(180deg);
--webkit-transform: rotate(180deg);
--ms-transform: rotate(180deg);
--o-transform: rotate(180deg);
-transform: rotate(180deg);
+@include transform(rotate(180deg));
 }
 #supercluster3 {
 width: 50%;
 height: 45%;
 margin-left: 40%;
--moz-transform: rotate(40deg);
--webkit-transform: rotate(40deg);
--ms-transform: rotate(40deg);
--o-transform: rotate(40deg);
-transform: rotate(40deg);
+@include transform(rotate(40deg));
 }

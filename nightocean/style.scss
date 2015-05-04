@@ -1,15 +1,11 @@
 ---
 ---
+@import "base";
 @import "kid";
 
-html, body {
-height: 100%;
-}
-
 body {
-padding: 0; margin: 0;
+height: 100%;
 overflow: hidden;
-font-family: Arial, sans-serif;
 }
 
 .table {
@@ -42,41 +38,18 @@ position: absolute;
 top: 0;
 }
 
-@-webkit-keyframes rotate {
-0% { -webkit-transform: rotate(60deg); }
-100% { -webkit-transform: rotate(419deg); }
-}
-@-moz-keyframes rotate {
-0% { -moz-transform: rotate(60deg); }
-100% { -moz-transform: rotate(419deg); }
-}
-@keyframes rotate {
-0% { transform: rotate(60deg); }
-100% { transform: rotate(419deg); }
+@include keyframes(rotate) {
+/* damn hack, generate all prefixes for each keyframe prefix */
+0% { @include transform(rotate(60deg)); }
+100% { @include transform(rotate(419deg)); }
 }
 
-@-webkit-keyframes drift {
-0% { background-position: left top; }
-100% { background-position: left bottom; }
-}
-@-moz-keyframes drift {
-0% { background-position: left top; }
-100% { background-position: left bottom; }
-}
-@keyframes drift {
+@include keyframes(drift) {
 0% { background-position: left top; }
 100% { background-position: left bottom; }
 }
 
-@-webkit-keyframes stars {
-from { top: 0; }
-to { top: -2000px; }
-}
-@-moz-keyframes stars {
-from { top: 0; }
-to { top: -2000px; }
-}
-@keyframes stars {
+@include keyframes(stars) {
 from { top: 0; }
 to { top: -2000px; }
 }
@@ -93,9 +66,7 @@ top: 0; left: 0; right: 0; bottom: 0;
 background-color: #000;
 /* http://lea.verou.me/css3patterns/ */
 /* polka dot */
--webkit-animation: stars 200s linear infinite;
--moz-animation: stars 200s linear infinite;
-animation: stars 200s linear infinite;
+@include animation(stars 200s linear infinite);
 background:
 	-moz-radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
 	-moz-radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
@@ -109,9 +80,7 @@ background:
 	radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
 	black;
 background-position: 0 0, 100px 100px;
--webkit-background-size: 200px 200px;
--moz-background-size: 200px 200px;
-background-size: 200px 200px;
+@include background-size(200px 200px);
 }
 
 .frozen .sky {
@@ -121,21 +90,17 @@ background-size: 200px 200px;
 .moon {
 /*background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" version="1.1"><defs><mask id="masking" maskUnits="userSpaceOnUse"><circle cx="50%" cy="50%" r="50%" fill="white"/><circle cx="50%" cy="42%" r="44%" fill="black"/></mask></defs><circle cx="50%" cy="50%" r="50%" fill="white" mask="url(%23masking)" /></svg>');*/
 background-image: url(moon.svg);
--webkit-animation: rotate 240s linear infinite;
--moz-animation: rotate 240s linear infinite;
-animation: rotate 240s linear infinite;
 width: 200px;
 height: 200px;
 margin: 20px auto;
-transform: rotate(60deg);
+@include transform(rotate(60deg));
+@include animation(rotate 240s linear infinite);
 }
 
 .frozen .sky,
 .frozen .moon,
 .frozen .sea {
--webkit-animation-play-state: paused;
--moz-animation-play-state: paused;
-animation-play-state: paused;
+@include animation-play-state(paused);
 }
 
 .sea-level {
@@ -143,9 +108,7 @@ height: 30%;
 }
 
 .sea {
--webkit-animation: drift 15s linear infinite;
--moz-animation: drift 15s linear infinite;
-animation: drift 15s linear infinite;
+@include animation(drift 15s linear infinite);
 }
 
 /* http://lea.verou.me/demos/css3-patterns.html */
@@ -173,49 +136,23 @@ background-image: linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, 
 background-size: 20% 25%; /* Controls the size of the stripes */
 }
 
-@-webkit-keyframes swing {
-0% { -webkit-transform: rotate(3deg); }
-50% { -webkit-transform: rotate(-3deg); }
-100%{ -webkit-transform: rotate(3deg); }
-}
-@-moz-keyframes swing {
-0% { -moz-transform: rotate(3deg); }
-50% { -moz-transform: rotate(-3deg); }
-100%{ -moz-transform: rotate(3deg); }
-}
-@keyframes swing {
-0% { transform: rotate(3deg); }
-50% { transform: rotate(-3deg); }
-100%{ transform: rotate(3deg); }
+@include keyframes(swing) {
+0% { @include transform(rotate(3deg)); }
+50% { @include transform(rotate(-3deg)); }
+100% { @include transform(rotate(3deg)); }
 }
 .swing {
--webkit-animation: swing 5s ease infinite;
--moz-animation: swing 5s ease infinite;
-animation: swing 5s ease infinite;
--webkit-transform-origin: center top;
--moz-transform-origin: center top;
-transform-origin: center top;
+@include animation(swing 5s ease infinite);
+@include transform-origin(center top);
 }
 
-@-webkit-keyframes float {
-0% { -webkit-transform: none; }
-50% { -webkit-transform: translateY(4px); }
-100% { -webkit-transform: none; }
-}
-@-moz-keyframes float {
-0% { -moz-transform: none; }
-50% { -moz-transform: translateY(4px); }
-100% { -moz-transform: none; }
-}
-@keyframes float {
-0% { transform: none; }
-50% { transform: translateY(4px); }
-100% { transform: none; }
+@include keyframes(float) {
+0% { @include transform(none); }
+50% { @include transform(translateY(4px)); }
+100% { @include transform(none); }
 }
 .float {
--webkit-animation: float 2s ease infinite;
--moz-animation: float 2s ease infinite;
-animation: float 2s ease infinite;
+@include animation(float 2s ease infinite);
 }
 
 .frozen .shadow,
