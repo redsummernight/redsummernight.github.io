@@ -4,9 +4,10 @@ sass:
   sass_dir: css/_sass
 
 defaults:
-  -
-    scope:
-      # All files in the project
-      path: ""
-    values:
-      layout: "default"
+-
+  scope:
+    # All files in the project
+    path: ""
+  values:
+    layout: default
+    css: []

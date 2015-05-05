@@ -33,11 +33,6 @@ top: 0; bottom: 0;
 left: 0; right: 0;
 }
 
-.player {
-position: absolute;
-top: 0;
-}
-
 @include keyframes(rotate) {
 /* damn hack, generate all prefixes for each keyframe prefix */
 0% { @include transform(rotate(60deg)); }
@@ -61,8 +56,6 @@ to { top: -2000px; }
 .sky {
 position: absolute;
 top: 0; left: 0; right: 0; bottom: 0;
-/* http://css-tricks.com/parallax-background-css3/ */
-/* background-image: url('http://css-tricks.com/examples/StarryNight/images/background.png'); */
 background-color: #000;
 /* http://lea.verou.me/css3patterns/ */
 /* polka dot */
@@ -81,10 +74,6 @@ background:
 	black;
 background-position: 0 0, 100px 100px;
 @include background-size(200px 200px);
-}
-
-.frozen .sky {
-/*background-color: #525252;*/
 }
 
 .moon {
