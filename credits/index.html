@@ -4,7 +4,9 @@ title: credits
 <h1>credits</h1>
 {% for p in site.pages %}
 	{% if p.credits != "" %}
-		<h2 id="{{ p.title | slugify }}"><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></h2>
+		<h2 id="{{ p.title | slugify }}">
+			<a href="{{ site.baseurl }}{{ p.url | remove:'index.html' }}">{{ p.title }}</a>
+		</h2>
 		{{ p.credits | markdownify }}
 	{% endif %}
 {% endfor %}
