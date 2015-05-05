@@ -1,0 +1,13 @@
+html {
+	font-family: verdana, arial;
+	font-size: 12px;
+}
+
+body { padding: 20px; }
+
+a {
+	color: #0f00f0;
+	text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }

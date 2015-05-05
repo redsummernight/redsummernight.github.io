@@ -1,3 +1,4 @@
+# http://jekyllrb.com/docs/github-pages/#project-page-url-structure
 baseurl: /singular
 
 sass:
@@ -10,4 +11,6 @@ defaults:
     path: ""
   values:
     layout: default
-    css: []
+    stylesheets: []
+    # Credits in markdown
+    credits: ""

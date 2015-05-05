@@ -8,9 +8,13 @@
 	<title>{{ title }}</title>
 	<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ title }}{% endif %}">
 	<meta name="author" content="redsummernight">
-	<link rel="stylesheet" href="{{ site.baseurl }}/css/normalize.css?v=3.0.3">
-	{% for c in page.css %}
-	<link rel="stylesheet" href="{{ c }}.css?v={{ site.time | date: '%s' }}">
+
+	{% capture css_dir %}{{ site.baseurl }}/css{% endcapture %}
+	{% capture ts %}{{ site.time | date: '%s' }}{% endcapture %}
+	<link rel="stylesheet" href="{{ css_dir }}/normalize.css?v=3.0.3">
+	<link rel="stylesheet" href="{{ css_dir }}/text.css?v={{ ts }}">
+	{% for s in page.stylesheets %}
+	<link rel="stylesheet" href="{{ s | replace:'CSS_DIR',css_dir }}.css?v={{ ts }}">
 	{% endfor %}
 </head>
 <body>
