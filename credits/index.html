@@ -2,7 +2,8 @@
 title: credits
 ---
 <h1>credits</h1>
-{% for p in site.pages %}
+{% assign pages = site.pages | sort: 'title' %}
+{% for p in pages %}
 	{% if p.credits != "" %}
 		<h2 id="{{ p.title | slugify }}">
 			<a href="{{ site.baseurl }}{{ p.url | remove:'index.html' }}">{{ p.title }}</a>
