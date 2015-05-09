@@ -4,6 +4,8 @@ baseurl: /singular
 sass:
   sass_dir: css/_sass
 
+exclude: [tmp]
+
 defaults:
 -
   scope:
