@@ -7,8 +7,6 @@ html {
 	font-size: 12px;
 }
 
-body { padding: 20px; }
-
 a {
 	color: #0f00f0;
 	text-decoration: none;
@@ -38,3 +36,19 @@ a:hover { text-decoration: underline; }
 }
 .kid .leg-1 { margin-left: 12px; }
 .kid .leg-2 { margin-left: 16px; }
+
+.center-text {
+	margin: 0 auto;
+	padding: 20px;
+	width: 500px;
+}
+
+.noise-text {
+	padding: 10px;
+	text-align: justify;
+	color: #B7B7B7;
+}
+
+.noise-text strong {
+	color: black;
+}
