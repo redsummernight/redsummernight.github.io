@@ -46,7 +46,11 @@ a:hover { text-decoration: underline; }
 .noise-text {
 	padding: 10px;
 	text-align: justify;
-	color: #B7B7B7;
+	color: #C6C6C6;
+}
+
+.noise-text a {
+	font-weight: bold;
 }
 
 .noise-text strong {
