@@ -7,6 +7,7 @@ sass:
   sass_dir: css/_sass
 
 script_src:
+  # https://github.com/eligrey/classList.js/
   classlist: //cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js
 
 exclude: [tmp]
