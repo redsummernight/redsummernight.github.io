@@ -1,6 +1,8 @@
 # http://jekyllrb.com/docs/github-pages/#project-page-url-structure
 baseurl: ""
 
+title: redsummernight
+
 sass:
   sass_dir: css/_sass
 

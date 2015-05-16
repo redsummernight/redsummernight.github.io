@@ -3,12 +3,13 @@ credits: |
   - [List of random words](http://listofrandomwords.com/)
 ---
 <p class="noise-text">
-	<strong title="o hai!!!">redsummernight</strong>.
+	<strong title="o hai!!!">{{ site.title }}</strong>.
 	{% assign titles = site.pages | map: 'title' %}
 	{% for m in site.data.salad %}
 		{% if titles contains m.word %}
 			{% for p in site.pages %}{% if p.title == m.word %}
-				<a title="{{ p.description }}" href="{{ site.baseurl }}{{ p.url | remove:'index.html' }}">{{ p.title }}</a>.
+				<a href="{{ site.baseurl }}{{ p.url | remove:'index.html' }}"
+					title="{{ p.description }}">{{ p.title }}</a>.
 			{% endif %}{% endfor %}
 		{% else %}{{ m.word }}.{% endif %}
 	{% endfor %}

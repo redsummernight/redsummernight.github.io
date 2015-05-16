@@ -4,10 +4,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{% capture title %}{% if page.title %}{{ page.title }}{% else %}redsummernight{% endif %}{% endcapture %}
+	{% capture title %}{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}{% endcapture %}
 	<title>{{ title }}</title>
 	<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ title }}{% endif %}">
-	<meta name="author" content="redsummernight">
+	<meta name="author" content="{{ site.title }}">
 
 	{% capture css_dir %}{{ site.baseurl }}/css{% endcapture %}
 	{% capture ts %}{{ site.time | date: '%s' }}{% endcapture %}
