@@ -7,10 +7,10 @@ description: thief!
 {% assign pages = site.pages | sort: 'title' %}
 {% for p in pages %}
 	{% if p.credits != "" %}
-		<h2 id="{{ p.title | slugify }}">
-			<a href="{{ site.baseurl }}{{ p.url | remove:'index.html' }}">{{ p.title }}</a>
-		</h2>
+		{% if p.title %}<hr id="{{ p.title | slugify }}">{% else %}<hr>{% endif %}
 		{{ p.credits | markdownify }}
 	{% endif %}
 {% endfor %}
+<hr>
+<ul><li>me</li></ul>
 </div>
