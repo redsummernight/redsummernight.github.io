@@ -6,6 +6,9 @@ title: redsummernight
 sass:
   sass_dir: css/_sass
 
+script_src:
+  classlist: //cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js
+
 exclude: [tmp]
 
 defaults:
@@ -16,5 +19,6 @@ defaults:
   values:
     layout: default
     stylesheets: []
+    scripts: []
     # Credits in markdown
     credits: ""

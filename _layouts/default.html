@@ -16,6 +16,10 @@
 	{% for s in page.stylesheets %}
 	<link rel="stylesheet" href="{{ s | replace:'CSS_DIR',css_dir }}.css?v={{ ts }}">
 	{% endfor %}
+
+	{% for s in site.script_src %}
+		{% if page.scripts contains s[0] %}<script src="{{ s[1] }}"></script>{% endif %}
+	{% endfor %}
 </head>
 <body>
 {{ content }}
