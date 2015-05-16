@@ -1,1 +1,4 @@
 * text=auto
+
+# https://github.com/github/linguist
+Gemfile* linguist-vendored
