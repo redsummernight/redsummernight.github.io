@@ -31,13 +31,14 @@ function tick(){
 
 		zones[i].style.background = hex;
 		zones[i].classList.remove("local");
-		if (z === iz) {
+		if ((z - iz) % 24 == 0) {
 			var tz = "UTC";
 			// display UTC+0 as UTC
-			if (iz > 0) tz += "+" + iz;
-			if (iz < 0) tz += iz;
+			if (z > 0) tz += "+" + z;
+			if (z < 0) tz += z;
 
 			zones[i].innerHTML = hex + "<br>" + tz;
+			zones[i].title = hex + "\n" + tz;
 			zones[i].classList.add("local");
 		}
 	}
