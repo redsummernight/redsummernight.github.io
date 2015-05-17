@@ -1,22 +1,47 @@
 ---
 title: technicolor
+stylesheets: [style]
 credits: |
   - [What colour is it?](http://whatcolourisit.com/)
 ---
-<p id="hex" style="color: #fff; text-align: center;"></p>
+<table>
+	<tr>
+		{% for i in (1..24) %}<td></td>{% endfor %}
+	</tr>
+</table>
 <script type="text/javascript">
+var zones = document.getElementsByTagName("td");
+
 function tick(){
 	var d = new Date();
-	var h = d.getHours();
-	var m = d.getMinutes();
-	var s = d.getSeconds();
-	h = h < 10 ? "0" + h : h.toString();
-	m = m < 10 ? "0" + m : m.toString();
-	s = s < 10 ? "0" + s : s.toString();
+	var h = d.getUTCHours();
+	var m = d.getUTCMinutes();
+	var s = d.getUTCSeconds();
+	var z = -d.getTimezoneOffset() / 60; // local timezone
+	var ms = m < 10 ? "0" + m : m.toString();
+	var ss = s < 10 ? "0" + s : s.toString();
 
-	var hex = "#" + h + m + s;
-	document.getElementById("hex").textContent = hex;
-	document.body.style.background = hex;
+	for (var i = 0, len = zones.length; i < len; i++) {
+		var iz = i - 11; // current timezone
+
+		var hs = h + iz;
+		if (hs < 0) hs += 24; // to 24-hour format
+		hs = hs < 10 ? "0" + hs : hs.toString();
+		var hex = "#" + hs + ms + ss;
+
+		zones[i].style.background = hex;
+		zones[i].classList.remove("local");
+		if (z === iz) {
+			var tz = "UTC";
+			// display UTC+0 as UTC
+			if (iz > 0) tz += "+" + iz;
+			if (iz < 0) tz += iz;
+
+			zones[i].innerHTML = hex + "<br>" + tz;
+			zones[i].classList.add("local");
+		}
+	}
+
 	setTimeout(tick, 1000);
 }
 document.body.onload = tick;
