@@ -1,0 +1,23 @@
+---
+title: technicolor
+credits: |
+  - [What colour is it?](http://whatcolourisit.com/)
+---
+<p id="hex" style="color: #fff; text-align: center;"></p>
+<script type="text/javascript">
+function tick(){
+	var d = new Date();
+	var h = d.getHours();
+	var m = d.getMinutes();
+	var s = d.getSeconds();
+	h = h < 10 ? "0" + h : h.toString();
+	m = m < 10 ? "0" + m : m.toString();
+	s = s < 10 ? "0" + s : s.toString();
+
+	var hex = "#" + h + m + s;
+	document.getElementById("hex").textContent = hex;
+	document.body.style.background = hex;
+	setTimeout(tick, 1000);
+}
+document.body.onload = tick;
+</script>
