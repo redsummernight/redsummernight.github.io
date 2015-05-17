@@ -17,9 +17,7 @@
 	<link rel="stylesheet" href="{{ s | replace:'CSS_DIR',css_dir }}.css?v={{ ts }}">
 	{% endfor %}
 
-	{% for s in site.script_src %}
-		{% if page.scripts contains s[0] %}<script src="{{ s[1] }}"></script>{% endif %}
-	{% endfor %}
+	<script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
 </head>
 <body>
 {{ content }}
