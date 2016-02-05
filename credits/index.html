@@ -4,13 +4,18 @@ description: thief!
 ---
 <div class="center-text">
 <h1>credits</h1>
+{% assign credits = "" | split: ""  %}
 {% assign pages = site.pages | sort: 'title' %}
 {% for p in pages %}
 	{% if p.credits != "" %}
-		{% if p.title %}<hr id="{{ p.title | slugify }}">{% else %}<hr>{% endif %}
-		{{ p.credits | markdownify }}
+		{% assign credits = credits | push: p.credits  %}
 	{% endif %}
 {% endfor %}
-<hr>
-<ul><li>me</li></ul>
+
+{% assign credits = credits | push: '- me'  %}
+
+{% comment %}
+	Roundabout way to merge Markdown lists
+{% endcomment %}
+{{ credits | join: ' ' | markdownify }}
 </div>
