@@ -41,8 +41,12 @@ function tick(){
 		var iz = i - 11; // current timezone
 		var ih = h + iz; // hour of current timezone
 		if (ih < 0) ih += 24; // to 24-hour format
-		var ihs = ih < 10 ? "0" + ih : ih.toString();
-		zones[i].style.background = "#" + ihs + ms + ss;
+		var rgb = [
+			Math.floor(ih / 24 * 255),
+			Math.floor(m / 60 * 255),
+			Math.floor(s / 60 * 255)
+		];
+		zones[i].style.backgroundColor = "rgb(" + rgb.join() + ")";
 	}
 
 	setTimeout(tick, 1000);
