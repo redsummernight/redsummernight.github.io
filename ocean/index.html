@@ -7,6 +7,7 @@ credits: |
   - [Lea Verou](http://lea.verou.me/) - CSS3 [patterns 1](http://lea.verou.me/demos/css3-patterns.html), [patterns 2](http://lea.verou.me/css3patterns/)
   - [HTML5 Rocks](http://www.html5rocks.com/en/tutorials/masking/adobe/#toc-the-mask-property) - CSS masking
   - [MightyMeta](http://www.mightymeta.co.uk/css-noise/) - CSS noise
+  - [McKinney Sound](http://www.freesfx.co.uk/users/mckinneysound) - Calm Ocean Waves On Shore 001
 ---
 <div id="scene">
 <div class="sky"></div>
@@ -36,12 +37,19 @@ credits: |
 </div>
 <div class="noise"></div>
 </div>
+<audio id="waves" src="calm_ocean_waves_on_shore_001.mp3" preload="auto" autoplay loop></audio>
 <script type="text/javascript">
 var scene = document.getElementById("scene");
+var waves = document.getElementById("waves");
 var disabledKeys = new Array(33,34,35,36,37,38,39,40); // pgup,pgdn,end,home,left,up,right,down
 
 function freeze() {
 	scene.classList.toggle("frozen");
+	if (waves.paused) {
+		waves.play();
+	} else {
+		waves.pause();
+	}
 }
 
 function init() {

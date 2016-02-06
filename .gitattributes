@@ -1,4 +1,6 @@
 * text=auto
 
+*.mp3 binary
+
 # https://github.com/github/linguist
 Gemfile* linguist-vendored
