@@ -45,15 +45,16 @@ var disabledKeys = new Array(33,34,35,36,37,38,39,40); // pgup,pgdn,end,home,lef
 
 function freeze() {
 	scene.classList.toggle("frozen");
-	if (waves.paused) {
-		waves.play();
-	} else {
+	if (scene.classList.contains("frozen")) {
 		waves.pause();
+	} else {
+		waves.play();
 	}
 }
 
 function init() {
 	scene.onclick = freeze;
+	waves.volume = 0.2;
 	document.onkeydown = function(e) {
 		var i, k = e ? e.which : window.event.keyCode;
 		if (k == 32) { // space
