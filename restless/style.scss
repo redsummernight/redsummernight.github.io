@@ -3,9 +3,8 @@
 @import "base";
 
 body {
-	position: absolute;
-	top: 0; left: 0; right: 0; bottom: 0;
 	background-color: #000;
+	color: #fff;
 	overflow: hidden;
 }
 
@@ -15,9 +14,8 @@ body {
 
 #frame {
 	width: 600px; height: 300px;
-	position: absolute;
-	top: 50%; left: 50%;
-	@include transform(translate(-50%, -50%));
+	margin: 0 auto;
+	margin-top: 150px;
 	@include border-radius(1em);
 	background-color: #083409;
 	overflow: hidden;
@@ -26,7 +24,7 @@ body {
 
 #light {
 	width: 16px; height: 16px;
-	position: absolute;
+	position: relative;
 	top: 50%; left: 50%;
 	@include transform(translate(-50%, -50%));
 	@include border-radius(10px);
