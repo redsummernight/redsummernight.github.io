@@ -1,0 +1,57 @@
+---
+title: restless
+stylesheets: [style]
+---
+<div id="frame">
+	<div id="light"></div>
+	<canvas id="canvas" width="600" height="300"></canvas>
+</div>
+<script type="text/javascript">
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+var width = canvas.width, height = canvas.height;
+var drops = [];
+var dropCount = 50;
+while (dropCount--) {
+	drops.push({
+		x: Math.random() * width,
+		y: -15,
+		speedX: (Math.random() * 0.25),
+		speedY: (Math.random() * 7) + 1,
+		color: 'rgba(0, 255, 210, 1)', // #00FFD2
+	});
+}
+
+(function main() {
+	window.requestAnimationFrame(main);
+	var i, drop, len = drops.length;
+
+	// Update positions
+	for (i = 0; i < len; i++) {
+		drop = drops[i];
+		drop.x += drop.speedX;
+		drop.y += drop.speedY + 5;
+
+		// Wrap around canvas
+		if (drop.x > width) {
+			drop.x = 0;
+		}
+		if (drop.x < 0) {
+			drop.x = width;
+		}
+		if (drop.y > height) {
+			drop.y = 0;
+		}
+	}
+
+	// Redraw
+	ctx.clearRect(0, 0, width, height);
+	ctx.fillStyle = 'rgba(0, 0, 0, 0)'; // transparent
+	ctx.fillRect(0, 0, width, height);
+	for (i = 0; i < len; i++) {
+		drop = drops[i];
+		ctx.fillStyle = drop.color;
+		ctx.fillRect(drop.x, drop.y, drop.speedY / 4, drop.speedY);
+	}
+})();
+</script>
