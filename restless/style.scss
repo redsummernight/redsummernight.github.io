@@ -8,7 +8,6 @@ body {
 	margin-top: 150px;
 	background-color: #000;
 	color: #fff;
-	overflow: hidden;
 }
 
 #canvas {
@@ -17,6 +16,7 @@ body {
 
 #frame {
 	height: 300px;
+	position: relative;
 	@include border-radius(1em);
 	background-color: #083409;
 	overflow: hidden;
@@ -24,7 +24,7 @@ body {
 
 #light {
 	width: 16px; height: 16px;
-	position: relative;
+	position: absolute;
 	top: 50%; left: 50%;
 	@include transform(translate(-50%, -50%));
 	@include border-radius(10px);
