@@ -45,6 +45,7 @@ while (dropCount--) {
 		}
 		if (drop.y > height) {
 			drop.y = 0;
+			drop.speedY = (Math.random() * 7) + 1;
 		}
 	}
 
