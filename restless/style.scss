@@ -30,7 +30,7 @@ body {
 	@include border-radius(10px);
 	background-color: #fff;
 	border: none;
-	box-shadow: 0 0 60px 30px #fff, 0 0 100px 60px #0ff, 0 0 140px 90px #38ED41;
+	@include box-shadow(0 0 60px 30px #fff, 0 0 100px 60px #0ff, 0 0 140px 90px #38ED41);
 }
 
 #clock {

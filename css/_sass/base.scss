@@ -16,6 +16,12 @@
 	background-size: $v;
 }
 
+@mixin box-shadow($v...) {
+	-webkit-box-shadow: $v;
+	-moz-box-shadow: $v;
+	box-shadow: $v;
+}
+
 @mixin border-radius($values...) {
 	-webkit-border-radius: $values;
 	-moz-border-radius: $values;
