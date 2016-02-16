@@ -51,6 +51,11 @@
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
+  <style>
+    path {
+      fill: #fff !important;
+    }
+  </style>
   <clipPath
      id="state_clip_path">
     <g

@@ -1,0 +1,71 @@
+---
+---
+@import "base";
+
+body {
+	font-size: 1.7em;
+}
+
+section {
+	padding: 25px 0;
+}
+
+p, figure {
+	width: 70%;
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 25px;
+}
+
+figure.wide {
+	width: 100%;
+	text-align: center;
+}
+
+figcaption {
+	font-size: 80%;
+	font-style: italic;
+	text-align: center;
+	margin-top: 0.5em;
+}
+
+table {
+	border-collapse: collapse;
+	background-color: white;
+	width: 80%;
+	margin: 0 auto;
+}
+
+td {
+	padding: 5px;
+	border: 1px solid #555;
+}
+
+footer {
+	font-size: 80%;
+	text-align: right;
+	background: black;
+	color: white;
+}
+
+footer a {
+	color: #EF6D3B;
+}
+
+section.intro {
+	background-color: #FF5A0A;
+	color: black;
+}
+
+section.location {
+	background-color: #7D117E;
+	color: #FFAED2;
+}
+
+section.seashell {
+	background-color: #FCFCCA;
+}
+
+#svg2 path {
+	fill: #00F !important;
+}
