@@ -53,19 +53,26 @@ footer a {
 }
 
 section.intro {
-	background-color: #FF5A0A;
-	color: black;
+	background-color: #FFBDF7;
 }
 
 section.location {
-	background-color: #7D117E;
-	color: #FFAED2;
+	background-color: #D396FF;
+}
+
+section.location a {
+	color: #7D117E;
 }
 
 section.seashell {
-	background-color: #FCFCCA;
+	background-color: #FFFCFE;
 }
 
-#svg2 path {
-	fill: #00F !important;
+section.seagod {
+	background-color: #C4EAFF;
+}
+
+section.outro {
+	background-color: #37135B;
+	color: white;
 }
