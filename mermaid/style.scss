@@ -4,10 +4,16 @@
 
 body {
 	font-size: 1.7em;
+	background: black;
 }
 
 section {
 	padding: 25px 0;
+}
+
+strong {
+	font-family: 'HorrorScribbles', verdana, arial, sans-serif;
+	font-size: 2em;
 }
 
 p, figure {
@@ -17,13 +23,10 @@ p, figure {
 	padding: 25px;
 }
 
-strong {
-	font-family: 'HorrorScribbles', verdana, arial, sans-serif;
-	font-size: 2em;
-}
-
 figure.wide {
 	width: 100%;
+	max-width: none;
+	padding: 25px 0;
 	text-align: center;
 }
 
@@ -31,19 +34,26 @@ figcaption {
 	font-size: 80%;
 	font-style: italic;
 	text-align: center;
-	margin-top: 0.5em;
+	margin-top: 1em;
 }
 
 table {
-	border-collapse: collapse;
-	background-color: white;
-	width: 80%;
+	width: 400px;
 	margin: 0 auto;
 }
 
-td {
+td, th {
 	padding: 5px;
-	border: 1px solid #555;
+	text-align: right;
+}
+
+th {
+	border-bottom: 1px solid black;
+	font-weight: normal;
+}
+
+th:first-child, td:first-child {
+	text-align: left;
 }
 
 footer {
