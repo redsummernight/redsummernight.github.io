@@ -26,7 +26,9 @@ p, figure {
 figure.wide {
 	width: 100%;
 	max-width: none;
-	padding: 25px 0;
+	padding-left: 0;
+	padding-right: 0;
+	margin: 30px 0;
 	text-align: center;
 }
 
@@ -73,6 +75,11 @@ section.intro {
 
 section.location {
 	background-color: #D396FF;
+}
+
+section.location figure.wide {
+	background-image: url(heart.svg);
+	background-size: 50px 10%;
 }
 
 section.location a {
