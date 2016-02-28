@@ -99,6 +99,10 @@ section.seashell {
 $seagod-bgcolor: #9DF0D4;
 section.seagod {
 	background-color: $seagod-bgcolor;
+	canvas {
+		@include user-select-none;
+		pointer-events: none;
+	}
 }
 
 section.outro {
