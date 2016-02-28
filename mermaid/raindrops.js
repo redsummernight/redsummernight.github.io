@@ -21,6 +21,8 @@ var Raindrops = function(o) {
     self._options.density = o.density || 0.02;
     // Speed of the ripple effect. Higher number means faster ripples.
     self._options.rippleSpeed = o.rippleSpeed || 0.1;
+    // To cover unwanted gaps created by the animation.
+    self._options.rightPadding = o.rightPadding || 20;
 
     self._element = o.element;
     self._create();
@@ -38,7 +40,7 @@ Raindrops.prototype = {
         var self = this, o = self._options;
         var canvas = window.document.createElement('canvas');
         canvas.height = o.canvasHeight;
-        canvas.width = o.realWidth = self._getViewportWidth();
+        canvas.width = o.realWidth = self._getViewportWidth() + o.rightPadding;
 
         self.ctx = canvas.getContext('2d');
         self._element.appendChild(canvas);
@@ -117,7 +119,7 @@ Raindrops.prototype = {
         var w = self._getViewportWidth();
         if (ctx.canvas.width < w) {
             // 100% viewport width
-            ctx.canvas.width = o.realWidth = w;
+            ctx.canvas.width = o.realWidth = w + o.rightPadding;
         }
         ctx.fillStyle = o.color;
         ctx.clearRect(0, 0, o.realWidth, o.canvasHeight);
