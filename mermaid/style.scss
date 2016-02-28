@@ -59,18 +59,20 @@ th:first-child, td:first-child {
 }
 
 footer {
-	font-size: 80%;
+	font-size: 70%;
 	text-align: right;
 	background: black;
 	color: white;
-}
-
-footer a {
-	color: #EF6D3B;
+	a {
+		color: #EF6D3B;
+	}
 }
 
 section.intro {
 	background-color: #FFBDF7;
+	p:first-child:before {
+		content: open-quote;
+	}
 }
 
 section.location {
@@ -80,23 +82,39 @@ section.location {
 section.location figure.wide {
 	background-image: url(heart.svg);
 	background-size: 50px 10%;
-}
-
-section.location a {
-	color: #7D117E;
+	a {
+		color: #7D117E;
+	}
 }
 
 section.seashell {
 	background-color: #FFFCFE;
 	// http://api.thumbr.it/whitenoise-100x100.png?background=#FFFCFEff&noise=f5db8e&density=100&opacity=100
 	background-image: url(sand.png);
+	p:first-child {
+		margin-bottom: 10em;
+	}
 }
 
 section.seagod {
-	background-color: #C4EAFF;
+	background-color: #9DF0D4;
 }
 
 section.outro {
-	background-color: #37135B;
+	padding-top: 8em;
+	padding-bottom: 3em;
+	text-shadow: 0px 0px 2px #FFA5FF;
+	$purple: #37135B;
 	color: white;
+	background: $purple;
+	background: -moz-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(70%, $purple), color-stop(99%, #000000), color-stop(100%, #000000));
+	background: -webkit-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background: -o-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background: -ms-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background: linear-gradient(to bottom, $purple 70%, #000000 99%, #000000 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$purple', endColorstr='#000000', GradientType=0 );
+	p:last-child:after {
+		content: close-quote;
+	}
 }
