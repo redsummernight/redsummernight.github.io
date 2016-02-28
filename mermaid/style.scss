@@ -96,24 +96,26 @@ section.seashell {
 	}
 }
 
+$seagod-bgcolor: #9DF0D4;
 section.seagod {
-	background-color: #9DF0D4;
+	background-color: $seagod-bgcolor;
 }
 
 section.outro {
 	padding-top: 8em;
 	padding-bottom: 3em;
 	text-shadow: 0px 0px 2px #FFA5FF;
-	$purple: #37135B;
+	$purple-hex: #37135B;
+	$purple: rgba($purple-hex, 0.97);
 	color: white;
-	background: $purple;
-	background: -moz-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
-	background: -webkit-gradient(left top, left bottom, color-stop(70%, $purple), color-stop(99%, #000000), color-stop(100%, #000000));
-	background: -webkit-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
-	background: -o-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
-	background: -ms-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
-	background: linear-gradient(to bottom, $purple 70%, #000000 99%, #000000 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$purple', endColorstr='#000000', GradientType=0 );
+	background-color: $seagod-bgcolor;
+	background-image: -moz-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background-image: -webkit-gradient(left top, left bottom, color-stop(70%, $purple), color-stop(99%, #000000), color-stop(100%, #000000));
+	background-image: -webkit-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background-image: -o-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background-image: -ms-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background-image: linear-gradient(to bottom, $purple 70%, #000000 99%, #000000 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$purple-hex', endColorstr='#000000', GradientType=0 );
 	p:last-child:after {
 		content: close-quote;
 	}
