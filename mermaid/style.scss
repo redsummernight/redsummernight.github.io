@@ -1,0 +1,122 @@
+---
+---
+@import "base";
+
+body {
+	font-size: 1.7em;
+	background: black;
+}
+
+section {
+	padding: 25px 0;
+}
+
+strong {
+	font-family: 'HorrorScribbles', verdana, arial, sans-serif;
+	font-size: 2em;
+}
+
+p, figure {
+	width: 70%;
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 25px;
+}
+
+figure.wide {
+	width: 100%;
+	max-width: none;
+	padding-left: 0;
+	padding-right: 0;
+	margin: 30px 0;
+	text-align: center;
+}
+
+figcaption {
+	font-size: 80%;
+	font-style: italic;
+	text-align: center;
+	margin-top: 1em;
+}
+
+table {
+	width: 400px;
+	margin: 0 auto;
+}
+
+td, th {
+	padding: 20px 0;
+	text-align: center;
+}
+
+th {
+	border-bottom: 1px solid black;
+	font-weight: normal;
+}
+
+th:first-child, td:first-child {
+	text-align: left;
+}
+
+footer {
+	font-size: 70%;
+	text-align: right;
+	background: black;
+	color: white;
+	a {
+		color: #EF6D3B;
+	}
+}
+
+section.intro {
+	background-color: #FFBDF7;
+	p:first-child:before {
+		content: open-quote;
+	}
+}
+
+section.location {
+	background-color: #D396FF;
+}
+
+section.location figure.wide {
+	background-image: url(heart.svg);
+	background-size: 50px 10%;
+	a {
+		color: #7D117E;
+	}
+}
+
+section.seashell {
+	background-color: #FFFCFE;
+	// http://api.thumbr.it/whitenoise-100x100.png?background=#FFFCFEff&noise=f5db8e&density=100&opacity=100
+	background-image: url(sand.png);
+	p:first-child {
+		margin-bottom: 10em;
+	}
+}
+
+$seagod-bgcolor: #9DF0D4;
+section.seagod {
+	background-color: $seagod-bgcolor;
+}
+
+section.outro {
+	padding-top: 8em;
+	padding-bottom: 3em;
+	text-shadow: 0px 0px 2px #FFA5FF;
+	$purple-hex: #37135B;
+	$purple: rgba($purple-hex, 0.97);
+	color: white;
+	background-color: $seagod-bgcolor;
+	background-image: -moz-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background-image: -webkit-gradient(left top, left bottom, color-stop(70%, $purple), color-stop(99%, #000000), color-stop(100%, #000000));
+	background-image: -webkit-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background-image: -o-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background-image: -ms-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
+	background-image: linear-gradient(to bottom, $purple 70%, #000000 99%, #000000 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$purple-hex', endColorstr='#000000', GradientType=0 );
+	p:last-child:after {
+		content: close-quote;
+	}
+}

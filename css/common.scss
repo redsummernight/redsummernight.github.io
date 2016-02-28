@@ -9,10 +9,10 @@ html {
 
 a {
 	color: #0f00f0;
-	text-decoration: none;
 }
 
-a:hover { text-decoration: underline; }
+.subtle-link a { text-decoration: none; }
+.subtle-link a:hover { text-decoration: underline; }
 
 hr {
 	border: none;

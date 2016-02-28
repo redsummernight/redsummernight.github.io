@@ -1,0 +1,89 @@
+---
+title: mermaid
+description: only part-time
+stylesheets: [style, CSS_DIR/fonts/HorrorScribbles/stylesheet]
+credits: |
+ - [The Part-Time Mermaid](http://adoenamedjane.tumblr.com/post/107474911867/the-part-time-mermaid), Butter
+ - [Pastel Goth](http://www.colourlovers.com/palette/2156125/Pastel_Goth) palette
+ - [Galaxy Lights](http://www.colourlovers.com/palette/3394001/Galaxy_Lights) palette
+ - [Girl icon](https://openclipart.org/detail/828/girl) from [The Brain in Space](https://www.nasa.gov/audience/foreducators/topnav/materials/listbytype/The.Brain.in.Space.html)
+ - [Fish](https://thenounproject.com/term/fish/9625/), [Jens Tärning](http://jens.tarning.eu/)
+ - [Heart](https://thenounproject.com/term/heart/31339/), Oleg Frolov
+ - [Blank map of Idaho](https://commons.wikimedia.org/wiki/File:Blank_Map_of_Idaho.svg), David Benbennick
+ - [Raindrops.js](http://daniellaharel.com/raindrops/) (modified)
+---
+<section class="intro">
+	<p>I’m a <strong>mermaid</strong>,</p>
+	<figure class="inner">
+		<table>
+			<tr>
+				<th>Day</th>
+				<th>Top</th>
+				<th>Bottom</th>
+			</tr>
+			<tr>
+				<td>Odd</td>
+				<td><img height="80" src="fish.svg" alt="Fish" title="Fish" /></td>
+				<td><img height="80" src="girl.svg" alt="Human" title="Human" /></td>
+			</tr>
+			<tr>
+				<td>Even</td>
+				<td><img height="80" src="girl.svg" alt="Human" title="Human" /></td>
+				<td><img height="80" src="fish.svg" alt="Fish" title="Fish" /></td>
+			</tr>
+		</table>
+		<figcaption>Figure 1: The Mermatrix.</figcaption>
+	</figure>
+</section>
+<section class="location">
+	<p>but only part-time.</p>
+	<p>I guess there just aren’t a lot of full-time <strong>mermaid</strong> positions available in <a href="idaho.txt">Idaho</a>.</p>
+	<figure class="wide">
+		<img height="300" alt="Blank Map of Idaho" title="It's a map." src="idaho.svg" />
+		<figcaption>Figure 2: Idaho. Mermaid population: 1+.</figcaption>
+	</figure>
+</section>
+<section class="seashell">
+	<p>
+		I struggle to fulfill the demands of my position in a landlocked state,
+		but I scrape by on a room full of seashells and sand dollars.
+	</p>
+	<p>
+		This is the only job I've known since my skin felt saltwater for the first time.
+	</p>
+</section>
+<section class="seagod">
+	<p>
+		I am a <strong>mermaid</strong> who fought my creator, a sea god.
+	</p>
+	<p>
+		A lesser god, never in love with the sea, but his temper was as turbulent as her storms,
+		crushing little boats between heavy hands.
+	</p>
+	<p>
+		Yet there is a difference. The <a href="{{ site.baseurl }}/ocean/">ocean</a> drowns all sailors just the same.
+	</p>
+	<p style="white-space: nowrap;">My father only ever hit me.</p>
+</section>
+<section class="outro">
+	<p>
+		The land would not have me, the god of the sea would kill me,
+		and I am drowning underneath the weight of both.</p>
+</section>
+<footer>
+	<p>
+		mangled from original text by
+		<a href="http://adoenamedjane.tumblr.com/post/107474911867/the-part-time-mermaid" rel="author">Butter</a>
+	</p>
+</footer>
+<script src="raindrops.js?v={{ site.time | date: '%s' }}"></script>
+<script>
+var r = new Raindrops({
+	element: document.querySelectorAll('.seagod')[0],
+	color: 'rgba(55, 19, 91, 0.97)',
+	canvasHeight: 140,
+	rippleSpeed: 0.01,
+	frequency: 15,
+	density: 0,
+});
+</script>
