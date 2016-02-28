@@ -25,14 +25,13 @@ var Raindrops = function(o) {
     self._options.rightPadding = o.rightPadding || 20;
 
     self._element = o.element;
+    self._body = document.getElementsByTagName('body')[0];
     self._create();
 };
 
 Raindrops.prototype = {
     _getViewportWidth: function() {
-        var w = window, d = document, e = d.documentElement,
-            g = d.getElementsByTagName('body')[0],
-            x = w.innerWidth || e.clientWidth || g.clientWidth;
+        var x = window.innerWidth || document.documentElement.clientWidth || self._body.clientWidth;
         return x;
     },
 
@@ -43,6 +42,7 @@ Raindrops.prototype = {
         canvas.width = o.realWidth = self._getViewportWidth() + o.rightPadding;
 
         self.ctx = canvas.getContext('2d');
+        self.ctx.fillStyle = o.color;
         self._element.appendChild(canvas);
 
         canvas.parentElement.style.overflow = 'hidden';
@@ -120,8 +120,8 @@ Raindrops.prototype = {
         if (ctx.canvas.width < w) {
             // 100% viewport width
             ctx.canvas.width = o.realWidth = w + o.rightPadding;
+            ctx.fillStyle = o.color;
         }
-        ctx.fillStyle = o.color;
         ctx.clearRect(0, 0, o.realWidth, o.canvasHeight);
         self._updateSprings(0.1);
         self._renderWaves();
