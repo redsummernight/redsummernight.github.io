@@ -113,13 +113,16 @@ section.outro {
 	$purple: rgba($purple-hex, 0.97);
 	color: white;
 	background-color: $seagod-bgcolor;
-	background-image: -moz-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
-	background-image: -webkit-gradient(left top, left bottom, color-stop(70%, $purple), color-stop(99%, #000000), color-stop(100%, #000000));
-	background-image: -webkit-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
-	background-image: -o-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
-	background-image: -ms-linear-gradient(top, $purple 70%, #000000 99%, #000000 100%);
-	background-image: linear-gradient(to bottom, $purple 70%, #000000 99%, #000000 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$purple-hex', endColorstr='#000000', GradientType=0 );
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#37135b+70,000000+100 */
+	background-image: -moz-linear-gradient(top, $purple 70%, #000000 100%); /* FF3.6-15 */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(70%, $purple), color-stop(100%, #000000)); /* Chrome4-9,Safari4-5 */
+	background-image: -webkit-linear-gradient(top, $purple 70%, #000000 100%); /* Chrome10-25,Safari5.1-6 */
+	background-image: -o-linear-gradient(top, $purple 70%, #000000 100%); /* Opera 11.10-11.50 */
+	background-image: -ms-linear-gradient(top, $purple 70%, #000000 100%); /* IE10 preview */
+	background-image: linear-gradient(to bottom, $purple 70%, #000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$purple-hex', endColorstr='#000000', GradientType=0 ); /* IE6-9 */
+
 	p:last-child:after {
 		content: close-quote;
 	}
