@@ -11,8 +11,12 @@ credits: |
  - [Heart](https://thenounproject.com/term/heart/31339/), Oleg Frolov
  - [Blank map of Idaho](https://commons.wikimedia.org/wiki/File:Blank_Map_of_Idaho.svg), David Benbennick
  - [Raindrops.js](http://daniellaharel.com/raindrops/) (modified)
+ - [SVG Scaling Problems in IE9 and Other Browsers](http://www.seowarp.com/blog/2011/06/svg-scaling-problems-in-ie9-and-other-browsers/), SEO Warp
 ---
 <section class="intro">
+	{% capture ts %}{{ site.time | date: '%s' }}{% endcapture %}
+	{% capture fish %}<img width="80" height="80" src="fish.svg" alt="Fish" title="Fish" />{% endcapture %}
+	{% capture girl %}<img width="28" height="80" src="girl.svg" alt="Human" title="Human" />{% endcapture %}
 	<p>I’m a <strong>mermaid</strong>,</p>
 	<figure class="inner">
 		<table>
@@ -23,13 +27,13 @@ credits: |
 			</tr>
 			<tr>
 				<td>Odd</td>
-				<td><img width="80" height="80" src="fish.svg" alt="Fish" title="Fish" /></td>
-				<td><img width="28" height="80" src="girl.svg" alt="Human" title="Human" /></td>
+				<td>{{ fish }}</td>
+				<td>{{ girl }}</td>
 			</tr>
 			<tr>
 				<td>Even</td>
-				<td><img width="28" height="80" src="girl.svg" alt="Human" title="Human" /></td>
-				<td><img width="80" height="80" src="fish.svg" alt="Fish" title="Fish" /></td>
+				<td>{{ girl }}</td>
+				<td>{{ fish }}</td>
 			</tr>
 		</table>
 		<figcaption>Figure 1: The Mermatrix.</figcaption>
@@ -76,7 +80,7 @@ credits: |
 		<a href="http://adoenamedjane.tumblr.com/post/107474911867/the-part-time-mermaid" rel="author">Butter</a>
 	</p>
 </footer>
-<script src="raindrops.js?v={{ site.time | date: '%s' }}"></script>
+<script src="raindrops.js?v={{ ts }}"></script>
 <script>
 var r = new Raindrops({
 	element: document.querySelectorAll('.seagod')[0],
