@@ -6,7 +6,7 @@ title: redsummernight
 sass:
   sass_dir: css/_sass
 
-exclude: [tmp]
+exclude: [tmp, vendor]
 
 defaults:
 -
