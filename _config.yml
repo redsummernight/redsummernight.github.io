@@ -23,5 +23,6 @@ exclude:
   - Gemfile.lock
   - README.md
   - script
+  - tmp
   # Travis bundles all gems in 'vendor'
   - vendor
