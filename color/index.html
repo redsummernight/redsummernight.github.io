@@ -17,7 +17,7 @@ var disp = document.getElementById("disp");
 var z = - (new Date()).getTimezoneOffset() / 60; // local timezone
 for (var i = 0, len = zones.length; i < len; i++) {
 	var iz = i - 11; // current timezone
-	if ((z - iz) % 24 == 0) {
+	if ((z - iz) % 24 === 0) {
 		var tz = "";
 		// ignore 0
 		if (z > 0) tz = "+" + z;
