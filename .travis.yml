@@ -2,7 +2,7 @@ language: ruby
 rvm:
 - 2.1
 
-install: bundle install --jobs=3 --retry=3
+# Since bundler is used, the `install` step will run `bundle install` by default.
 script: jekyll build && htmlproof ./_site --check-html --verbose
 
 env:

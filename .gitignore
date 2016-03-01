@@ -1,8 +1,10 @@
 tmp/
 tmp*/
 *.tmp
+*.bat
 
 # jekyll
 _site/
 .sass-cache/
 .jekyll-metadata
+Gemfile.lock

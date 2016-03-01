@@ -6,16 +6,21 @@ title: redsummernight
 sass:
   sass_dir: css/_sass
 
-exclude: [tmp, vendor]
-
 defaults:
--
-  scope:
-    # All files in the project
-    path: ""
-  values:
-    layout: default
-    stylesheets: []
-    scripts: []
-    # Credits in markdown
-    credits: ""
+  -
+    scope:
+      # All files in the project
+      path: ""
+    values:
+      layout: default
+      stylesheets: []
+      scripts: []
+      # Credits in markdown
+      credits: ""
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  # Travis bundles all gems in 'vendor'
+  - vendor
