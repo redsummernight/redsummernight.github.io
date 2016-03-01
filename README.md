@@ -2,6 +2,15 @@
 
 [travis]: https://travis-ci.org/redsummernight/redsummernight.github.io
 
-My next website, running on [Jekyll](http://jekyllrb.org) and [Github Pages](http://pages.github.com).
+My website, running on [Jekyll](http://jekyllrb.org) and [GitHub Pages](http://pages.github.com).
 
-[Build instructions](https://help.github.com/articles/setting-up-your-pages-site-locally-with-jekyll/).
+To run it on your machine:
+
+```sh
+git clone git@github.com:redsummernight/redsummernight.github.io.git
+cd redsummernight.github.io
+gem install bundler
+bundle install
+bundle exec jekyll serve
+```
+The site can be found at `http://localhost:4000`.
