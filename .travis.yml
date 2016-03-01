@@ -3,7 +3,7 @@ rvm:
 - 2.1
 
 # Since bundler is used, the `install` step will run `bundle install` by default.
-script: jekyll build && htmlproof ./_site --check-html --verbose
+script: ./script/cibuild.sh
 
 env:
   global:
