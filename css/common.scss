@@ -11,8 +11,10 @@ a {
 	color: #0f00f0;
 }
 
-.subtle-link a { text-decoration: none; }
-.subtle-link a:hover { text-decoration: underline; }
+.subtle-link a {
+	text-decoration: none;
+	&:hover { text-decoration: underline; }
+}
 
 hr {
 	border: none;
@@ -22,42 +24,37 @@ hr {
 .kid {
 	position: relative;
 	width: 30px; height: 40px;
+
+	div { position: absolute; }
+	.bg { background-color: black; }
+	.body {
+		width: 10px; height: 20px;
+		margin: 15px 0 0 10px;
+		@include border-radius(3px);
+	}
+	.head {
+		width: 30px; height: 20px;
+		margin-top: 5px;
+		@include border-radius(30px);
+	}
+	.leg-1, .leg-2 {
+		width: 2px; height: 9px;
+		margin-top: 33px;
+	}
+	.leg-1 { margin-left: 12px; }
+	.leg-2 { margin-left: 16px; }
 }
-.kid .bg { background-color: black; }
-.kid div { position: absolute; }
-.kid .body {
-	width: 10px; height: 20px;
-	margin: 15px 0 0 10px;
-	@include border-radius(3px);
-}
-.kid .head {
-	width: 30px; height: 20px;
-	margin-top: 5px;
-	@include border-radius(30px);
-}
-.kid .leg-1, .kid .leg-2 {
-	width: 2px; height: 9px;
-	margin-top: 33px;
-}
-.kid .leg-1 { margin-left: 12px; }
-.kid .leg-2 { margin-left: 16px; }
 
 .center-text {
 	margin: 0 auto;
 	padding: 20px;
-	width: 500px;
+	width: 700px;
 }
 
 .noise-text {
 	padding: 10px;
 	text-align: justify;
 	color: #9C9C9C;
-}
-
-.noise-text a {
-	font-weight: bold;
-}
-
-.noise-text strong {
-	color: black;
+	a { font-weight: bold; }
+	strong { color: black; }
 }

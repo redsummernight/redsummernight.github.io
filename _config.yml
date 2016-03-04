@@ -6,6 +6,9 @@ title: redsummernight
 sass:
   sass_dir: css/_sass
 
+kramdown:
+  auto_id_stripping: true
+
 defaults:
   -
     scope:
@@ -15,8 +18,10 @@ defaults:
       layout: default
       stylesheets: []
       scripts: []
-      # Credits in markdown
+      # Credits/licenses in Markdown
       credits: ""
+      # References/tutorial links in Markdown
+      references: ""
 
 exclude:
   - Gemfile

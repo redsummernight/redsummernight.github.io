@@ -4,18 +4,28 @@ description: thief!
 ---
 <div class="center-text subtle-link">
 <h1>credits</h1>
+
+<hr>
 {% assign credits = "" | split: ""  %}
 {% assign pages = site.pages | sort: 'title' %}
 {% for p in pages %}
 	{% if p.credits != "" %}
-		{% assign credits = credits | push: p.credits  %}
+		{{ p.credits | markdownify }}
+		<hr>
 	{% endif %}
 {% endfor %}
 
-{% assign credits = credits | push: '- me'  %}
+<h2>References</h2>
+{% assign references = "" | split: ""  %}
+{% assign pages = site.pages | sort: 'title' %}
+{% for p in pages %}
+	{% if p.references != "" %}
+		{% assign references = references | push: p.references  %}
+	{% endif %}
+{% endfor %}
 
 {% comment %}
 	Roundabout way to merge Markdown lists
 {% endcomment %}
-{{ credits | join: ' ' | markdownify }}
+{{ references | join: ' ' | markdownify }}
 </div>
