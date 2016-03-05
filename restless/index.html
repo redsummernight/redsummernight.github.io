@@ -13,6 +13,7 @@ stylesheets: [style]
 <script type="text/javascript">
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+ctx.fillStyle = 'rgba(0, 255, 210, 1)'; // #00FFD2
 var width = canvas.width, height = canvas.height;
 var drops = [];
 var dropCount = 50;
@@ -22,16 +23,15 @@ while (dropCount--) {
 		y: -300,
 		speedX: (Math.random() * 0.25),
 		speedY: (Math.random() * 7) + 1,
-		color: 'rgba(0, 255, 210, 1)', // #00FFD2
 	});
 }
 
 (function main() {
-	window.requestAnimationFrame(main);
-	var i, drop, len = drops.length;
+	ctx.clearRect(0, 0, width, height);
 
-	// Update positions
+	var i, drop, len = drops.length;
 	for (i = 0; i < len; i++) {
+		// Update positions
 		drop = drops[i];
 		drop.x += drop.speedX;
 		drop.y += drop.speedY + 5;
@@ -47,16 +47,10 @@ while (dropCount--) {
 			drop.y = 0;
 			drop.speedY = (Math.random() * 7) + 1;
 		}
-	}
 
-	// Redraw
-	ctx.clearRect(0, 0, width, height);
-	ctx.fillStyle = 'rgba(0, 0, 0, 0)'; // transparent
-	ctx.fillRect(0, 0, width, height);
-	for (i = 0; i < len; i++) {
-		drop = drops[i];
-		ctx.fillStyle = drop.color;
 		ctx.fillRect(drop.x, drop.y, drop.speedY / 4, drop.speedY);
 	}
+
+	requestAnimationFrame(main);
 })();
 </script>
