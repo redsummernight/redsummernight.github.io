@@ -1,0 +1,300 @@
+@charset "utf-8";
+/*
+Children in the Crossfire.
+2012
+*/
+
+/* --- Canvas --- */
+
+/*		Default Layout: 992px.
+		Gutters: 24px.
+		Outer margins: 48px.
+		Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+body {
+	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
+}
+
+.area {
+	margin: 0 auto;
+	position: relative;
+	width: 800px; height: 800px;
+	border: 1px solid black; border-top: none; border-bottom: none;
+}
+
+@media only screen and (min-height: 992px){
+	.area {
+		width: 940px; height: 940px;
+	}
+}
+
+@media only screen and (min-height: 768px) and (max-height: 991px) {
+	.area {
+		width: 700px; height: 700px;
+	}
+}
+
+@media only screen and (min-height: 600px) and (max-height: 767px) {
+	.area {
+		width: 550px; height: 550px;
+	}
+}
+
+@media only screen and (min-height: 500px) and (max-height: 599px) {
+	.area {
+		width: 450px; height: 450px;
+	}
+}
+
+@media only screen and (max-height: 499px) {
+	.area {
+		width: 350px; height: 350px;
+	}
+}
+
+/* --- Kid --- */
+
+#kid-head {
+	height: 27%; width: 28%;
+	bottom: 20%; left: 36%;
+	border-radius: 50%;
+}
+#kid-body {
+	height: 19%; width: 32%;
+	bottom: 0; left: 35%;
+}
+#kid-arm-left {
+	height: 100%; width: 10%;
+	bottom: -4%; left: -1%;
+
+	-moz-transform: rotate(5deg);
+	-webkit-transform: rotate(5deg);
+	-o-transform: rotate(5deg);
+	transform: rotate(5deg);
+
+	border-top-left-radius: 60%;
+}
+#kid-arm-right {
+	height: 100%; width: 15%;
+	bottom: -4%; right: 3%;
+
+	-moz-transform: rotate(-6deg);
+	-webkit-transform: rotate(-6deg);
+	transform: rotate(-6deg);
+	-o-transform: rotate(-6deg);
+
+	border-top-right-radius: 68%;
+}
+#kid-shoulder-left {
+	height: 10%; width: 35%;
+	left: 7%; top: 4%;
+
+	-moz-transform: rotate(10deg);
+	-webkit-transform: rotate(10deg);
+	-o-transform: rotate(10deg);
+	transform: rotate(10deg);
+
+	border-top-left-radius: 60%;
+}
+#kid-shoulder-right {
+	height: 10%; width: 35%;
+	right: 15.6%; top: 4.5%;
+
+	-moz-transform: rotate(-10deg);
+	-webkit-transform: rotate(-10deg);
+	-o-transform: rotate(-10deg);
+	transform: rotate(-10deg);
+
+	border-top-right-radius: 60%;
+}
+#kid-back {
+	height: 92%; width: 80%;
+	bottom: 0; left: 6%;
+}
+#kid-neck {
+	height: 10%; width: 5%;
+	bottom: 15%; left: 47.5%;
+}
+
+/* --- Father --- */
+
+#father {
+	height: 90%; width: 32%;
+	bottom: 0; left: 7%;
+}
+#father-coat-back {
+	height: 60%; width: 30%;
+	bottom: 0; left: 15%;
+
+	-moz-transform: skewX(-11deg);
+	-webkit-transform: skewX(-11deg);
+	-o-transform: skewX(-11deg);
+	transform: skewX(-11deg);
+}
+#father-coat-filler {
+	height: 24%; width: 35%;
+	bottom: 0; left: 25%;
+
+	-moz-transform: skewX(-11deg);
+	-webkit-transform: skewX(-11deg);
+	-o-transform: skewX(-11deg);
+	transform: skewX(-11deg);
+}
+#father-coat-front {
+	height: 60%; width: 30%;
+	bottom: 0; left: 40%;
+
+	-moz-transform: skewX(5deg);
+	-webkit-transform: skewX(5deg);
+	-o-transform: skewX(5deg);
+	transform: skewX(5deg);
+}
+#father-shoulder-left {
+	height: 10%; width: 35%;
+	top: 14%; left: 30%;
+	border-top-left-radius: 100%;
+}
+#father-shoulder-right {
+	height: 10%; width: 15%;
+	top: 14%; left: 61%;
+	border-top-right-radius: 80%;
+
+	-moz-transform: skewX(-12deg);
+	-webkit-transform: skewX(-12deg);
+	-o-transform: skewX(-12deg);
+	transform: skewX(-12deg);
+}
+#father-back {
+	height: 20%; width: 25%;
+	top: 23%; left: 31%;
+
+	-moz-transform: skewX(2deg);
+	-webkit-transform: skewX(2deg);
+	-o-transform: skewX(2deg);
+	transform: skewX(2deg);
+}
+#father-front {
+	height: 20%; width: 20.5%;
+	top: 23%; left: 47%;
+
+	-moz-transform: skewX(-12deg);
+	-webkit-transform: skewX(-12deg);
+	-o-transform: skewX(-12deg);
+	transform: skewX(-12deg);
+}
+#father-head {
+	height: 17%; width: 47%;
+	top: 0; left: 45%;
+	border-radius: 50%;
+	border-top-left-radius: 45%;
+
+	-moz-transform: skewX(-5deg);
+	-webkit-transform: skewX(-5deg);
+	-o-transform: skewX(-5deg);
+	transform: skewX(-5deg);
+}
+
+/* --- Mother --- */
+
+#mother {
+	height: 90%; width: 55%;
+	bottom: 0; left: 68%;
+}
+#mother-coat-back-1 {
+	height: 20%; width: 12%;
+	bottom: 30%; left: 24%;
+
+	-moz-transform: skewX(35deg);
+	-webkit-transform: skewX(35deg);
+	-o-transform: skewX(35deg);
+	transform: skewX(35deg);
+}
+#mother-coat-back-2 {
+	height: 20%; width: 10%;
+	bottom: 20%; left: 38%;
+
+	-moz-transform: skewX(40deg);
+	-webkit-transform: skewX(40deg);
+	-o-transform: skewX(40deg);
+	transform: skewX(40deg);
+}
+#mother-coat-back-3 {
+	height: 20%; width: 10%;
+	bottom: 35%; left: 21%;
+
+	-moz-transform: skewX(22deg);
+	-webkit-transform: skewX(22deg);
+	-o-transform: skewX(22deg);
+	transform: skewX(22deg);
+}
+#mother-coat-back-4 {
+	height: 20%; width: 10%;
+	bottom: 40%; left: 16%;
+
+	-moz-transform: skewX(10deg);
+	-webkit-transform: skewX(10deg);
+	-o-transform: skewX(10deg);
+	transform: skewX(10deg);
+}
+#mother-coat {
+	height: 100%; width: 85%;
+	top: 75%; left: 4%;
+
+	-moz-transform: skew(-6deg, 45deg);
+	-webkit-transform: skew(-6deg, 45deg);
+	-o-transform: skew(-6deg, 45deg);
+	transform: skew(-6deg, 45deg);
+}
+#mother-arm-left {
+	height: 45%; width: 10%;
+	top: 15%; left: 10%;
+
+	-moz-transform: skew(3deg, 40deg);
+	-webkit-transform: skew(3deg, 40deg);
+	-o-transform: skew(3deg, 40deg);
+	transform: skew(3deg, 40deg);
+
+	border-top-left-radius: 70% 20%;
+}
+#mother-arm-right {
+	height: 30%; width: 10%;
+	top: 18%; left: 18%;
+
+	-moz-transform: skewX(-14deg);
+	-webkit-transform: skewX(-14deg);
+	-o-transform: skewX(-14deg);
+	transform: skewX(-14deg);
+
+	border-top-right-radius: 100% 40%;
+}
+#mother-back {
+	height: 18%; width: 7%;
+	top: 15%; left: 15%;
+
+	-moz-transform: skew(-15deg, 65deg);
+	-webkit-transform: skew(-15deg, 65deg);
+	-o-transform: skew(-15deg, 65deg);
+	transform: skew(-15deg, 65deg);
+}
+#mother-neck {
+	height: 5%; width: 7%;
+	top: 13%; left: 16%;
+
+	-moz-transform: skewX(-13deg);
+	-webkit-transform: skewX(-13deg);
+	-o-transform: skewX(-13deg);
+	transform: skewX(-13deg);
+}
+#mother-head {
+	height: 14%; width: 27%;
+	top: 3%; left: 1%;
+	border-radius: 50%;
+
+	-moz-transform: skew(-3deg, -5deg);
+	-webkit-transform: skewX(-3deg, -5deg);
+	-o-transform: skewX(-3deg, -5deg);
+	transform: skewX(-3deg, -5deg);
+}
