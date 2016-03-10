@@ -1,3 +1,18 @@
 ---
 ---
 @import "base";
+
+html, body {
+	height: 100%;
+	overflow: hidden;
+	background-color: black;
+}
+
+img#people {
+	display: block;
+	height: 100%;
+	@include user-select-none;
+	@include transform(translate(-50%, 0));
+	position: relative;
+	left: 50%;
+}
