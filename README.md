@@ -14,3 +14,5 @@ bundle install
 bundle exec jekyll serve
 ```
 The site can be found at `http://localhost:4000`.
+
+License: [MIT / CC BY 4.0](http://redsummernight.github.io/credits/).
