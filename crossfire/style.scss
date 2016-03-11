@@ -4,15 +4,33 @@
 
 html, body {
 	height: 100%;
+	padding-top: 20px;
 	overflow: hidden;
 	background-color: black;
 }
 
-img#people {
+#people {
 	display: block;
 	height: 100%;
 	@include user-select-none;
 	@include transform(translate(-50%, 0));
-	position: relative;
+	position: absolute;
 	left: 50%;
 }
+
+.ring {
+	display: block;
+	height: 100%;
+	@include user-select-none;
+	position: absolute;
+	left: 50%;
+}
+
+@include keyframes(spin) {
+0% { @include transform(translate(-50%, 0px) rotate(0deg)); }
+100% { @include transform(translate(-50%, 0px) rotate(360deg)); }
+}
+
+.r1 { @include animation(spin 45s infinite linear); }
+.r2 { @include animation(spin 25s infinite linear); }
+.r3 { @include animation(spin 60s infinite linear alternate); }
