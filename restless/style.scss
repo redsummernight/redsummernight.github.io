@@ -45,10 +45,12 @@ body {
 }
 
 @include keyframes(blinker) {
-	0% { visibility: visible; }
-	50% { visibility: hidden; }
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	51% { opacity: 0; }
+	100% { opacity: 0; }
 }
 
 .blinker {
-	@include animation(blinker 1s step-end infinite);
+	@include animation(blinker 1s linear infinite);
 }
