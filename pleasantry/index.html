@@ -1,0 +1,108 @@
+---
+title: pleasantry
+description: hello
+stylesheets: [style]
+---
+<section id="quiz">
+<p id="question">Do you think I'm useless?</p>
+<ul>
+	<!-- http://stackoverflow.com/q/5985839/ -->
+	<!-- Turn off autocomplete because Firefox remembers the disabled state. -->
+	<li><button autocomplete="off" onclick="answer(true)">Yes</button></li>
+	<li><button autocomplete="off" onclick="answer(false)">No</button></li>
+</ul>
+</section>
+<p id="feedback"></p>
+
+<script>
+var questions = [
+	"I'm useless.",
+	"I'm worthless.",
+	"I'm a waste of space.",
+	"I'm a waste of time.",
+	"I'm a waste of space-time.",
+];
+
+var yesReplies = [
+	"I knew it.",
+	"thank",
+	"I wish I could say you're wrong.",
+	"wow such candor",
+	"Ah ha ha...",
+	"plz",
+	"You're supposed to encourage me jackass.",
+	"Can't argue with that...",
+	"That's fair.",
+	"*cries*",
+	"Thank you for being honest with me. People keep telling me otherwise, they don't know shit.",
+	"la la la la not hearing this la la la...",
+];
+
+var noReplies = [
+	"I don't believe you, but I appreciate the sentiment.",
+	"I feel loved.",
+	"Thanks!",
+	"No one asked you.",
+	"Shut up.",
+	"Who asked you?",
+	"You believe in me more than I do.",
+	"Duly noted.",
+	"Who are you again?",
+	"Liar.",
+	"Yay, confetti.",
+	"My self-belief is restored. You can go now.",
+];
+
+var quiz = document.getElementById('quiz');
+var question = document.getElementById('question');
+var feedback = document.getElementById('feedback');
+var buttons = document.getElementsByTagName('button');
+
+var lastReply = '', isLastReplyYes = null;
+var yesCount = 0, noCount = 0;
+
+function toggleAnswers(on) {
+	var len = buttons.length;
+	for (var i = 0; i < len; i++) {
+		buttons[i].disabled = !on;
+	}
+}
+
+function answer(yes) {
+	toggleAnswers(false);
+
+	if (yes) {
+		yesCount++;
+	} else {
+		noCount++;
+	}
+
+	if (yesCount > 3 && noCount > 3 && yes !== isLastReplyYes) {
+		feedback.textContent = '';
+		var t = "You changed your answer again. You don't really believe in anything you've said, do you?";
+		t += " I think we're done here. Please leave me alone.";
+		quiz.textContent = t;
+		setTimeout(function() {
+			feedback.textContent = 'Please leave.';
+			setTimeout(jump, 2000);
+		}, 8000);
+		return;
+	}
+
+	var replies = yes ? yesReplies : noReplies;
+	var reply = '';
+	do {
+		reply = replies[Math.floor(Math.random() * replies.length)];
+	} while (reply === lastReply);
+
+	lastReply = reply;
+	isLastReplyYes = yes;
+	feedback.textContent = reply;
+
+	setTimeout(function() {
+		feedback.textContent = '';
+		question.textContent = questions[Math.floor(Math.random() * questions.length)];
+		toggleAnswers(true);
+	}, 2000);
+}
+</script>

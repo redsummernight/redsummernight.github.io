@@ -41,9 +41,11 @@
 		{% endif %}
 	{% endfor %}
 
-	document.getElementById('jump').onclick = function() {
+	function jump() {
 		window.location = pages[Math.floor(Math.random() * pages.length)];
-	};
+	}
+
+	document.getElementById('jump').onclick = jump;
 </script>
 {% endif %}
 <script>

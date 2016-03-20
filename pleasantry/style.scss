@@ -1,0 +1,35 @@
+---
+---
+@import "base";
+
+html {
+}
+
+body {
+	font-size: 1.5em;
+	max-width: 400px;
+	min-width: 200px;
+	margin: 0 auto;
+	padding-top: 5em;
+	text-align: center;
+}
+
+#quiz {
+	padding: 20px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	margin-bottom: 10px;
+}
+
+button {
+	color: black;
+	width: 100%;
+	line-height: 2em;
+}
