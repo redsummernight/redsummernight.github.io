@@ -82,6 +82,7 @@ section.location {
 section.location figure.wide {
 	background-image: url(heart.svg);
 	background-size: 50px 10%;
+	background-repeat: space;
 	a {
 		color: #7D117E;
 	}
