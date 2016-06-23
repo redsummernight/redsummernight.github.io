@@ -21,6 +21,10 @@ hr {
 	border-top: 1px solid;
 }
 
+pre {
+	white-space: pre-wrap;
+}
+
 .kid {
 	position: relative;
 	width: 30px; height: 40px;
@@ -48,7 +52,7 @@ hr {
 .center-text {
 	margin: 0 auto;
 	padding: 20px;
-	width: 700px;
+	max-width: 700px;
 }
 
 .noise-text {
