@@ -4,5 +4,5 @@
 set -e
 
 bundle exec jekyll build
-bundle exec htmlproof ./_site --check-html --verbose
+bundle exec ruby script/htmlproof.rb
 jshint --verbose --extract=auto --extra-ext=html,js ./_site/
