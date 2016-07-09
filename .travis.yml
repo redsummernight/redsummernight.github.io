@@ -12,4 +12,7 @@ env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
 
-cache: bundler
+cache:
+  bundler: true
+  directories:
+  - tmp/.htmlproofer # cache external link checks
