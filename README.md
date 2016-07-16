@@ -1,8 +1,10 @@
-## website [![Build Status](https://travis-ci.org/redsummernight/redsummernight.github.io.svg?branch=master)][travis]
+# [redsummernight.github.io](http://redsummernight.github.io/)
+
+[![Build Status](https://travis-ci.org/redsummernight/redsummernight.github.io.svg?branch=master)][travis]
 
 [travis]: https://travis-ci.org/redsummernight/redsummernight.github.io
 
-My [website](http://redsummernight.github.io/), running on [Jekyll](http://jekyllrb.org) and [GitHub Pages](http://pages.github.com).
+My [Jekyll](http://jekyllrb.org) website.
 
 To run it on your machine:
 
