@@ -13,5 +13,10 @@ HTML::Proofer.new('./_site', {
 	:typhoeus => {
 		:timeout => 15, # seconds
 	},
+	:validation => {
+		# script tags containing markup are reported as errors; ignore them
+		# https://github.com/gjtorikian/html-proofer/issues/233
+		:ignore_script_embeds => true,
+	},
 	:verbose => true,
 }).run
