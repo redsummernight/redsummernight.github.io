@@ -13,7 +13,7 @@ stylesheets: [style]
 <script type="text/javascript">
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-ctx.fillStyle = 'rgba(0, 255, 210, 1)'; // #00FFD2
+ctx.strokeStyle = 'rgba(0, 255, 210, 1)'; // #00FFD2
 var width = canvas.width, height = canvas.height;
 var drops = [];
 var dropCount = 50;
@@ -28,6 +28,7 @@ while (dropCount--) {
 
 (function main() {
 	ctx.clearRect(0, 0, width, height);
+	ctx.beginPath();
 
 	var i, drop, len = drops.length;
 	for (i = 0; i < len; i++) {
@@ -48,9 +49,10 @@ while (dropCount--) {
 			drop.speedY = (Math.random() * 7) + 1;
 		}
 
-		ctx.fillRect(drop.x, drop.y, drop.speedY / 4, drop.speedY);
+		ctx.moveTo(drop.x, drop.y);
+		ctx.lineTo(drop.x, drop.y + drop.speedY);
 	}
-
+	ctx.stroke();
 	requestAnimationFrame(main);
 })();
 </script>
