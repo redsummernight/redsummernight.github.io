@@ -38,3 +38,17 @@ h1 {
 	background: $text-color;
 	color: white;
 }
+
+#shadow {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-image: url(shadow.svg);
+	background-size: 100px 100px;
+	@include animation(drift 10s linear infinite);
+}
+
+@include keyframes(drift) {
+	0% { background-position: 0 0; }
+	100% { background-position: 100px 100px; }
+}
