@@ -4,4 +4,35 @@ description: with feelings
 stylesheets: [style]
 ---
 <!-- http://generatorland.com/usergenerator.aspx?id=9094 -->
-<p>ｓａｐｐｙ ｉｎｔｅｒｇａｌａｃｔｉｃ ｓｍｕｔ</p>
+<h1>ｓａｐｐｙ ｉｎｔｅｒｇａｌａｃｔｉｃ ｓｍｕｔ</h1>
+<script type="text/javascript">
+(function() {
+	'use strict';
+
+	var w = 1000, h = 1000;
+	var svg = '<svg xmlns="http://www.w3.org/2000/svg" height="' + h + '" width="' + w + '">';
+	var starCount = 1000;
+
+	for (var i = 0; i < starCount; i++) {
+		var cx = Math.floor(Math.random() * w);
+		var cy = Math.floor(Math.random() * h);
+		var r = 1;
+		var color = 'rgba(255, 255, 255, 0.5)';
+
+		if (i > starCount * 0.5) {
+			r = 1.1;
+			color = 'rgba(255, 255, 255, 0.7)';
+		}
+
+		if (i > starCount * 0.75) {
+			r = Math.min(1.2 + Math.random(), 1.5);
+			color = 'rgba(255, 255, 255, 1)';
+		}
+
+		svg += '<circle fill="' + color + '" r="' + r + '" cx="' + cx + '" cy="' + cy + '"></circle>';
+	}
+	svg += '</svg>';
+
+	document.body.style.backgroundImage = 'url(\'data:image/svg+xml;base64,' + window.btoa(svg) + '\')';
+})();
+</script>
