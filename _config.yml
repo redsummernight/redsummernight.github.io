@@ -20,6 +20,8 @@ defaults:
       stylesheets: []
       scripts: []
       nav: [jump, credits]
+      # Whether the page can be randomly jumped to
+      jump_allowed: true
       # Credits/licenses in Markdown
       credits: ""
       # References/tutorial links in Markdown

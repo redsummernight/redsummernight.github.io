@@ -34,12 +34,28 @@
 <body>
 <nav class="nav-bar">
 	{% if page.nav contains 'credits' %}
-	<a href="{{ site.baseurl }}/credits" class="nav-button">?</a>
+	<a href="{{ site.baseurl }}/credits" class="nav-button" title="who made this? i made this">?</a>
 	{% endif %}
 	{% if page.nav contains 'jump' %}
-	<a href="{{ site.baseurl }}/" class="nav-button">jump</a>
+	<a id="jump" class="nav-button" title="jump to who knows where">jump</a>
 	{% endif %}
 </nav>
 {{ content }}
+
+{% if page.nav contains 'jump' %}
+<script>
+	var pages = [];
+	{% for p in site.html_pages %}
+		{% comment %}No randomly jumping to the same page.{% endcomment %}
+		{% if p.jump_allowed and p.url != page.url %}
+			pages.push("{{ p.url }}");
+		{% endif %}
+	{% endfor %}
+
+	document.getElementById('jump').onclick = function() {
+		window.location = pages[Math.floor(Math.random() * pages.length)];
+	};
+</script>
+{% endif %}
 </body>
 </html>

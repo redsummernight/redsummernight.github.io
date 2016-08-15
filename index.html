@@ -1,14 +1,15 @@
 ---
 nav: []
+jump_allowed: false
 references: |
   - [List of random words](http://listofrandomwords.com/)
 ---
 <p class="noise-text subtle-link">
 	<strong title="o hai!!!">{{ site.title }}</strong>.
-	{% assign titles = site.pages | map: 'title' %}
+	{% assign titles = site.html_pages | map: 'title' %}
 	{% for m in site.data.salad %}
 		{% if titles contains m.word %}
-			{% for p in site.pages %}{% if p.title == m.word %}
+			{% for p in site.html_pages %}{% if p.title == m.word %}
 				<a href="{{ site.baseurl }}{{ p.url | remove:'index.html' }}"
 					title="{{ p.description }}">{{ p.title }}</a>.
 			{% endif %}{% endfor %}
