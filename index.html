@@ -1,11 +1,10 @@
 ---
-nav: []
-jump_allowed: false
 references: |
   - [List of random words](http://listofrandomwords.com/)
 ---
-<p class="noise-text subtle-link">
-	<strong title="o hai!!!">{{ site.title }}</strong>.
+<div class="center-text subtle-link">
+<h1 title="o hai!!!">{{ site.title }}</h1>
+<p class="noise-text">
 	{% assign titles = site.html_pages | map: 'title' %}
 	{% for m in site.data.salad %}
 		{% if titles contains m.word %}
@@ -17,3 +16,4 @@ references: |
 	{% endfor %}
 	{{ site.time }}.
 </p>
+</div>
