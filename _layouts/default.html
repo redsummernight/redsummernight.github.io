@@ -32,6 +32,14 @@
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 </head>
 <body>
+<nav class="nav-bar">
+	{% if page.nav contains 'credits' %}
+	<a href="{{ site.baseurl }}/credits" class="nav-button">?</a>
+	{% endif %}
+	{% if page.nav contains 'jump' %}
+	<a href="{{ site.baseurl }}/" class="nav-button">jump</a>
+	{% endif %}
+</nav>
 {{ content }}
 </body>
 </html>

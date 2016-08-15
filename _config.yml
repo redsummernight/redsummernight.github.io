@@ -19,6 +19,7 @@ defaults:
       user_scalable: yes
       stylesheets: []
       scripts: []
+      nav: [jump, credits]
       # Credits/licenses in Markdown
       credits: ""
       # References/tutorial links in Markdown
