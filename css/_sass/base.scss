@@ -46,6 +46,13 @@
 	transform-origin: $v;
 }
 
+@mixin transition($v...) {
+	-webkit-transition: $v;
+	-moz-transition: $v;
+	-o-transition: $v;
+	transition: $v;
+}
+
 @mixin user-select-none {
 	// http://stackoverflow.com/a/4407335/
 	-webkit-touch-callout: none;
