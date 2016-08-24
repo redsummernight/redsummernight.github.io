@@ -2,34 +2,44 @@
 ---
 @import "base";
 
-html {
-}
-
 body {
+	background: url('background-1503863_640.png');
 	font-size: 1.5em;
-	max-width: 400px;
-	min-width: 200px;
-	margin: 0 auto;
-	padding-top: 5em;
 	text-align: center;
 }
 
 #quiz {
 	padding: 20px;
+	max-width: 400px;
+	min-width: 200px;
+	margin: 0 auto;
+	margin-top: 5em;
 }
 
-ul {
+.me {
+	display: inline-block;
+	background-color: black;
+	color: white;
+	padding: 0.4em 0.5em;
+	&:empty { padding: 0; }
+}
+
+ul#choices {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-}
+	margin-bottom: 40px;
 
-li {
-	margin-bottom: 10px;
-}
+	li {
+		margin-bottom: 10px;
+		&:last-child { margin-bottom: 0; }
 
-button {
-	color: black;
-	width: 100%;
-	line-height: 2em;
+		button {
+			color: black;
+			width: 100%;
+			line-height: 2em;
+
+			&:disabled { opacity: 0.7; }
+		}
+	}
 }

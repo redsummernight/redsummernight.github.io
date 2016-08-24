@@ -2,17 +2,22 @@
 title: pleasantry
 description: hello
 stylesheets: [style]
+credits: |
+
+    ## [Background, Abstract](https://pixabay.com/en/background-abstract-1503863/), David Peña
+    CC0 Public Domain.
+
 ---
 <section id="quiz">
-<p id="question">Do you think I'm useless?</p>
-<ul>
+<p id="question" class="me">Do you think I'm useless?</p>
+<ul id="choices">
 	<!-- http://stackoverflow.com/q/5985839/ -->
 	<!-- Turn off autocomplete because Firefox remembers the disabled state. -->
 	<li><button autocomplete="off" onclick="answer(true)">Yes</button></li>
 	<li><button autocomplete="off" onclick="answer(false)">No</button></li>
 </ul>
+<p id="feedback" class="me"></p>
 </section>
-<p id="feedback"></p>
 
 <script>
 var questions = [
@@ -53,7 +58,6 @@ var noReplies = [
 	"My self-belief is restored. You can go now.",
 ];
 
-var quiz = document.getElementById('quiz');
 var question = document.getElementById('question');
 var feedback = document.getElementById('feedback');
 var buttons = document.getElementsByTagName('button');
@@ -78,10 +82,11 @@ function answer(yes) {
 	}
 
 	if (yesCount > 3 && noCount > 3 && yes !== isLastReplyYes) {
-		feedback.textContent = '';
 		var t = "You changed your answer again. You don't really believe in anything you've said, do you?";
 		t += " I think we're done here. Please leave me alone.";
-		quiz.textContent = t;
+		question.textContent = t;
+		feedback.textContent = '';
+		document.getElementById('choices').style.display = 'none';
 		setTimeout(function() {
 			feedback.textContent = 'Please leave.';
 			setTimeout(jump, 2000);
