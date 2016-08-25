@@ -1,4 +1,6 @@
 # http://jekyllrb.com/docs/github-pages/#project-page-url-structure
+# https://jekyllrb.com/docs/configuration/#serve-command-options
+# e.g. baseurl: "/wat"
 baseurl: ""
 
 title: redsummernight
