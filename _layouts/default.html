@@ -10,7 +10,7 @@
 	<meta name="description" content="{{ page.description | default: title }}">
 	<meta name="author" content="{{ site.title }}">
 
-	{% capture css_dir %}{{ site.baseurl }}/css{% endcapture %}
+	{% capture css_dir %}{{ site.baseurl }}/common/css{% endcapture %}
 	{% capture ts %}{{ site.time | date: '%s' }}{% endcapture %}
 	<link rel="stylesheet" href="{{ css_dir }}/normalize.css?v=3.0.3">
 	<link rel="stylesheet" href="{{ css_dir }}/common.css?v={{ ts }}">

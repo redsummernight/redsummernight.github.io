@@ -4,7 +4,7 @@ baseurl: ""
 title: redsummernight
 
 sass:
-  sass_dir: css/_sass
+  sass_dir: common/css/_sass
 
 kramdown:
   auto_id_stripping: true
