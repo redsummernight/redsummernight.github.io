@@ -28,6 +28,7 @@ defaults:
       references: ""
 
 exclude:
+  - bower.json
   - Gemfile
   - Gemfile.lock
   - README.md

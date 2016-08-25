@@ -1,0 +1,23 @@
+{
+  "name": "redsummernight.github.io",
+  "license": "MIT",
+  "homepage": "http://redsummernight.github.io/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "normalize-css": "3.0.3"
+  },
+  "install": {
+    "path": "common/lib",
+    "sources": {
+      "normalize-css": [
+        "*/normalize-css/normalize.css",
+        "*/normalize-css/LICENSE*"
+      ]
+    }
+  }
+}
