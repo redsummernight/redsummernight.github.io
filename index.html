@@ -4,15 +4,16 @@
 <h1 title="o hai!!!">{{ site.title }}</h1>
 <!-- http://listofrandomwords.com/ -->
 <p class="noise-text">
-	{% assign titles = site.html_pages | map: 'title' %}
-	{% for m in site.data.salad %}
-		{% if titles contains m.word %}
-			{% for p in site.html_pages %}{% if p.title == m.word %}
-				<a href="{{ site.baseurl }}{{ p.url | remove:'index.html' }}"
-					title="{{ p.description }}">{{ p.title }}</a>.
-			{% endif %}{% endfor %}
-		{% else %}{{ m.word }}.{% endif %}
-	{% endfor %}
-	{{ site.time }}.
+{% assign titles = site.html_pages | map: 'title' %}
+{% for m in site.data.salad %}
+	{% if titles contains m.word %}
+		{% for p in site.html_pages %}
+			{% if p.title == m.word %}
+				<a href="{{ site.baseurl }}{{ p.url }}" title="{{ p.description }}">{{ p.title }}</a>.
+			{% endif %}
+		{% endfor %}
+	{% else %}{{ m.word }}.{% endif %}
+{% endfor %}
+{{ site.time }}.
 </p>
 </div>
