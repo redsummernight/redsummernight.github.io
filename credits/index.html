@@ -7,38 +7,33 @@ jump_allowed: false
 <div class="center-text subtle-link">
 <h1>credits</h1>
 <p>
-Multimedia contents (text, art, sound) are by me and licensed under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-Creative Commons Attribution 4.0 International License</a>,
-unless otherwise noted below.
+	Multimedia contents (text, art, sound) are by me
+	(<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
+	unless otherwise noted below.
 </p>
 
 <p>
-<a href="https://github.com/redsummernight/redsummernight.github.io">Source code</a> is available under an <a href="LICENSE.txt">MIT License</a>.
-Some borrowed parts that require reproduction of their license texts are given below.
+	<a href="https://github.com/redsummernight/redsummernight.github.io">Source code</a> is available
+	under <a rel="license" href="{{ site.baseurl }}/LICENSE.txt">MIT</a>.
 </p>
 
 <hr>
-{% assign credits = "" | split: ""  %}
-{% assign pages = site.pages | sort: 'title' %}
+{% assign pages = '' | split: ''  %}
+{% for p in site.pages %}
+	{% if p.credits != "" or p.references != "" %}
+		{% assign pages = pages | push: p  %}
+	{% endif %}
+{% endfor %}
+
+{% assign pages = pages | sort: 'title'  %}
 {% for p in pages %}
-	{% if p.credits != "" %}
+	<h2>{{ p.title }}</h2>
+	{% if p.credits != '' %}
 		{{ p.credits | markdownify }}
-		<hr>
 	{% endif %}
-{% endfor %}
-
-<h2>References</h2>
-{% assign references = "" | split: ""  %}
-{% assign pages = site.pages | sort: 'title' %}
-{% for p in pages %}
-	{% if p.references != "" %}
-		{% assign references = references | push: p.references  %}
+	{% if p.references != '' %}
+		{{ p.references | markdownify }}
 	{% endif %}
+	{% unless forloop.last %}<hr>{% endunless %}
 {% endfor %}
-
-{% comment %}
-	Roundabout way to merge Markdown lists
-{% endcomment %}
-{{ references | join: ' ' | markdownify }}
 </div>
