@@ -10,13 +10,12 @@
 	<meta name="description" content="{{ page.description | default: title }}">
 	<meta name="author" content="{{ site.title }}">
 
-	{% capture lib_dir %}{{ site.baseurl }}/common/lib{% endcapture %}
-	{% capture css_dir %}{{ site.baseurl }}/common/css{% endcapture %}
+	{% capture common_dir %}{{ site.baseurl }}/common{% endcapture %}
 	{% capture ts %}{{ site.time | date: '%s' }}{% endcapture %}
-	<link rel="stylesheet" href="{{ lib_dir }}/normalize-css/normalize.css">
-	<link rel="stylesheet" href="{{ css_dir }}/common.css?v={{ ts }}">
+	<link rel="stylesheet" href="{{ common_dir }}/lib/normalize-css/normalize.css">
+	<link rel="stylesheet" href="{{ common_dir }}/css/common.css?v={{ ts }}">
 	{% for s in page.stylesheets %}
-	<link rel="stylesheet" href="{{ s | replace:'CSS_DIR',css_dir }}.css?v={{ ts }}">
+	<link rel="stylesheet" href="{{ s | replace:'COMMON_DIR',common_dir }}.css?v={{ ts }}">
 	{% endfor %}
 
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
