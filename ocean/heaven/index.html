@@ -1,0 +1,33 @@
+---
+title: heaven
+description: mad race to protracted bliss
+stylesheets: [../style]
+---
+<div class="table">
+	<div class="table-row solar">
+		<div class="table-cell">
+			<div class="sun">
+				{% for i in (1..3) %}<div class="drip"></div>{% endfor %}
+				<div class="rock"></div>
+			</div>
+		</div>
+	</div>
+	<div class="table-row sea-level">
+		<div class="table-cell sea horizontal stripes sinker">
+			<div class="frame">
+				{% include kid.html %}
+			</div>
+			<div class="shadow"></div>
+		</div>
+	</div>
+</div>
+<section class="caption">
+	<p>
+		A <span style="color:deeppink">rose</span> bloomed in the garden. I saw it when I left the house.<br>
+		I would take a photo of it when there was <a style="color:green" href="{{ site.baseurl }}/color">time</a>.
+	</p>
+	<p>
+		Three days later, the last petal fell.
+		I had <a style="color:green" href="{{ site.baseurl }}/inbox">forgotten</a>.
+	</p>
+</section>

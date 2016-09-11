@@ -176,3 +176,94 @@ body {
 	border: 1px solid #fff;
 	opacity: 0;
 }
+
+// ------
+// heaven
+// ------
+
+.caption {
+	position: absolute;
+	margin: 0;
+	margin-top: 5em;
+	padding: 1em;
+	min-width: 250px;
+	max-width: 500px;
+	background-color: rgba(#fff, 0.8);
+}
+
+.sinker {
+	&.sea {
+		background-color: #00bb00; // #7FBC81
+		@include animation(drift 3s linear infinite alternate);
+	}
+
+	.frame {
+		width: 50px; height: 25px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+
+	.kid {
+		@include transform(rotate(66deg));
+	}
+
+	.shadow {
+		width: 33px;
+	}
+}
+
+.solar {
+	height: 70%;
+
+	.table-cell {
+		overflow: hidden;
+	}
+}
+
+.sun {
+	$diameter: 200px;
+	width: $diameter;
+	height: 100%;
+	margin: 0 auto;
+	margin-top: 50px;
+	position: relative;
+
+	div {
+		position: absolute;
+	}
+
+	.rock {
+		width: $diameter;
+		height: $diameter;
+		background-color: black;
+		@include border-radius(100%);
+	}
+
+	.drip {
+		width: 7px;
+		height: 100%;
+		background-size: 100% 50%; // controls the size of the stripes
+
+		&:nth-child(1) {
+			width: 10px;
+			top: 150px;
+			left: 40%;
+			@include horizontal(black, 95%);
+			@include animation(drift 30s linear infinite);
+		}
+
+		&:nth-child(2) {
+			top: 130px;
+			left: 50%;
+			@include horizontal(#5a5a5a, 45%);
+			@include animation(drift 20s linear infinite);
+		}
+
+		&:nth-child(3) {
+			top: 170px;
+			left: 55%;
+			@include horizontal(black, 99%);
+			@include animation(drift 13s linear infinite);
+		}
+	}
+}
