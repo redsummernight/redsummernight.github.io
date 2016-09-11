@@ -94,33 +94,30 @@ body {
 	height: 30%;
 }
 
+@mixin horizontal($stripe-color, $stripe-width: 50%) {
+	/* http://lea.verou.me/demos/css3-patterns.html */
+	/* horizontal stripes */
+	// Example:
+	//   stripe-color = red, stripe-width = 50%
+	//   50% of the element's background height will be red, the rest will be transparent
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop($stripe-width / 100%, $stripe-color), color-stop($stripe-width / 100%, transparent), to(transparent));
+	background-image: -webkit-linear-gradient($stripe-color $stripe-width, transparent $stripe-width, transparent);
+	background-image: -moz-linear-gradient($stripe-color $stripe-width, transparent $stripe-width, transparent);
+	background-image: -ms-linear-gradient($stripe-color $stripe-width, transparent $stripe-width, transparent);
+	background-image: -o-linear-gradient($stripe-color $stripe-width, transparent $stripe-width, transparent);
+	background-image: linear-gradient($stripe-color $stripe-width, transparent $stripe-width, transparent);
+}
+
 .sea {
+	background-color: #B80D46;
+	background-size: 20% 25%; // controls the size of the stripes
+	@include horizontal(rgba(#ffffff, .2));
 	@include animation(drift 15s linear infinite);
 }
 
-/* http://lea.verou.me/demos/css3-patterns.html */
-.horizontal {
-	background-color: #B80D46;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -webkit-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -ms-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-}
-
-.frozen .horizontal {
+.frozen .sea {
 	background-color: #616161;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(204, 204, 204, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -webkit-linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
-	background-image: -moz-linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
-	background-image: -ms-linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(204, 204, 204, .2) 50%, transparent 50%, transparent);
-}
-
-.stripes {
-	background-size: 20% 25%; /* Controls the size of the stripes */
+	@include horizontal(rgba(#cccccc, .2));
 }
 
 @include keyframes(swing) {
