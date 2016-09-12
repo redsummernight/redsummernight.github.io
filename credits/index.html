@@ -17,6 +17,12 @@ jump_allowed: false
 	under <a rel="license" href="{{ site.baseurl }}/LICENSE.txt">MIT</a>.
 </p>
 
+<p>
+	If you see anything broken, you can let me know
+	on <a href="https://github.com/redsummernight/redsummernight.github.io/issues">GitHub’s issue tracker</a>
+	or <a href="http://redsummernight.tumblr.com/">Tumblr</a>.
+</p>
+
 <hr>
 {% assign pages = '' | split: ''  %}
 {% for p in site.pages %}
@@ -34,6 +40,5 @@ jump_allowed: false
 	{% if p.references != '' %}
 		{{ p.references | markdownify }}
 	{% endif %}
-	{% unless forloop.last %}<hr>{% endunless %}
 {% endfor %}
 </div>
