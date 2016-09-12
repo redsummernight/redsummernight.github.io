@@ -26,27 +26,7 @@ pre {
 }
 
 .kid {
-	position: relative;
 	width: 30px; height: 40px;
-
-	div { position: absolute; }
-	.bg { background-color: black; }
-	.body {
-		width: 10px; height: 20px;
-		margin: 15px 0 0 10px;
-		@include border-radius(3px);
-	}
-	.head {
-		width: 30px; height: 20px;
-		margin-top: 5px;
-		@include border-radius(30px);
-	}
-	.leg-1, .leg-2 {
-		width: 2px; height: 9px;
-		margin-top: 33px;
-	}
-	.leg-1 { margin-left: 12px; }
-	.leg-2 { margin-left: 16px; }
 }
 
 .center-text {
