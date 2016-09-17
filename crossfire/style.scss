@@ -2,11 +2,20 @@
 ---
 @import "base";
 
+@include keyframes(fadein) {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
 html, body {
 	height: 100%;
 	padding-top: 20px;
 	overflow: hidden;
 	background-color: black;
+}
+
+#wrapper {
+	@include animation(fadein 2s);
 }
 
 #people {
@@ -27,8 +36,8 @@ html, body {
 }
 
 @include keyframes(spin) {
-0% { @include transform(translate(-50%, 0px) rotate(0deg)); }
-100% { @include transform(translate(-50%, 0px) rotate(360deg)); }
+	0% { @include transform(translate(-50%, 0px) rotate(0deg)); }
+	100% { @include transform(translate(-50%, 0px) rotate(360deg)); }
 }
 
 .r1 { @include animation(spin 45s infinite linear); }
