@@ -1,9 +1,9 @@
 ---
+layout: center
 ---
-<div class="center-text subtle-link">
 <h1 title="o hai!!!">{{ site.title }}</h1>
 <!-- http://listofrandomwords.com/ -->
-<p class="noise-text">
+<p class="noise-text subtle-link">
 {% assign titles = site.html_pages | map: 'title' %}
 {% for m in site.data.salad %}
 	{% if titles contains m.word %}
@@ -16,4 +16,3 @@
 {% endfor %}
 {{ site.time }}.
 </p>
-</div>
