@@ -11,11 +11,10 @@
 	<meta name="author" content="{{ site.title }}">
 
 	{% capture common_dir %}{{ site.baseurl }}/common{% endcapture %}
-	{% capture ts %}{{ site.time | date: '%s' }}{% endcapture %}
 	<link rel="stylesheet" href="{{ common_dir }}/lib/normalize-css/normalize.css">
-	<link rel="stylesheet" href="{{ common_dir }}/css/common.css?v={{ ts }}">
+	<link rel="stylesheet" href="{{ common_dir }}/css/common.css">
 	{% for s in page.stylesheets %}
-	<link rel="stylesheet" href="{{ s | replace:'COMMON_DIR',common_dir }}.css?v={{ ts }}">
+	<link rel="stylesheet" href="{{ s | replace:'COMMON_DIR',common_dir }}.css">
 	{% endfor %}
 
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
