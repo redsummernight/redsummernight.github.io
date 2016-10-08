@@ -1,0 +1,35 @@
+---
+---
+@import "base";
+
+section {
+	font-family: monospace;
+	line-height: 2em;
+
+	max-width: 700px;
+	margin: 0 auto;
+	margin-top: 100px;
+	padding: 2em;
+}
+
+sub {
+	font-size: 100%;
+}
+
+.minimalism {
+	text-transform: capitalize;
+	&:before { content: '「 '; }
+	&:after { content: ' 」'; }
+}
+
+.footsteps { letter-spacing: 0.5em; }
+.fake-link { text-decoration: underline; }
+.colors {
+	background-color: black;
+	padding: 0 0.5em;
+	display: inline-block;
+
+	span:first-child { color: cyan; }
+	span:nth-child(2) { color: magenta; }
+	span:nth-child(3) { color: yellow; }
+}
