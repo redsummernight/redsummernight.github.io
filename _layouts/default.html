@@ -16,8 +16,6 @@
 	{% for s in page.stylesheets %}
 	<link rel="stylesheet" href="{{ s | replace:'COMMON_DIR',common_dir }}.css">
 	{% endfor %}
-
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 </head>
 <body>
 <nav class="nav-bar">
@@ -32,13 +30,9 @@
 
 {% if page.nav contains 'jump' %}
 <script>
-	var pages = [];
-	{% comment %}No randomly jumping to the same page.{% endcomment %}
-	{% for p in site.html_pages %}
-		{% if p.jump_allowed and p.url != page.url %}
-			pages.push('{{ p.url }}');
-		{% endif %}
-	{% endfor %}
+	var pages = [
+		{% for p in site.html_pages %}{% if p.jump_allowed and p.url != page.url %}'{{ p.url }}',{% endif %}{% endfor %}
+	];
 
 	if (sessionStorage) {
 		var lastVisited;

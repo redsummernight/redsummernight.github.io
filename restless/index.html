@@ -10,6 +10,8 @@ stylesheets: [style]
 	<div id="light"></div>
 	<canvas id="canvas" width="600" height="300"></canvas>
 </div>
+<!-- for requestAnimationFrame -->
+<script src="{{ site.custom.polyfill_url }}"></script>
 <script type="text/javascript">
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');

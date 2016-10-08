@@ -5,6 +5,9 @@ baseurl: ""
 
 title: redsummernight
 
+custom:
+  polyfill_url: https://cdn.polyfill.io/v2/polyfill.min.js
+
 sass:
   sass_dir: common/css/_sass
 
