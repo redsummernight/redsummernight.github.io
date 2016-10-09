@@ -68,7 +68,7 @@ sub {
 }
 
 .minimalism {
-	text-transform: capitalize;
+	text-transform: uppercase;
 	&:before { content: '「 '; }
 	&:after { content: ' 」'; }
 }
