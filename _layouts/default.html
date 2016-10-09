@@ -8,7 +8,7 @@
 	{% capture title %}{{ page.title | default: site.title }}{% endcapture %}
 	<title>{{ title }}</title>
 	<meta name="description" content="{{ page.description | default: title }}">
-	<meta name="author" content="{{ site.title }}">
+	<meta name="author" content="{{ page.author | join: ', ' }}">
 
 	{% capture common_dir %}{{ site.baseurl }}/common{% endcapture %}
 	<link rel="stylesheet" href="{{ common_dir }}/lib/normalize-css/normalize.css">
@@ -20,10 +20,10 @@
 <body>
 <nav class="nav-bar">
 	{% if page.nav contains 'credits' %}
-	<a href="{{ site.baseurl }}/credits" class="nav-button" title="who made this? i made this">?</a>
+	<a href="{{ site.baseurl }}/credits" class="nav-button" title="i made this">?</a>
 	{% endif %}
 	{% if page.nav contains 'jump' %}
-	<a id="jump" class="nav-button" title="jump to who knows where">jump</a>
+	<a id="jump" class="nav-button" title="to who knows where">jump</a>
 	{% endif %}
 </nav>
 {{ content }}

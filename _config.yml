@@ -21,9 +21,12 @@ defaults:
       path: ""
     values:
       layout: default
+      author: [redsummernight]
+      # The value of user-scalable in <meta name="viewport">
       user_scalable: yes
+      # Relative CSS paths
       stylesheets: []
-      scripts: []
+      # Possible navigation links
       nav: [jump, credits]
       # Whether the page can be randomly jumped to
       jump_allowed: true
