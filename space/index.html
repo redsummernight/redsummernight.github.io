@@ -4,6 +4,7 @@ description: with feelings
 stylesheets: [style]
 references: |
  - [Night sky with twinkling stars](https://www.script-tutorials.com/night-sky-with-twinkling-stars/), Script Tutorials
+ - [How to Generate Random Colors Programmatically](http://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/), Martin Ankerl
 ---
 <div id="shadow"></div>
 <!-- http://generatorland.com/usergenerator.aspx?id=9094 -->
@@ -11,6 +12,29 @@ references: |
 <script type="text/javascript">
 (function() {
 	'use strict';
+
+	function hsvToRgb(h, s, v) {
+		var i = Math.floor(h * 6),
+			f = h * 6 - i,
+			p = v * (1 - s),
+			q = v * (1 - f * s),
+			t = v * (1 - (1 - f) * s),
+			mod = i % 6,
+			r = [v, q, p, p, t, v][mod],
+			g = [t, v, v, q, p, p][mod],
+			b = [p, p, t, v, v, q][mod];
+		// << 0 truncates the decimal portion
+		return [r * 255 << 0, g * 255 << 0, b * 255 << 0];
+	}
+
+	var silverRatio = 0.618033988749895;
+	var startHue = Math.random();
+	function getRandomColor() {
+		startHue += silverRatio;
+		startHue %= 1;
+		var c = hsvToRgb(startHue, 0.99, 0.99);
+		return 'rgb(' + c.join() + ')';
+	}
 
 	var w = 1000, h = 1000;
 	var svg = '<svg xmlns="http://www.w3.org/2000/svg" height="' + h + '" width="' + w + '">';
@@ -20,19 +44,25 @@ references: |
 		var cx = Math.floor(Math.random() * w);
 		var cy = Math.floor(Math.random() * h);
 		var r = 1;
-		var color = 'rgba(255, 255, 255, 0.5)';
+		var color = '#ffffff';
+		var opacity = 0.5;
 
 		if (i > starCount * 0.5) {
 			r = 1.1;
-			color = 'rgba(255, 255, 255, 0.7)';
+			opacity = 0.7;
 		}
 
 		if (i > starCount * 0.75) {
 			r = Math.min(1.2 + Math.random(), 1.5);
-			color = 'rgba(255, 255, 255, 1)';
+			opacity = 1;
 		}
 
-		svg += '<circle fill="' + color + '" r="' + r + '" cx="' + cx + '" cy="' + cy + '"></circle>';
+		if (i > starCount * 0.9) {
+			color = getRandomColor();
+		}
+
+		svg += '<circle fill="' + color + '" fill-opacity="' + opacity +
+			'" r="' + r + '" cx="' + cx + '" cy="' + cy + '"></circle>';
 	}
 	svg += '</svg>';
 
