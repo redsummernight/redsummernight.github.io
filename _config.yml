@@ -22,8 +22,6 @@ defaults:
     values:
       layout: default
       author: [redsummernight]
-      # The value of user-scalable in <meta name="viewport">
-      user_scalable: yes
       # Relative CSS paths
       stylesheets: []
       # Possible navigation links
