@@ -194,7 +194,7 @@ body {
 .sinker {
 	&.sea {
 		background-color: #00bb00; // #7FBC81
-		@include animation(drift 3s linear infinite alternate);
+		@include animation(drift 3s linear infinite reverse);
 	}
 
 	.frame {
