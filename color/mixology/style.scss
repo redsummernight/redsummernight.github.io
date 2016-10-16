@@ -1,0 +1,45 @@
+---
+---
+@import "base";
+
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+table {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	background-color: black;
+}
+
+th {
+	vertical-align: bottom;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+td {
+	vertical-align: top;
+}
+
+th, td {
+	padding: 20px;
+	white-space: nowrap;
+
+	&:first-child {
+		text-align: right;
+		background-color: orange;
+		color: black;
+	}
+
+	&:last-child {
+		text-align: left;
+		background-color: brown;
+		color: white;
+	}
+}
