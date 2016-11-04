@@ -1,9 +1,12 @@
 ---
 title: crossfire
 description: stay out of trouble
-viewport: width=device-width, initial-scale=1, user-scalable=no
-stylesheets: [style]
+layout: null
 ---
+<!DOCTYPE html>
+{% include head.html custom_viewport=true %}
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="style.css">
 <!-- SVGs should have viewBox but not width/height to scale correctly in IE11 -->
 <!-- https://gist.github.com/larrybotha/7881691 -->
 <!-- ¯\_(ツ)_/¯ -->
@@ -13,3 +16,4 @@ stylesheets: [style]
 <img class="ring r3" src="ring3.svg" alt="Spinning red ring" />
 <img id="people" src="people.svg" alt="2 facing each other in the distance; a third close to the screen, watching" />
 </div>
+{% include nav.html %}

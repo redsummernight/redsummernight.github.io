@@ -1,69 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-
-	{% if page.viewport %}
-	<meta name="viewport" content="{{ page.viewport }}">
-	{% else %}
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{% endif %}
-
-	{% capture title %}{{ page.title | default: site.title }}{% endcapture %}
-	<title>{{ title }}</title>
-	<meta name="description" content="{{ page.description | default: title }}">
-	<meta name="author" content="{{ page.author | join: ', ' }}">
-
+	{% include head.html %}
 	{% capture common_dir %}{{ site.baseurl }}/common{% endcapture %}
-	<link rel="stylesheet" href="{{ common_dir }}/css/common.css">
 	{% for s in page.stylesheets %}
 	<link rel="stylesheet" href="{{ s | replace:'COMMON_DIR',common_dir }}.css">
 	{% endfor %}
 </head>
 <body>
-<nav class="nav-bar">
-	{% if page.nav contains 'credits' %}
-	<a href="{{ site.baseurl }}/credits" class="nav-button" title="i made this">?</a>
-	{% endif %}
-	{% if page.nav contains 'jump' %}
-	<a id="jump" class="nav-button" title="to who knows where">jump</a>
-	{% endif %}
-</nav>
 {{ content }}
-
-{% if page.nav contains 'jump' %}
-<script>
-	var pages = [
-		{% for p in site.html_pages %}{% if p.jump_allowed and p.url != page.url %}'{{ p.url }}',{% endif %}{% endfor %}
-	];
-
-	if (sessionStorage) {
-		var lastVisited;
-		try {
-			lastVisited = JSON.parse(sessionStorage.getItem('lastVisited'));
-		} catch (e) {}
-		if (!lastVisited || !Array.isArray(lastVisited)) {
-			lastVisited = [];
-		}
-
-		var current = '{{ page.url }}';
-		if (lastVisited.indexOf(current) < 0) {
-			lastVisited.push(current);
-		}
-		lastVisited.splice(0, lastVisited.length - 5);
-		sessionStorage.setItem('lastVisited', JSON.stringify(lastVisited));
-
-		// Don't jump to the last 5 visited pages in this session
-		pages = pages.filter(function(x) { return lastVisited.indexOf(x) < 0; });
-	}
-
-	function jump() {
-		window.location = pages[Math.floor(Math.random() * pages.length)];
-	}
-
-	document.getElementById('jump').onclick = jump;
-</script>
-{% endif %}
+{% include nav.html %}
 </body>
 </html>
