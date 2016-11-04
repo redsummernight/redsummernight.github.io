@@ -9,15 +9,10 @@
     "bower_components"
   ],
   "dependencies": {
-    "normalize-css": "3.0.3"
   },
   "install": {
     "path": "common/lib",
     "sources": {
-      "normalize-css": [
-        "*/normalize-css/normalize.css",
-        "*/normalize-css/LICENSE*"
-      ]
     }
   }
 }

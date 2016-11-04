@@ -16,7 +16,6 @@
 	<meta name="author" content="{{ page.author | join: ', ' }}">
 
 	{% capture common_dir %}{{ site.baseurl }}/common{% endcapture %}
-	<link rel="stylesheet" href="{{ common_dir }}/lib/normalize-css/normalize.css">
 	<link rel="stylesheet" href="{{ common_dir }}/css/common.css">
 	{% for s in page.stylesheets %}
 	<link rel="stylesheet" href="{{ s | replace:'COMMON_DIR',common_dir }}.css">
