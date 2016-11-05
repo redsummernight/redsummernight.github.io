@@ -1,0 +1,132 @@
+---
+title: vagabond
+description: for a limited time only!
+layout: null
+credits: |
+ - [Random](https://source.unsplash.com/) images from [Unsplash](https://unsplash.com/license)
+   (<a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a>)
+---
+<!DOCTYPE html>
+{% include head.html custom_viewport=true %}
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<style>
+	{% capture raw_scss %}
+	@import "base";
+
+	html, body {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background-color: black;
+	}
+
+	#view {
+		width: 100%;
+		height: 100%;
+		@include background-size(cover);
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center center;
+		filter: url(#boom);
+		-webkit-filter: url(#boom);
+	}
+
+	#text {
+		position: absolute;
+		bottom: 10%;
+		left: 50%;
+		@include transform(translate(-50%, -50%));
+		padding: 5px 10px;
+		font-family: monospace;
+		font-size: 17px;
+		background-color: black;
+		color: white;
+	}
+	{% endcapture %}
+	{{ raw_scss | scssify }}
+</style>
+<div id="view"></div>
+<p id="text">Did I unplug the hair dryer before I left?</p>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0">
+	<defs>
+		<filter id="boom">
+			<feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+			<feComponentTransfer in="blur" result="bright">
+				<feFuncR type="linear" slope="1" />
+				<feFuncG type="linear" slope="3" />
+				<feFuncB type="linear" slope="3" />
+			</feComponentTransfer>
+			<feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence" />
+			<feDisplacementMap in2="turbulence" in="bright" scale="-20" xChannelSelector="R" yChannelSelector="G" />
+		</filter>
+	</defs>
+</svg>
+<script>
+	var actions = [
+		"unplug the hair dryer",
+		"plug in the hair dryer",
+		"turn on the stove",
+		"turn off the charm",
+		"come across a closet",
+		"throw up",
+		"lock the prince out",
+		"lock the princess out",
+		"return the book",
+		"invalidate the cache",
+		"sabotage myself",
+		"hide the body",
+		"hide the booty",
+		"make coffee",
+		"feed the cactus",
+		"freeze the tub",
+		"piss off a god",
+		"unload the dart gun",
+	];
+
+	var events = [
+		"I left",
+		"I died",
+		"I joined the party",
+		"I entered the arena",
+		"I escaped",
+		"I started the war",
+		"I started the fight",
+		"I quit",
+		"I rolled out",
+		"I got away",
+		"I got caught",
+		"I got destroyed",
+		"I reincarnated",
+		"I respawned",
+		"I traded in my soul",
+	];
+
+	function getFlavorText() {
+		var action = actions[Math.floor(Math.random() * actions.length)];
+		var event = events[Math.floor(Math.random() * events.length)];
+		return 'Did I ' + action + ' before ' + event + '?';
+	}
+
+	var v = document.getElementById('view'), t = document.getElementById('text');
+	v.style.display = t.style.display = 'none';
+
+	v.onclick = function() {
+		t.textContent = getFlavorText();
+	};
+
+	var img = new Image(0, 0);
+	img.onload = function() {
+		// Wait for image to load before showing anything...
+		v.style.backgroundImage = 'url(' + img.src + ')';
+		v.style.display = t.style.display = '';
+	};
+
+	img.src = 'https://source.unsplash.com/category/nature/200x150/daily';
+	// img.src = 'https://source.unsplash.com/category/nature/200x150';
+	// img.src = 'https://source.unsplash.com/b8KNUxokXdw/200x150';
+	// img.src = 'https://source.unsplash.com/eqJaXgR1Pmc/200x150';
+	// img.src = 'https://source.unsplash.com/z6Quzi5HXV0/200x150';
+	// img.src = 'https://source.unsplash.com/collection/142460/200x150';
+</script>
+
+{% include nav.html %}
