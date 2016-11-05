@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'html/proofer'
+require 'html-proofer'
 
-HTML::Proofer.new('./_site', {
+HTMLProofer.check_directory('./_site', {
 	:parallel => {
 		:in_processes => 4,
 	},
@@ -12,11 +12,6 @@ HTML::Proofer.new('./_site', {
 	},
 	:typhoeus => {
 		:timeout => 15, # seconds
-	},
-	:validation => {
-		# script tags containing markup are reported as errors; ignore them
-		# https://github.com/gjtorikian/html-proofer/issues/233
-		:ignore_script_embeds => true,
 	},
 	:verbose => true,
 }).run
