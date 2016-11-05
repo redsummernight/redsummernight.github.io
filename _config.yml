@@ -23,8 +23,6 @@ defaults:
     values:
       layout: default
       author: [redsummernight]
-      # Relative CSS paths
-      stylesheets: []
       # Possible navigation links
       nav: [jump, credits]
       # Whether the page can be randomly jumped to
