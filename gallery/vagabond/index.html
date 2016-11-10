@@ -53,7 +53,7 @@ credits: |
 			<feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
 			<feComponentTransfer in="blur" result="bright">
 				<feFuncR type="linear" slope="1" />
-				<feFuncG type="linear" slope="3" />
+				<feFuncG type="linear" slope="4" />
 				<feFuncB type="linear" slope="3" />
 			</feComponentTransfer>
 			<feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence" />
@@ -121,7 +121,8 @@ credits: |
 		v.style.display = t.style.display = '';
 	};
 
-	img.src = 'https://source.unsplash.com/category/nature/200x150/daily';
+	img.src = 'https://source.unsplash.com/400x300/daily?landscape';
+	// img.src = 'https://source.unsplash.com/category/landscape/200x150/daily';
 	// img.src = 'https://source.unsplash.com/category/nature/200x150';
 	// img.src = 'https://source.unsplash.com/b8KNUxokXdw/200x150';
 	// img.src = 'https://source.unsplash.com/eqJaXgR1Pmc/200x150';
