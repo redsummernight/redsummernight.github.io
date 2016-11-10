@@ -1,5 +1,15 @@
 ---
 ---
+<style>
+	{% capture raw_scss %}
+	.noise-text {
+		text-align: justify;
+		color: #9C9C9C;
+		a { font-weight: bold; }
+	}
+	{% endcapture %}
+	{{ raw_scss | scssify }}
+</style>
 <div class="center-text">
 <h1 title="o hai!!!">{{ site.title }}</h1>
 <!-- http://listofrandomwords.com/ -->
