@@ -1,0 +1,99 @@
+---
+title: mindful
+description: one thing at a time pls
+layout: no-zoom
+credits: |
+ - Original character [intrusive thoughts jenny](http://intrusivethoughtsgeneral.tumblr.com/post/151949623335),
+   [porocora](http://porocora.tumblr.com/)
+   (author's permissions)
+ - "[and my life turned around](https://soundcloud.com/totototoro/and-my-life-turned-around)",
+   [olli](https://soundcloud.com/totototoro/)
+   (author’s permissions)
+---
+<style>
+	{% capture raw_scss %}
+	@import "base";
+
+	html, body {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background-color: #5846d7;
+	}
+
+	body {
+		background-image: url('flatline.svg');
+		background-repeat: repeat-x;
+		background-position: center;
+		@include animation(drift 2s linear infinite);
+	}
+
+	@include keyframes(drift) {
+		// background image should be 200px wide
+		0% { background-position: 200px center; }
+		100% { background-position: 0 center; }
+	}
+
+	#jenny {
+		display: block;
+		min-height: 400px;
+		height: 100%;
+		position: absolute;
+		left: 50%;
+		@include transform(translateX(-50%));
+		@include user-select-none;
+	}
+
+	#message {
+		position: absolute;
+		left: 10%;
+		top: 50%;
+		@include transform(translateY(50px));
+		color: white;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+	#credits {
+		font-size: 80%;
+		position: absolute;
+		bottom: 0;
+		padding: 5px;
+		color: white;
+		a {
+			color: white;
+		}
+	}
+	{% endcapture %}
+	{{ raw_scss | scssify }}
+</style>
+<img id="jenny" src="jenny.svg">
+<div id="message">time for mindfulness...</div>
+<div id="credits">
+	<a href="http://intrusivethoughtsgeneral.tumblr.com/post/151949623335">OC</a>
+	by <a href="http://porocora.tumblr.com/">porocora</a>.
+	<a href="https://soundcloud.com/totototoro/and-my-life-turned-around">Track</a>
+	by <a href="https://soundcloud.com/totototoro/">olli</a>.
+</div>
+<audio id="track" src="and-my-life-turned-around.mp3" loop></audio>
+<script>
+	var beating = false;
+	var track = document.getElementById('track');
+	var message = document.getElementById('message');
+	message.onclick = heartbeat;
+	document.getElementById('jenny').onclick = heartbeat;
+	(new Image()).src = 'beat.svg'; // preload background not in use
+	function heartbeat() {
+		if (beating) {
+			beating = false;
+			document.body.style.backgroundImage = 'url(flatline.svg)';
+			message.textContent = 'time for mindfulness...';
+			track.pause();
+		} else {
+			beating = true;
+			document.body.style.backgroundImage = 'url(beat.svg)';
+			message.textContent = 'you\'re doing fine.';
+			track.play();
+		}
+	}
+</script>
