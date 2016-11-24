@@ -1,6 +1,12 @@
 <nav class="nav-bar">
 	{% if page.nav contains 'credits' %}
-	<a href="{{ site.baseurl }}/credits" class="nav-button" title="i made this">?</a>
+		{% capture url %}
+			{{ site.baseurl }}/credits
+			{% if page.credits != "" or page.references != "" %}
+				#{{ page.title | slugify }}
+			{% endif %}
+		{% endcapture %}
+		<a href="{{ url | replace: '	', '' | strip_newlines }}" class="nav-button" title="i made this">?</a>
 	{% endif %}
 	{% if page.nav contains 'jump' %}
 	<a id="jump" class="nav-button" title="to who knows where">jump</a>

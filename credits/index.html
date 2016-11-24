@@ -33,7 +33,7 @@ jump_allowed: false
 
 {% assign pages = pages | sort: 'title'  %}
 {% for p in pages %}
-	<h2>{{ p.title }}</h2>
+	<h2 id="{{ p.title | slugify }}">{{ p.title }}</h2>
 	{% if p.credits != '' %}
 		{{ p.credits | markdownify }}
 	{% endif %}
