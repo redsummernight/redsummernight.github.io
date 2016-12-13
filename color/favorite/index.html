@@ -1,0 +1,52 @@
+---
+title: favorite
+description: sad sad girl
+references: |
+ - "[Adding Stroke to Web Text](https://css-tricks.com/adding-stroke-to-web-text/)", Chris Coyier
+---
+<style>
+	{% capture raw_scss %}
+	@import "base";
+
+	html, body {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background-color: powderblue;
+		font-family: verdana, arial, sans-serif;
+	}
+
+	@mixin sel {
+		background-color: #3399FF;
+		color: white;
+	}
+
+	h1 {
+		color: black;
+		font-weight: bold;
+		font-style: italic;
+		text-align: right;
+
+		margin: 1em;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+
+		&::selection { @include sel; }
+		&::-moz-selection { @include sel; }
+	}
+
+	#color-name {
+		color: powderblue;
+		text-shadow: 3px 2px 0 #000,
+			-1px -1px 0 #000, 1px -1px 0 #000,
+			-1px 1px 0 #000, 1px 1px 0 #000;
+
+		&::selection { @include sel; }
+		&::-moz-selection { @include sel; }
+	}
+	{% endcapture %}
+	{{ raw_scss | scssify }}
+</style>
+<h1>you're the only one who knows my favorite color...<br>
+and it's <span id="color-name">powder blue</span></h1>
