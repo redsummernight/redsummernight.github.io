@@ -44,8 +44,8 @@ body {
 }
 
 @include keyframes(stars) {
-	from { top: 0; }
-	to { top: -2000px; }
+	0% { top: 0; }
+	100% { top: -2000px; }
 }
 
 .table-cell.beyond { vertical-align: top; }
