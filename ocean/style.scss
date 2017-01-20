@@ -181,6 +181,8 @@ body {
 // heaven
 // ------
 
+$sky-color: #C3F7E3;
+
 .caption {
 	position: absolute;
 	margin: 0;
@@ -188,7 +190,19 @@ body {
 	padding: 1em;
 	min-width: 250px;
 	max-width: 500px;
-	background-color: rgba(#fff, 0.8);
+	background-color: rgba($sky-color, 0.8);
+
+	.rose {
+		background-color: deeppink;
+		color: white;
+		font-weight: bold;
+		padding: 0.1em 0.3em;
+	}
+
+	.leaf {
+		color: darkgreen;
+		font-weight: bold;
+	}
 }
 
 .sinker {
@@ -213,6 +227,7 @@ body {
 }
 
 .solar {
+	background-color: $sky-color;
 	height: 70%;
 
 	.table-cell {
