@@ -2,7 +2,7 @@
 title: favorite
 description: sad sad girl
 credits: |
- - "[Mr. Watson](https://www.youtube.com/watch?v=bqUZn0gWLk4)", Cruel Youth (sampled lyrics)
+ - "[Mr. Watson](https://www.youtube.com/watch?v=bqUZn0gWLk4)", Cruel Youth (sample)
 references: |
  - "[Adding Stroke to Web Text](https://css-tricks.com/adding-stroke-to-web-text/)", Chris Coyier
  - [Photo](https://unsplash.com/photos/D62hQefhteg/) by Ilya
@@ -50,6 +50,11 @@ references: |
 		&::-moz-selection { @include sel; }
 	}
 
+	audio {
+		width: 200px;
+		margin: 4em 1em;
+	}
+
 	#color-name {
 		color: powderblue;
 		text-shadow: 3px 2px 0 #000,
@@ -64,3 +69,4 @@ references: |
 </style>
 <h1>you're the only one who knows my favorite color...<br>
 and it's <span id="color-name">#B0E0E6</span></h1>
+<audio src="mr-watson.mp3" preload="auto" controls loop></audio>
