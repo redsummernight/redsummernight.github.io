@@ -1,4 +1,4 @@
-# [redsummernight.github.io](http://redsummernight.github.io/)
+# [redsummernight.github.io](https://redsummernight.github.io/)
 
 [![Build Status](https://travis-ci.org/redsummernight/redsummernight.github.io.svg?branch=master)][travis]
 
@@ -29,4 +29,4 @@ bower-installer --remove-install-path
 
 ## License
 
-[MIT and CC BY 4.0](http://redsummernight.github.io/credits/).
+[MIT and CC BY 4.0](https://redsummernight.github.io/credits/).
