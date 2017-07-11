@@ -13,9 +13,4 @@ HTMLProofer.check_directory('./_site', {
 	:typhoeus => {
 		:timeout => 15, # seconds
 	},
-	:url_ignore => [
-		# html-proofer removes the end slash;
-		# this site will return 500 if the URL is not an exact match
-		/script-tutorials.com/,
-	],
 }).run
