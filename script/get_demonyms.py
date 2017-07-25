@@ -47,5 +47,8 @@ if __name__ == '__main__':
     result_file = os.path.join(BASE_DIR, '_data/demonyms.json')
     print('Saving: ' + result_file)
     with open(result_file, 'w+', encoding='utf8') as f:
-        json.dump(demonyms, f, sort_keys=True, indent=2, ensure_ascii=False)
+        json.dump(demonyms, f, sort_keys=True, indent=2, ensure_ascii=False,
+                  # Remove trailing whitespace only
+                  # https://stackoverflow.com/a/35013643
+                  separators=(',', ': '))
     print('Done.')
