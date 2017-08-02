@@ -13,4 +13,7 @@ HTMLProofer.check_directory('./_site', {
 	:typhoeus => {
 		:timeout => 15, # seconds
 	},
+	:url_ignore => [
+		/html5rocks.com/,
+	],
 }).run
