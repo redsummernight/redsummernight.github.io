@@ -10,7 +10,7 @@ custom:
 
 sass:
   sass_dir: common/css/_sass
-  style: compact
+  style: compressed
 
 kramdown:
   auto_id_stripping: true
