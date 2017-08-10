@@ -35,6 +35,7 @@ defaults:
 exclude:
   - bower.json
   - bower_components
+  - CONTRIBUTING.md
   - Gemfile
   - Gemfile.lock
   - README.md
