@@ -20,4 +20,6 @@ bundle exec jekyll serve # http://localhost:4000
 
 ## License
 
-[MIT and CC BY 4.0](https://redsummernight.github.io/credits/).
+[MIT](https://github.com/redsummernight/redsummernight.github.io/blob/master/LICENSE) for code
+and [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) for art/text/sound,
+unless [otherwise noted](https://redsummernight.github.io/credits/).
