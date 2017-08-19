@@ -18,6 +18,11 @@ bundle install
 bundle exec jekyll serve # http://localhost:4000
 ```
 
+## Contributing
+
+If you like to make neat text/art/interactive things with HTML/CSS/JS, I'm happy to have you on board.
+Please check out the [contributing guide](https://github.com/redsummernight/redsummernight.github.io/blob/master/CONTRIBUTING.md) for more info.
+
 ## License
 
 [MIT](https://github.com/redsummernight/redsummernight.github.io/blob/master/LICENSE) for code
