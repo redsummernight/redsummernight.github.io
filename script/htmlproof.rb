@@ -15,5 +15,7 @@ HTMLProofer.check_directory('./_site', {
 		:timeout => 15, # seconds
 	},
 	:url_ignore => [
+		/martin.ankerl.com/,
+		/soundcloud.com/,
 	],
 }).run
