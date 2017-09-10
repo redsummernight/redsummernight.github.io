@@ -1,7 +1,7 @@
 ---
 layout: null
 ---
-var pages = [
+pages = [
 	{% for p in site.html_pages %}{% if p.jump_allowed and p.url != page.url %}'{{ p.url }}',{% endif %}{% endfor %}
 ];
 
@@ -22,8 +22,4 @@ if (sessionStorage) {
 
 	// Don't jump to the last 5 visited pages in this session
 	pages = pages.filter(function(x) { return lastVisited.indexOf(x) < 0; });
-}
-
-function jump() {
-	window.location = pages[Math.floor(Math.random() * pages.length)];
 }

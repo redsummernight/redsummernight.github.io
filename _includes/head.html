@@ -9,5 +9,11 @@
 
 <script>
 	var current = '{{ page.url }}';
+	var pages = [];
+	function jump() {
+		if (!pages.length) {
+			return;
+		}
+		window.location = pages[Math.floor(Math.random() * pages.length)];
+	}
 </script>
-<script src="{{ site.baseurl }}/common/nav.js"></script>
