@@ -3,7 +3,7 @@
 		{% capture url %}
 			{{ site.baseurl }}/credits
 			{% if page.credits != "" or page.references != "" %}
-				{% if page.title != 'index' %}
+				{% if page.url != '/' %}
 					#{{ page.title | slugify }}
 				{% endif %}
 			{% endif %}
