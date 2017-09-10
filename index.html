@@ -1,13 +1,40 @@
 ---
-title: redsummernight
+title: index
 description: quiet, listless, unbearably hot; an art project
+references: |
+ - "[Dizzy](https://unsplash.com/photos/mMcqMYJfopo)" by Patrick Fore
+   (<a rel="license" href="https://unsplash.com/license">CC0</a>)
 ---
 <style>
 	{% capture raw_scss %}
+	@import "base";
+
+	html, body {
+		width: 100%;
+		height: 100%;
+	}
+
+	body {
+		background-color: black;
+		/* https://source.unsplash.com/mMcqMYJfopo/1600x900 */
+		background-image: url('common/img/dizzy.png');
+		@include background-size(cover);
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center center;
+		color: #9C9C9C;
+	}
+
+	.center-text {
+		background-color: rgba(#000, 0.5);
+	}
+
 	.noise-text {
 		text-align: justify;
-		color: #9C9C9C;
-		a { font-weight: bold; }
+		a {
+			font-weight: bold;
+			color: white;
+		}
 	}
 	{% endcapture %}
 	{{ raw_scss | scssify }}

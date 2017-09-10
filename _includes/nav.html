@@ -3,7 +3,9 @@
 		{% capture url %}
 			{{ site.baseurl }}/credits
 			{% if page.credits != "" or page.references != "" %}
-				#{{ page.title | slugify }}
+				{% if page.title != 'index' %}
+					#{{ page.title | slugify }}
+				{% endif %}
 			{% endif %}
 		{% endcapture %}
 		<a href="{{ url | replace: '	', '' | strip_newlines }}" class="nav-button" title="i made this">?</a>
