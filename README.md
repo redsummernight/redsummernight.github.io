@@ -1,10 +1,13 @@
-# [redsummernight.github.io](https://redsummernight.github.io/)
+# redsummernight
 
 [![Build Status](https://travis-ci.org/redsummernight/redsummernight.github.io.svg?branch=master)][travis]
 
 [travis]: https://travis-ci.org/redsummernight/redsummernight.github.io
 
-My [Jekyll](http://jekyllrb.org) website.
+My [Jekyll](http://jekyllrb.org) website:
+
+- https://redsummernight.neocities.org/
+- https://redsummernight.github.io/
 
 ## Setup
 
