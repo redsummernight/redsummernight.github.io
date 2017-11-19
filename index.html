@@ -4,27 +4,20 @@ description: quiet, listless, unbearably hot; an art project
 ---
 <style>
 	{% capture raw_scss %}
-	.noise-text {
-		text-align: justify;
-		color: #9C9C9C;
+	.subtle-link {
 		a { font-weight: bold; }
 	}
 	{% endcapture %}
 	{{ raw_scss | scssify }}
 </style>
+{% assign pages = site.html_pages | sort: 'title' %}
 <div class="center-text">
-<h1 title="o hai!!!">{{ site.title }}</h1>
-<!-- http://listofrandomwords.com/ -->
-<p class="noise-text subtle-link">
-{% assign titles = site.html_pages | map: 'title' %}
-{% for m in site.data.salad %}
-	{% if titles contains m.word %}
-		{% for p in site.html_pages %}
-			{% if p.title == m.word %}
-				<a href="{{ site.baseurl }}{{ p.url }}" title="{{ p.description }}">{{ p.title }}</a>.
+	<h1 title="o hai!!!">{{ site.title }}</h1>
+	<p class="subtle-link">
+		{% for p in pages %}
+			{% if p.title and p.title != page.title %}
+			<a href="{{ site.baseurl }}{{ p.url }}" title="{{ p.description }}">{{ p.title }}</a>.
 			{% endif %}
 		{% endfor %}
-	{% else %}{{ m.word }}.{% endif %}
-{% endfor %}
-</p>
+	</p>
 </div>
