@@ -11,7 +11,7 @@ My [Jekyll](http://jekyllrb.org) website:
 
 ## Setup
 
-To run it on your machine:
+To view the site on your machine:
 
 ```sh
 git clone git@github.com:redsummernight/redsummernight.github.io.git
