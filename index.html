@@ -4,20 +4,37 @@ description: quiet, listless, unbearably hot; an art project
 ---
 <style>
 	{% capture raw_scss %}
-	.subtle-link {
-		a { font-weight: bold; }
+	body {
+		background-color: #ddffee;
+	}
+
+	.center-text {
+		font-size: 120%;
+		max-width: 400px;
+		margin-top: 80px;
+
+		a {
+			font-weight: bold;
+		}
+	}
+
+	img.traveler {
+		display: block;
+		margin: 0 auto;
 	}
 	{% endcapture %}
 	{{ raw_scss | scssify }}
 </style>
-{% assign pages = site.html_pages | sort: 'title' %}
-<div class="center-text">
-	<h1 title="o hai!!!">{{ site.title }}</h1>
-	<p class="subtle-link">
-		{% for p in pages %}
-			{% if p.title and p.title != page.title %}
-			<a href="{{ site.baseurl }}{{ p.url }}" title="{{ p.description }}">{{ p.title }}</a>.
-			{% endif %}
-		{% endfor %}
-	</p>
-</div>
+{% assign pages = site.html_pages | sort: 'date', 'last' %}
+<p class="center-text subtle-link">
+	{% for p in pages %}
+		{% if p.title and p.title != page.title %}
+			<a href="{{ site.baseurl }}{{ p.url }}" title="{{ p.description }}">
+				{{ p.title }}</a>.
+		{% endif %}
+	{% endfor %}
+</p>
+<p>
+	<img class="traveler" src="{{ site.baseurl }}/common/img/traveler.min.svg" width="300"
+		alt="A traveler with a wide-brimmed hat, a soft briefcase, and a frown.">
+</p>
