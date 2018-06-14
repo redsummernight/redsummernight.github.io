@@ -1,7 +1,7 @@
 <nav class="nav-bar">
 	{% if page.nav contains 'credits' %}
 		{% capture url %}
-			{{ site.baseurl }}/credits
+			{{ site.baseurl }}/credits/
 			{% if page.credits != "" or page.references != "" %}
 				{% if page.url != '/' %}
 					#{{ page.title | slugify }}
