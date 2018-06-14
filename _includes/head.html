@@ -1,7 +1,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<title>{{ page.title | default: site.title }}</title>
+{% if page.title == null %}
+<title>{{ site.title }}</title>
+{% else %}
+<title>{{ page.title | append: ' | ' | append: site.title }}</title>
+{% endif %}
+
 <meta name="description" content="{{ page.description }}">
 <meta name="author" content="{{ page.author | join: ', ' }}">
 
