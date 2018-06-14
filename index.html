@@ -1,4 +1,5 @@
 ---
+title: redsummernight
 description: quiet, listless, unbearably hot; an art project
 ---
 <style>
@@ -29,7 +30,7 @@ description: quiet, listless, unbearably hot; an art project
 {% assign pages = site.html_pages | sort: 'date', 'last' %}
 <p class="center-text subtle-link">
 	{% for p in pages %}
-		{% if p.title and p.title != page.title %}
+		{% if p.title and p.url != page.url %}
 			<a href="{{ site.baseurl }}{{ p.url }}" title="{{ p.description }}">
 				{{ p.title }}</a>.
 		{% endif %}
