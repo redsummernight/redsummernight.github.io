@@ -25,8 +25,7 @@ credits: |
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-position: center center;
-		filter: url(#boom);
-		-webkit-filter: url(#boom);
+		@include filter(url(#boom));
 	}
 
 	#text {
