@@ -1,0 +1,252 @@
+---
+title: meteors
+description: I have come to understand the way it is
+date: 2018-06-17
+layout: no-zoom
+credits: |
+ - "[Like a Star](https://www.youtube.com/watch?v=gvH9Ccqk5qc)", Corinne Bailey Rae (sample)
+ - "[How to Read Body Language](https://www.wikihow.com/Read-Body-Language#/Image:Read-Body-Language-Step-1-Version-6.jpg)"
+   (<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>)
+references: |
+ - [Dripping Paint](https://github.com/tholman/Dripping-Paint), Tim Holman
+   (<a rel="license" href="https://github.com/tholman/Dripping-Paint/blob/master/README.md">MIT</a>)
+---
+<style>
+	{% capture raw_scss %}
+	@import "base";
+
+	html, body {
+		overflow: hidden;
+		background-color: #111;
+		background-size: cover;
+		position: absolute;
+		left: 0; right: 0; top: 0; bottom: 0;
+	}
+
+	#self {
+		position: absolute;
+		@include transform(translateX(-50%));
+		@include user-select-none;
+		bottom: 0; left: 50%;
+	}
+
+	#canvas {
+		@include filter(blur(1px));
+		position: absolute;
+		left: 0; right: 0; top: 0; bottom: 0;
+	}
+
+	#frame {
+		border-color: black;
+		border-style: solid;
+		border-width: 50px 0;
+		position: absolute;
+		left: 0; right: 0; top: 0; bottom: 0;
+	}
+
+	#text {
+		background-color: black;
+		color: white;
+		text-align: center;
+		cursor: pointer;
+		white-space: nowrap;
+
+		padding: 0.5em 0.7em;
+		position: absolute;
+		top: 50%; left: 50%;
+		@include transform(translate(-50%, -50%));
+
+		&:hover {
+			background-color: #333;
+		}
+	}
+
+	audio {
+		display: none;
+	}
+	{% endcapture %}
+	{{ raw_scss | scssify }}
+</style>
+
+<canvas id="canvas"></canvas>
+<div id="frame"></div>
+<img id="self" src="cry.png" width="300" height="225" alt="Someone crying">
+<div id="text">I have come to understand the way it is</div>
+<audio id="audio" src="like-a-star.mp3" preload="auto" controls loop autoplay="true"></audio>
+
+<!-- for requestAnimationFrame -->
+<script src="{{ site.custom.polyfill_url }}"></script>
+<script>
+(function() {
+	'use strict';
+
+	function getStarsSvg() {
+		var w = 1000, h = 1000;
+		var svg = '<svg xmlns="http://www.w3.org/2000/svg" height="' + h + '" width="' + w + '">';
+		var starCount = 500;
+		for (var i = 0; i < starCount; i++) {
+			var cx = Math.floor(Math.random() * w);
+			var cy = Math.floor(Math.random() * h);
+			var r = 1;
+			var color = '#ffffff';
+			var opacity = 0.5;
+
+			if (i > starCount * 0.5) {
+				r = 1.1;
+				opacity = 0.7;
+			}
+
+			if (i > starCount * 0.75) {
+				r = Math.min(1.2 + Math.random(), 1.5);
+				opacity = 1;
+			}
+
+			svg += '<circle fill="' + color + '" fill-opacity="' + opacity +
+				'" r="' + r + '" cx="' + cx + '" cy="' + cy + '"></circle>';
+		}
+		svg += '</svg>';
+		return svg;
+	}
+
+	// Starry background
+	document.body.style.backgroundImage = 'url(\'data:image/svg+xml;base64,' + window.btoa(getStarsSvg()) + '\')';
+})();
+</script>
+<script>
+(function() {
+	'use strict';
+
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	var audio = document.getElementById('audio');
+
+	// Constants
+	var tau = 2 * Math.PI;
+	var travelAngle = 0.75 * Math.PI; // 135 degrees from x=0, clockwise
+	var travelAngleCos = Math.cos(travelAngle);
+	var travelAngleSin = Math.sin(travelAngle);
+	var meteorSize = 10;
+	var eraserColor = '#000';
+
+	var meteors = [];
+	var lastUpdateTime = Date.now();
+
+	var drawCountPerUpdate = 100;
+	audio.muted = true;
+
+	function toggleAudio() {
+		audio.play();
+		if (audio.muted) {
+			drawCountPerUpdate = 1;
+			audio.muted = false;
+		} else {
+			drawCountPerUpdate = 100;
+			audio.muted = true;
+		}
+	}
+
+	document.getElementById('text').onclick = function() {
+		this.parentNode.removeChild(this);
+		document.getElementById('frame').onclick = toggleAudio;
+		toggleAudio();
+	};
+
+	function drawMeteor(x, y, size, color) {
+		ctx.globalCompositeOperation = color == eraserColor ? 'destination-out' : 'source-over';
+		ctx.beginPath();
+		ctx.arc(x, y, size, 0, tau);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+
+	function update() {
+		var refillScreen = meteors.length == 0 || canvas.width < window.innerWidth || canvas.height < window.innerHeight;
+
+		var now = Date.now();
+		if (!refillScreen && now - lastUpdateTime < 50) {
+			// Throttle redraws
+			requestAnimationFrame(update);
+			return;
+		}
+		lastUpdateTime = now;
+
+		if (refillScreen) {
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			meteors.length = 0;
+			var meteorCount = canvas.width / 50;
+			for (var m = 0; m < meteorCount; m++) {
+				addMeteor();
+			}
+		}
+
+		// On the first update, draw a bunch of times to immediately fill the screen.
+		// On each update, draw once, usually.
+		var drawCount = refillScreen ? 500 : drawCountPerUpdate;
+		for (var f = 0; f < drawCount; f++) {
+			for (var i = 0; i < meteors.length; i++) {
+				meteors[i].x = meteors[i].x + meteors[i].v * travelAngleCos;
+				meteors[i].y = meteors[i].y + meteors[i].v * travelAngleSin;
+				if (meteors[i].y > canvas.height + 60) {
+					meteors.splice(i, 1);
+					addMeteor();
+				} else {
+					drawMeteor(meteors[i].x, meteors[i].y, meteors[i].s, meteors[i].c);
+				}
+			}
+		}
+
+		requestAnimationFrame(update);
+	}
+
+	function addMeteor() {
+		var maxTries = 25;
+		for (var i = 0; i < maxTries; i++) {
+			var s = Math.random() * meteorSize + 5;
+			var x = Math.random() * canvas.width * 2;
+			var c = '#' + (Math.random() * 0x313131 + 0xaaaaaa | 0).toString(16);
+			if (Math.random() > 0.3) {
+				s = s * 3;
+				c = eraserColor;
+			}
+
+			var conflict = false;
+
+			// Don't allow meteors on top of each other.
+			// If meteors travel straight down, we can check overlaps by adding their radius
+			// to their X position.
+			// Because meteors travel at an angle, we have to save the starting X position,
+			// and use the X-radius. The real X-radius is [radius / cosine(angle)], but
+			// radius * 2 is a good enough approximation.
+			for (var j = 0; j < meteors.length; j++) {
+				if ((x + s * 2 >= meteors[j].startX) && (x - s * 2 <= meteors[j].startX + meteors[j].s * 2)) {
+					conflict = true;
+					break;
+				}
+				if ((x - s * 2 <= meteors[j].startX) && (x + s * 2 >= meteors[j].startX - meteors[j].s * 2)) {
+					conflict = true;
+					break;
+				}
+			}
+
+			if (!conflict) {
+				meteors.push({
+					s: s,
+					x: x,
+					startX: x,
+					y: -2 * s,
+					v: (Math.random() * 3) + 1,
+					c:  c,
+				});
+				break;
+			}
+		}
+	}
+
+	requestAnimationFrame(update);
+})();
+</script>
