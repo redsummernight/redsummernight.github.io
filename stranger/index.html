@@ -1,0 +1,259 @@
+---
+title: stranger
+description: don't know you
+date: 2018-09-22
+embed: true
+embed_url: //www.youtube-nocookie.com/embed/vvkWaI91mLM?enablejsapi=1&modestbranding=1&loop=1&rel=0&iv_load_policy=3
+credits: |
+  - "[Don't know you](https://www.youtube.com/watch?v=vvkWaI91mLM)", Heize
+  - "[skyscraper covered with fog at daytime](https://unsplash.com/photos/OrwkD-iWgqg)", Meiying Ng
+    (<a rel="license" href="https://unsplash.com/license">Unsplash</a>)
+  - [Starry night](https://lea.verou.me/css3patterns/#starry-night) pattern, Lea Verou
+    (<a rel="license" href="https://github.com/LeaVerou/css3patterns/blob/master/license.txt">MIT</a>)
+  - [Hammer](https://thenounproject.com/term/hammer/1306/), John Caserta
+    (<a rel="license" href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>)
+  - [City](https://thenounproject.com/term/city/1744063/), mohkamil
+    (<a rel="license" href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>)
+  - [Topography and YYY patterns](https://www.heropatterns.com/), Steve Schoger
+    (<a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
+  - [Vector Pack: 8](https://www.deviantart.com/jonny-doomsday/art/Vector-Pack-8-134759386), Jonny-Doomsday
+    (no rights reserved)
+  - [Heart](https://thenounproject.com/term/heart/31339/), Oleg Frolov
+    (<a rel="license" href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>)
+  - "[sweet candy bar](https://unsplash.com/photos/dimHFZDRzRc)", photo-nic.co.uk nic
+    (<a rel="license" href="https://unsplash.com/license">Unsplash</a>)
+  - "[Asteroids](http://thepatternlibrary.com/#asteroids)", Sanja Kusturica
+    ("[use freely in your designs](https://github.com/tholman/the-pattern-library/blob/de932692243b34b163fd75aa4a9fbf1fa86a2f98/index.html#L196-L198)")
+  - "[red roller chair under blue sky](https://unsplash.com/photos/4y9_Du9mZqI)", Kyle Johnson
+    (<a rel="license" href="https://unsplash.com/license">Unsplash</a>)
+  - [Fireworks](https://github.com/paullewis/Fireworks), Paul Lewis
+    (<a rel="license" href="https://github.com/paullewis/Fireworks/blob/master/LICENSE">Apache 2.0</a>)
+  - [Flame](https://codepen.io/dazulu/details/fGFyj), Adrian Payne
+    (<a rel="license" href="https://codepen.io/dazulu/details/fGFyj#details-tab-license">MIT</a>)
+references: |
+  - [Artistic Effects](https://www.getpaint.net/doc/latest/EffectsArtisticMenu.html)", paint.net
+---
+<!--
+	TODO optimize png
+	TODO prefetch images https://stackoverflow.com/questions/1373142/preloading-css-images
+-->
+<link rel="stylesheet" href="style.css">
+
+<canvas class="props" id="canvas"></canvas>
+<div class="props" id="speedlines"></div>
+<div class="props" id="box"></div>
+
+<h1>14 ways to lose your teddy bear</h1>
+
+<figure>
+	{% if page.embed %}
+	<iframe id="player" width="444" height="250" src="{{ page.embed_url | escape }}"
+		allow="autoplay; encrypted-media" allowfullscreen>
+	</iframe>
+	{% else %}
+	<div id="player" style="width: 444px; height: 250px;"></div>
+	{% endif %}
+	<figcaption>
+		<ul id="tracklist">
+			<li>01. hit</li>
+			<li>02. hug and hit</li>
+			<li>02-1. hit with tools</li>
+			<li>03. play rude</li>
+			<li>04. lock up</li>
+			<li>05. full swing</li>
+			<li>06. humiliate</li>
+			<li>07. push out</li>
+			<li>08. shoot</li>
+			<li>09. ignore</li>
+			<li>10. slap</li>
+			<li>11. gold-dig</li>
+			<li>12. dump</li>
+			<li>13. firework</li>
+			<li>14. burn</li>
+		</ul>
+	</figcaption>
+</figure>
+
+<div class="props" id="city"></div>
+<div class="props" id="hammer"></div>
+<div class="props" id="splatter"></div>
+<div class="props" id="markup">
+	{% highlight html %}<!--<div id="you"></div>-->{% endhighlight %}
+</div>
+<div class="props" id="flame">
+	<div class="container">
+		<div class="red"></div>
+		<div class="orange"></div>
+		<div class="yellow"></div>
+		<div class="white"></div>
+	</div>
+</div>
+<aside class="props">
+	<img src="{{ site.baseurl }}/common/lib/Fireworks/big-glow.png" id="big-glow" alt="big glow" />
+	<img src="{{ site.baseurl }}/common/lib/Fireworks/small-glow.png" id="small-glow" alt="small glow" />
+</aside>
+
+{% include kid.html %}
+
+<div class="props" id="bullet"></div>
+<div class="props" id="dialog"></div>
+<div class="props" id="mine">
+	{% include kid.html id="shadow" %}
+</div>
+
+{% unless page.embed %}
+<!-- DEBUG -->
+<button style="position: absolute; bottom: 10px; left: 10px; color: black;" onclick="prev();">prev</button>
+<button style="position: absolute; bottom: 10px; left: 70px; color: black;" onclick="next();">next</button>
+<!-- DEBUG -->
+{% endunless %}
+
+<!-- Gradient fills for SVGs -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
+	<defs>
+		<linearGradient id="glow">
+			<stop offset="60%" stop-color="#000" />
+			<stop offset="100%" stop-color="#F00" />
+		</linearGradient>
+	</defs>
+</svg>
+
+<!-- for requestAnimationFrame -->
+<script src="{{ site.custom.polyfill_url }}"></script>
+<script src="{{ site.baseurl }}/common/monkeypatch/Fireworks/fireworks.js"></script>
+<script>
+
+function Scene(sceneClass, trackIndex, time) {
+	// <body> class
+	this.sceneClass = sceneClass;
+	// Index of '#tracklist li' element to highlight
+	this.trackIndex = trackIndex;
+	// Start time of scene
+	this.time = time;
+}
+
+var scenes = [
+	new Scene('scene-intro', null, 0), // prologue
+	new Scene('scene-hit', 0, 36.992), // hit
+	new Scene('scene-hnh', 1, 46.196), // hug and hit
+	new Scene('scene-hnh hit', 1, 46.876), // hug and hit / hit
+	new Scene('scene-hit-tools', 2, 54.449), // hit with tools
+
+	new Scene('scene-rude', 3, 63.008), // play rude
+	new Scene('scene-rude splash', 3, 63.793), // play rude / splash
+	new Scene('scene-lock', 4, 80.189), // lock up -- 21.063 -- 21.495
+	new Scene('scene-swing', 5, 84.785), // full swing -- 25.495
+	new Scene('scene-humiliate', 6, 90.613), // humiliate
+
+	new Scene('scene-push', 7, 92.664), // push out
+	new Scene('scene-shoot fear', 8, 95.921), // shoot
+	new Scene('scene-shoot bullets', 8, 97.045), // shoot / bullets
+	new Scene('scene-shoot', 8, 98.426), // shoot
+	new Scene('scene-ignore', 9, 107.563), // ignore
+
+	new Scene('scene-slap', 10, 120.948), // slap
+	new Scene('scene-gold', 11, 125.617), // gold-dig
+	new Scene('scene-dump', 11, 137.698), // dump / preview
+	new Scene('scene-dump', 12, 144.513), // dump
+	new Scene('scene-firework', 12, 149.057), // firework / preview
+
+	new Scene('scene-firework', 13, 155.974), // firework
+	new Scene('scene-burn', 14, 164.870), // burn
+	new Scene('scene-burn fade', 14, 183.301), // burn / fade
+	new Scene('scene-outro', Number.MAX_VALUE, 187.378) // epilogue
+];
+
+var tracks = document.querySelectorAll('#tracklist li');
+
+function setScene(scene) {
+	document.body.className = scene.sceneClass;
+	var t = scene.trackIndex;
+	for (var i = 0; i < tracks.length; i++) {
+		// Tracks up to and including the current track get styled.
+		// If current track is null, i.e. no track has been played, then none get styled.
+		// We still need to run this loop to clear out previously set styles.
+		tracks[i].className = t !== null && t >= i ? 'played-track' : '';
+		// Current track gets uniquely styled.
+		if (t === i) tracks[i].className +=  ' current-track';
+	}
+
+	toggleFireworks();
+}
+
+function setPlayState(playing) {
+	document.documentElement.className = playing ? 'playing' : '';
+	toggleFireworks();
+}
+
+function toggleFireworks() {
+	if (document.body.className.indexOf('scene-firework') !== -1 && document.documentElement.className === 'playing') {
+		Fireworks.resume();
+	} else {
+		Fireworks.pause();
+	}
+}
+
+setScene(scenes[0]);
+setPlayState(false);
+
+{% if page.embed %}
+
+	var tag = document.createElement('script');
+	tag.id = 'iframe-demo';
+	tag.src = 'https://www.youtube.com/iframe_api';
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	}
+
+	function onPlayerReady(event) {
+		// event.target.playVideo();
+		setInterval(update, 50);
+	}
+
+	function onPlayerStateChange(event) {
+		setPlayState(event.data === YT.PlayerState.PLAYING);
+		update();
+	}
+
+	function update() {
+		var time = player.getCurrentTime();
+		for (var i = 0; i < scenes.length; i++) {
+			var scene = scenes[i];
+			// A scene is current if:
+			// - current time is past its start time, and...
+			// - current time is not past the next scene's start time, or there is no next scene
+			if (time >= scene.time && (i === scenes.length - 1 || time < scenes[i + 1].time)) {
+				setScene(scene);
+				break;
+			}
+		}
+	}
+
+{% else %}
+
+	// -- DEBUG
+	var s = 0, min = 0, max = scenes.length - 1;
+	setScene(scenes[s]);
+	setPlayState(true);
+
+	function prev() {
+		if (--s < min) s = max;
+		setScene(scenes[s]);
+	}
+	function next() {
+		if (++s > max) s = min;
+		setScene(scenes[s]);
+	}
+	// -- DEBUG
+
+{% endif %}
+</script>

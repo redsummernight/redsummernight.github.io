@@ -14,10 +14,20 @@
  * limitations under the License.
  */
 
+/*
+Patched:
+- Explode fireworks immediately, without first launching them into the air.
+- Remove mouse interactivity.
+- Automatically add new fireworks at intervals, cap the particle count.
+- Resize canvas when window is resized.
+- Allow pausing canvas updates.
+*/
 var Fireworks = (function() {
 
   // declare the variables we need
   var particles = [],
+      paused = true,
+      intervalID = null,
       mainCanvas = null,
       mainContext = null,
       fireworkCanvas = null,
@@ -29,12 +39,15 @@ var Fireworks = (function() {
    * Create DOM elements and get your game on
    */
   function initialize() {
+    if (mainCanvas) {
+      return; // already initialized
+    }
 
     // start by measuring the viewport
     onWindowResize();
 
     // create a canvas for the fireworks
-    mainCanvas = document.createElement('canvas');
+    mainCanvas = document.getElementById('canvas');
     mainContext = mainCanvas.getContext('2d');
 
     // and another one for, like, an off screen buffer
@@ -48,11 +61,6 @@ var Fireworks = (function() {
     // set the dimensions on the canvas
     setMainCanvasDimensions();
 
-    // add the canvas in
-    document.body.appendChild(mainCanvas);
-    document.addEventListener('mouseup', createFirework, true);
-    document.addEventListener('touchend', createFirework, true);
-
     // and now we set off
     update();
   }
@@ -62,7 +70,21 @@ var Fireworks = (function() {
    * new firework on touch / click
    */
   function createFirework() {
-    createParticle();
+    if (particles.length > 500) {
+      return;
+    }
+    var firework = {
+      pos: {
+        x: viewportWidth * Math.random(),
+        y: viewportHeight * Math.random()
+      },
+      color: Math.floor(Math.random() * 100) * 12,
+    };
+    if (Math.random() < 0.8) {
+      FireworkExplosions.star(firework);
+    } else {
+      FireworkExplosions.circle(firework);
+    }
   }
 
   /**
@@ -98,17 +120,51 @@ var Fireworks = (function() {
    * detected viewport size
    */
   function setMainCanvasDimensions() {
-    mainCanvas.width = viewportWidth;
-    mainCanvas.height = viewportHeight;
+    if (mainCanvas.width !== viewportWidth) {
+      mainCanvas.width = viewportWidth;
+    }
+    if (mainCanvas.height !== viewportHeight) {
+      mainCanvas.height = viewportHeight;
+    }
   }
 
   /**
    * The main loop where everything happens
    */
   function update() {
+    if (paused) {
+      return;
+    }
+    onWindowResize();
+    setMainCanvasDimensions();
     clearContext();
-    requestAnimFrame(update);
+    requestAnimationFrame(update);
     drawFireworks();
+  }
+
+  function pause() {
+    if (paused) {
+      return;
+    }
+    paused = true;
+
+    clearInterval(intervalID);
+    intervalID = null;
+  }
+
+  function resume() {
+    if (!paused) {
+      return;
+    }
+    paused = false;
+
+    if (!intervalID) {
+      intervalID = setInterval(createFirework, 571); // quarter note, 105 BPM
+    }
+
+    if (mainCanvas) {
+      update();
+    }
   }
 
   /**
@@ -195,14 +251,20 @@ var Fireworks = (function() {
    * sets the viewport dimensions
    */
   function onWindowResize() {
-    viewportWidth = window.innerWidth;
-    viewportHeight = window.innerHeight;
+    if (viewportWidth !== window.innerWidth) {
+      viewportWidth = window.innerWidth;
+    }
+    if (viewportHeight !== window.innerHeight) {
+      viewportHeight = window.innerHeight;
+    }
   }
 
   // declare an API
   return {
     initialize: initialize,
-    createParticle: createParticle
+    createParticle: createParticle,
+    pause: pause,
+    resume: resume
   };
 
 })();

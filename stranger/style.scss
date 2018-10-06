@@ -1,0 +1,683 @@
+---
+---
+@import "base";
+
+html, body {
+	width: 100%;
+	height: 100%;
+	min-width: 700px;
+	min-height: 600px;
+	overflow: hidden;
+	background-color: black;
+	position: relative;
+}
+
+html * {
+	animation-play-state: paused !important;
+}
+
+html.playing * {
+	animation-play-state: running !important;
+}
+
+h1 {
+	margin-top: 0;
+	padding-top: 2em;
+	text-align: center;
+	font-family: monospace;
+	position: relative;
+}
+
+figure {
+	margin: 0 auto;
+	max-width: 630px;
+	position: relative;
+
+	div, figcaption, iframe { float: left; }
+
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+#player {
+	border: none;
+	background-color: black;
+	@include filter(grayscale(1) brightness(120%));
+}
+
+#tracklist {
+	margin: 5px 0;
+	font-family: monospace;
+	list-style: none;
+	padding-left: 1em;
+
+	li {
+		padding: 1px 5px;
+		border-left-width: 2px;
+		border-left-style: solid;
+		border-left-color: transparent;
+
+		&.current-track { color: #000; }
+	}
+}
+
+@mixin current-track($bg-color: #FF1493) {
+	#tracklist {
+		li.played-track {
+			border-left-color: $bg-color;
+		}
+		li.current-track {
+			background-color: $bg-color;
+		}
+	}
+}
+
+@include current-track;
+
+.props {
+	display: none;
+	position: absolute;
+}
+
+#splatter {
+	width: 168px;
+	height: 115px;
+	left: 50%; top: 440px;
+	background-image: url('splatter.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#speedlines {
+	background-image: url('{{ site.baseurl }}/minimalism/speedlines.svg');
+}
+
+// The song is at 105 BPM; a few duration constants for animations:
+
+$duration-eighth-note: 285ms;
+$duration-quarter-note: 571ms;
+$duration-half-note: 1142ms;
+$duration-whole-note: 2285ms;
+
+//================================================================================
+// Intro, outro, the initial hit scenes
+//================================================================================
+
+.kid {
+	position: absolute;
+	left: 50%; top: 440px;
+	margin-left: -15px;
+
+	.scene-intro & {
+		@include animation(float $duration-half-note ease infinite);
+	}
+
+	.scene-outro & {
+		display: none;
+	}
+}
+
+@include keyframes(float) {
+	0% { @include transform(none); }
+	50% { @include transform(translateY(5px)); }
+	100% { @include transform(none); }
+}
+
+.scene-intro, .scene-outro {
+	background-color: #F8C3CB;
+	background-image: url('meiying-ng-581604-unsplash-800x600.jpg');
+	@include background-size(cover);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+.scene-hit {
+	// http://lea.verou.me/css3patterns/#starry-night
+	color: white;
+	background-color: black;
+	background-image: radial-gradient(white, rgba(#7D22F7,.2) 2px, transparent 40px),
+		radial-gradient(white, rgba(#FC2C6C,.15) 1px, transparent 30px),
+		radial-gradient(white, rgba(#FCBCC4,.1) 2px, transparent 40px),
+		radial-gradient(rgba(#FC0484,.4), rgba(#FC0484,.1) 2px, transparent 30px);
+	background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+	background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+
+	@include animation(drift 1500s linear infinite);
+
+	.kid {
+		.bg { fill: #E31C46; }
+	}
+}
+
+.scene-hnh {
+	color: #ddd;
+	background-color: #C02B69;
+	background-image: radial-gradient(white, rgba(#FF0,.2) 2px, transparent 40px),
+		radial-gradient(white, rgba(#FF4136,.15) 1px, transparent 30px),
+		radial-gradient(white, rgba(#FFF,.1) 2px, transparent 40px),
+		radial-gradient(rgba(#FFF,.4), rgba(#FFF,.1) 2px, transparent 30px);
+	background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+	background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+
+	@include animation(drift 3000s linear infinite reverse);
+
+	#tracklist {
+		color: #FFDC00;
+	}
+
+	.kid {
+		.bg { fill: #FFDC00; }
+	}
+}
+
+@include keyframes(drift) {
+	0% { background-position: 0 0; }
+	100% { background-position: 0 57750px; }
+}
+
+.scene-hit, .scene-hnh {
+	.kid svg { @include transform(rotate(66deg) translateX(100px) translateY(-100px)); }
+}
+
+.scene-hnh.hit {
+	.kid svg { @include transform(rotate(-66deg) translateX(-50px) translateY(-200px)); }
+}
+
+//================================================================================
+// Flying hammer
+//================================================================================
+
+.scene-hit-tools {
+	background-color: #04FCD4;
+	background-image: linear-gradient(to right top, #04fcd4, #21fbb2, #4df78a, #74f25b, #98eb12);
+	@include current-track(#FFF);
+
+	.kid {
+		@include animation(float-x $duration-half-note ease infinite);
+		svg { @include transform(rotate(90deg) translateY(-200px)); }
+	}
+
+	#speedlines {
+		display: block;
+		background-position: 0 15px;
+		left: 0; right: 0; top: 0; bottom: 0;
+		@include animation(speedlines-drift 1s linear infinite);
+	}
+
+	#hammer {
+		display: block;
+		width: 100px;
+		height: 100px;
+		left: 50%; top: 440px;
+		margin-top: -30px;
+		background-image: url('hammer.svg');
+		background-repeat: no-repeat;
+		background-position: center center;
+		@include animation(spin 500ms infinite linear);
+	}
+
+	#city {
+		display: block;
+		height: 235px;
+		left: 0; right: 0; bottom: 0;
+		opacity: 0.2;
+		background-image: url('city.svg');
+		background-repeat: repeat-x;
+		background-position: center center;
+		@include animation(city-drift 1s linear infinite);
+	}
+}
+
+@include keyframes(speedlines-drift) {
+	0% { background-position: 0 15px; }
+	100% { background-position: -600px 15px; }
+}
+
+@include keyframes(float-x) {
+	0% { @include transform(none); }
+	50% { @include transform(translateX(10px)); }
+	100% { @include transform(none); }
+}
+
+@include keyframes(spin) {
+	0% { @include transform(rotate(0deg)); }
+	100% { @include transform(rotate(360deg)); }
+}
+
+@include keyframes(city-drift) {
+	0% { background-position: 0 15px; }
+	100% { background-position: -788px 15px; }
+}
+
+//================================================================================
+// From playing rude to shooting
+//================================================================================
+
+.scene-rude.splash, .scene-lock {
+	#splatter {
+		display: block;
+		margin-left: -75px;
+		margin-top: -43px;
+	}
+}
+
+.scene-rude {
+	// https://www.heropatterns.com/
+	// YYY
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='96' viewBox='0 0 60 96'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23b8dd3b' fill-opacity='0.4'%3E%3Cpath d='M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+	background-color: #D0F062;
+	background-attachment: fixed;
+
+	.kid {
+		svg { @include transform(rotate(116deg)); }
+	}
+}
+
+.scene-lock, .scene-swing, .scene-humiliate, .scene-push {
+	background-image: url('{{ site.baseurl }}/mermaid/heart.svg');
+	background-size: 50px 60px;
+
+	.kid {
+		svg { @include transform(rotate(116deg)); }
+	}
+
+	#box {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='96' viewBox='0 0 60 96'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23b8dd3b' fill-opacity='0.4'%3E%3Cpath d='M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+		background-color: #D0F062;
+		background-attachment: fixed;
+
+		display: block;
+		min-width: 100px;
+		min-height: 100px;
+		margin: -50px;
+		left: 0; right: 0; top: 0; bottom: 0;
+	}
+}
+
+.scene-lock {
+	background-color: #B10DC9;
+
+	$animation-options: ease-in 432ms 874ms forwards;
+
+	h1, #tracklist {
+		@include animation(whiteout $animation-options);
+	}
+
+	#splatter {
+		@include animation(fadeout $animation-options);
+	}
+
+	#box {
+		@include animation(shrink $animation-options);
+	}
+}
+
+@include keyframes(fadeout) {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@include keyframes(whiteout) {
+	0% { color: black; }
+	100% { color: white; }
+}
+
+@include keyframes(shrink) {
+	0% { left: 0; right: 0; top: 0; bottom: 0; }
+	100% { left: 50%; right: 50%; top: 440px; bottom: 100%; }
+}
+
+.scene-swing, .scene-humiliate, .scene-push {
+	background-color: #B10DC9;
+
+	h1, #tracklist {
+		color: white;
+	}
+
+	#box {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='96' viewBox='0 0 60 96'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23fe7146' fill-opacity='0.4'%3E%3Cpath d='M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+		background-color: #FEC446;
+		left: 50%; right: 50%; top: 440px; bottom: 100%;
+	}
+}
+
+.scene-swing {
+	.kid {
+		@include animation(spin 200ms 710ms linear infinite);
+	}
+}
+
+.scene-humiliate {
+	#box {
+		min-width: 150px;
+		min-height: 150px;
+		margin: -75px;
+	}
+
+	.kid {
+		@include animation(spin 200ms linear infinite);
+		svg { @include transform(scale(0.5)); }
+	}
+}
+
+.scene-push {
+	background-attachment: scroll;
+	@include animation(hearts-drift 300ms linear infinite);
+
+	#box {
+		min-width: 150px;
+		min-height: 150px;
+		margin: -75px;
+		@include animation(exit-top 1s forwards);
+	}
+
+	.kid {
+		@include animation(spin 1000ms linear infinite);
+		svg { @include transform(scale(0.5)); }
+	}
+}
+
+@include keyframes(hearts-drift) {
+	0% { background-position: 0 0; }
+	100% { background-position: 0 -60px; }
+}
+
+@include keyframes(exit-top) {
+	0% { @include transform(none); }
+	100% { @include transform(translateY(-540px)); }
+}
+
+.scene-shoot {
+	background-image: url('{{ site.baseurl }}/mermaid/heart.svg');
+	background-size: 50px 60px;
+	background-color: #001F3F;
+	@include current-track(#FFDC00);
+	@include animation(hearts-drift 300ms linear infinite);
+
+	h1, #tracklist {
+		color: #80BFFF;
+	}
+
+	.kid {
+		.bg { fill: #0FF; }
+		@include animation(spin 1000ms linear infinite);
+	}
+}
+
+.scene-shoot.fear, .scene-shoot.bullets {
+	#dialog {
+		display: block;
+		left: 50%; top: 440px;
+		margin-left: 40px;
+		margin-top: 35px;
+		color: red;
+		font-weight: bold;
+		font-size: 120%;
+
+		&:after { content: 'OMG!' }
+	}
+}
+
+.scene-shoot.bullets {
+	.kid {
+		@include animation(spin 200ms linear infinite);
+	}
+
+	#bullet {
+		display: block;
+		left: 50%; top: 440px;
+		color: #FFDC00;
+		font-weight: bold;
+
+		@include animation(bullet 20ms linear infinite);
+
+		&:after { content: 'bullet' }
+	}
+
+	#dialog {
+		@include animation(shake 100ms linear infinite);
+	}
+}
+
+@include keyframes(shake) {
+	0%, 100% { @include transform(translateY(5px)); }
+	50% { @include transform(translate(-5px)); }
+}
+
+@include keyframes(bullet) {
+	0%, 100% { margin-left: -70px; margin-top: -30px; }
+	25% { margin-left: -10px; margin-top: 100px; }
+	50% { margin-left: 50px; margin-top: -20px; }
+}
+
+//================================================================================
+// Rapid background switches
+//================================================================================
+
+.scene-ignore {
+	background-color: white;
+	background-image: url('photo-nic-co-uk-nic-166673-unsplash-800x600-blur.jpg');
+	@include background-size(cover);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+
+	.kid {
+		display: none;
+	}
+
+	#markup {
+		display: block;
+		position: absolute;
+		left: 50%; top: 440px;
+		margin-left: -85px;
+
+		// Pygments style
+		.highlight .c { color: #0074D9; } /* Comment */
+	}
+}
+
+.scene-slap {
+	background-color: black;
+
+	h1 {
+		color: #FF1493;
+	}
+
+	.kid {
+		margin-left: -295px;
+		margin-top: 10px;
+		.bg { fill: #FFF; }
+		svg { @include transform(rotate(210deg)); }
+	}
+
+	#splatter {
+		display: block;
+		margin-left: -380px;
+		background-image: url('splatter-red.svg');
+		@include transform(rotate(245deg));
+	}
+}
+
+.scene-gold {
+	// http://www.heropatterns.com/
+	// Topography
+	background-color: #85144b;
+	background-image: url('topography.svg');
+	@include animation(mine-drift 30s linear infinite);
+
+	.kid {
+		@include animation(dig $duration-whole-note ease infinite);
+		svg { @include transform(rotate(180deg)); }
+	}
+
+	h1, #tracklist {
+		color: white;
+	}
+
+	#mine {
+		display: block;
+		position: absolute;
+		top: 480px;
+		left: 0; right: 0; bottom: 0;
+		overflow: hidden;
+		background-color: black;
+		background-image: url('asteroids.jpg');
+		background-position: 0 100px;
+
+		#shadow {
+			top: -40px;
+			.bg { fill: white; }
+		}
+	}
+}
+
+@include keyframes(dig) {
+	0% { @include transform(none); }
+	50% { @include transform(translateY(30px)); }
+	100% { @include transform(none); }
+}
+
+@include keyframes(mine-drift) {
+	0% { background-position: 0 0; }
+	100% { background-position: -600px 0; }
+}
+
+.scene-dump {
+	background-color: black;
+	background-image: url('kyle-johnson-635603-unsplash-800x400-fx.jpg');
+	background-size: 400px 200px;
+	@include animation(cart-drift 30s linear infinite);
+
+	h1, #tracklist {
+		color: white;
+	}
+
+	.kid {
+		@include animation(shimmer $duration-eighth-note ease infinite alternate);
+
+		.bg { fill: white; }
+		svg { @include transform(rotate(-80deg)); }
+	}
+}
+
+@include keyframes(cart-drift) {
+	0% { background-position: 0 center; }
+	100% { background-position: 400px center; }
+}
+
+@include keyframes(shimmer) {
+	0% { opacity: 0.2; }
+	100% { opacity: 0.5; }
+}
+
+//================================================================================
+// Firework and burn
+//================================================================================
+
+.scene-firework {
+	background-color: black;
+
+	h1, #tracklist {
+		color: white;
+	}
+
+	#canvas {
+		display: block;
+		left: 0; right: 0; top: 0; bottom: 0;
+	}
+}
+
+.scene-burn {
+	background-color: #001e44;
+	background-image: linear-gradient(to right top, #001e44, #00385e, #005167, #00685c, #147d44);
+
+	h1, #tracklist {
+		color: white;
+	}
+
+	.kid {
+		.bg { fill: url(#glow); }
+		svg { @include transform(rotate(-55deg)); }
+	}
+
+	#speedlines {
+		display: block;
+		width: 1000%;
+		height: 1000%;
+		top: -500%; left: -500%;
+		opacity: 0.5;
+		@include transform(rotate(215deg));
+		@include animation(speedlines-drift 3s linear infinite);
+	}
+
+	#flame {
+		display: block;
+		top: 440px; left: 50%;
+		margin-top: -30px;
+		margin-left: -20px;
+		@include transform(rotate(35deg) scale(0.5));
+
+		.container {
+			// https://codepen.io/dazulu/details/fGFyj/
+			width: 60px; height: 60px;
+			position: relative;
+			@include transform-origin(center bottom);
+			@include animation(flicker 3ms 100ms ease-in infinite alternate);
+
+			div {
+				position: absolute;
+				bottom: 0;
+				border-bottom-right-radius: 50%;
+				border-bottom-left-radius: 50%;
+				border-top-left-radius: 50%;
+				@include transform(rotate(-45deg) scale(1.5, 1.5));
+			}
+
+			.yellow {
+				width: 30px; height: 30px; left: 15px;
+				background-color: #ffd700;
+				box-shadow: 0px 0px 9px 4px #ffd700;
+			}
+
+			.orange {
+				width: 40px; height: 40px; left: 10px;
+				background-color: orange;
+				box-shadow: 0px 0px 9px 4px orange;
+			}
+
+			.red {
+				width: 50px; height: 50px; left: 5px;
+				background-color: #ff4500;
+				box-shadow: 0px 0px 5px 4px #ff4500;
+			}
+
+			.white{
+				width: 30px; height: 30px;
+				left: 15px; bottom: -4px;
+				background-color: white;
+				box-shadow: 0px 0px 9px 4px white;
+			}
+		}
+	}
+}
+
+.scene-burn.fade {
+	$animation-options: ease-in 2s forwards;
+	.kid, #flame {
+		@include animation(fadeout $animation-options);
+	}
+}
+
+@include keyframes(flicker) {
+	0% { @include transform(rotate(-1deg)); }
+	20% { @include transform(rotate(1deg)); }
+	40% { @include transform(rotate(-1deg)); }
+	60% { @include transform(rotate(1deg) scaleY(1.04)); }
+	80% { @include transform(rotate(-2deg) scaleY(0.92)); }
+	100% { @include transform(rotate(1deg)); }
+}
