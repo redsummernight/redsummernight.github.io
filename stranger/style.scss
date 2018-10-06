@@ -1,4 +1,14 @@
 ---
+image_url:
+  asteroids: 'asteroids.jpg'
+  city: 'city.min.svg'
+  hammer: 'hammer.min.svg'
+  cart: 'kyle-johnson-635603-unsplash-800x400-fx.jpg'
+  cityscape: 'meiying-ng-581604-unsplash-800x600.jpg'
+  cake: 'photo-nic-co-uk-nic-166673-unsplash-800x600-blur.jpg'
+  splatter-red: 'splatter-red.min.svg'
+  splatter: 'splatter.min.svg'
+  topography: 'topography.svg'
 ---
 @import "base";
 
@@ -10,6 +20,17 @@ html, body {
 	overflow: hidden;
 	background-color: black;
 	position: relative;
+}
+
+body::after{
+	// Preload images
+	// https://stackoverflow.com/questions/1373142/preloading-css-images
+	position: absolute;
+	width: 0; height: 0;
+	overflow: hidden; z-index: -1;
+	content: {% for item in page.image_url %} url('{{ item[1] }}'){% endfor %}
+		url('{{ site.baseurl }}/minimalism/speedlines.svg')
+		url('{{ site.baseurl }}/mermaid/heart.svg');
 }
 
 html * {
@@ -86,7 +107,7 @@ figure {
 	width: 168px;
 	height: 115px;
 	left: 50%; top: 440px;
-	background-image: url('splatter.svg');
+	background-image: url('{{ page.image_url.splatter }}');
 	background-repeat: no-repeat;
 	background-position: center center;
 }
@@ -128,7 +149,7 @@ $duration-whole-note: 2285ms;
 
 .scene-intro, .scene-outro {
 	background-color: #F8C3CB;
-	background-image: url('meiying-ng-581604-unsplash-800x600.jpg');
+	background-image: url('{{ page.image_url.cityscape }}');
 	@include background-size(cover);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -214,7 +235,7 @@ $duration-whole-note: 2285ms;
 		height: 100px;
 		left: 50%; top: 440px;
 		margin-top: -30px;
-		background-image: url('hammer.svg');
+		background-image: url('{{ page.image_url.hammer }}');
 		background-repeat: no-repeat;
 		background-position: center center;
 		@include animation(spin 500ms infinite linear);
@@ -225,7 +246,7 @@ $duration-whole-note: 2285ms;
 		height: 235px;
 		left: 0; right: 0; bottom: 0;
 		opacity: 0.2;
-		background-image: url('city.svg');
+		background-image: url('{{ page.image_url.city }}');
 		background-repeat: repeat-x;
 		background-position: center center;
 		@include animation(city-drift 1s linear infinite);
@@ -460,7 +481,7 @@ $duration-whole-note: 2285ms;
 
 .scene-ignore {
 	background-color: white;
-	background-image: url('photo-nic-co-uk-nic-166673-unsplash-800x600-blur.jpg');
+	background-image: url('{{ page.image_url.cake }}');
 	@include background-size(cover);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -498,7 +519,7 @@ $duration-whole-note: 2285ms;
 	#splatter {
 		display: block;
 		margin-left: -380px;
-		background-image: url('splatter-red.svg');
+		background-image: url('{{ page.image_url.splatter-red }}');
 		@include transform(rotate(245deg));
 	}
 }
@@ -507,7 +528,7 @@ $duration-whole-note: 2285ms;
 	// http://www.heropatterns.com/
 	// Topography
 	background-color: #85144b;
-	background-image: url('topography.svg');
+	background-image: url('{{ page.image_url.topography }}');
 	@include animation(mine-drift 30s linear infinite);
 
 	.kid {
@@ -526,7 +547,7 @@ $duration-whole-note: 2285ms;
 		left: 0; right: 0; bottom: 0;
 		overflow: hidden;
 		background-color: black;
-		background-image: url('asteroids.jpg');
+		background-image: url('{{ page.image_url.asteroids }}');
 		background-position: 0 100px;
 
 		#shadow {
@@ -549,7 +570,7 @@ $duration-whole-note: 2285ms;
 
 .scene-dump {
 	background-color: black;
-	background-image: url('kyle-johnson-635603-unsplash-800x400-fx.jpg');
+	background-image: url('{{ page.image_url.cart }}');
 	background-size: 400px 200px;
 	@include animation(cart-drift 30s linear infinite);
 

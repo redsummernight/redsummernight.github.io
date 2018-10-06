@@ -40,6 +40,9 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - README.md
+  - '*/README.md'
+  - '*/assets'
+  - '*/tmp'
   - script
   - tmp
   # Travis bundles all gems in 'vendor'
