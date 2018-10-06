@@ -9,10 +9,15 @@
     "bower_components"
   ],
   "dependencies": {
+    "Fireworks": "https://github.com/paullewis/Fireworks.git#7f62a627aca9baed48e6d23e1d2a26248f19e3ba"
   },
   "install": {
     "path": "common/lib",
     "sources": {
+      "Fireworks": [
+        "bower_components/Fireworks/images/big-glow.png",
+        "bower_components/Fireworks/images/small-glow.png"
+      ]
     }
   }
 }

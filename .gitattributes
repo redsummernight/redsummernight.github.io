@@ -6,3 +6,4 @@
 # https://github.com/github/linguist
 Gemfile* linguist-vendored
 common/lib/* linguist-vendored
+common/monkeypatch/* linguist-vendored
