@@ -17,7 +17,7 @@ body {
 #frame {
 	height: 300px;
 	position: relative;
-	@include border-radius(1em);
+	border-radius: 1em;
 	background-color: #083409;
 	overflow: hidden;
 }
@@ -27,7 +27,7 @@ body {
 	position: absolute;
 	top: 50%; left: 50%;
 	@include transform(translate(-50%, -50%));
-	@include border-radius(10px);
+	border-radius: 10px;
 	background-color: #fff;
 	border: none;
 	@include box-shadow(0 0 60px 30px #fff, 0 0 100px 60px #0ff, 0 0 140px 90px #38ED41);

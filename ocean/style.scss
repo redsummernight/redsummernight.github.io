@@ -72,7 +72,7 @@ body {
 		radial-gradient(rgba(255,255,255,0.4) 2px, transparent 3px),
 		black;
 	background-position: 0 0, 100px 100px;
-	@include background-size(200px 200px);
+	background-size: 200px 200px;
 }
 
 .moon {
@@ -251,7 +251,7 @@ $sky-color: #C3F7E3;
 		width: $diameter;
 		height: $diameter;
 		background-color: black;
-		@include border-radius(100%);
+		border-radius: 100%;
 	}
 
 	.drip {

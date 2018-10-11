@@ -1,31 +1,16 @@
 @mixin animation($v...) {
 	-webkit-animation: $v;
-	-moz-animation: $v;
 	animation: $v;
 }
 
 @mixin animation-play-state($v...) {
 	-webkit-animation-play-state: $v;
-	-moz-animation-play-state: $v;
 	animation-play-state: $v;
-}
-
-@mixin background-size($v...) {
-	-webkit-background-size: $v;
-	-moz-background-size: $v;
-	background-size: $v;
 }
 
 @mixin box-shadow($v...) {
 	-webkit-box-shadow: $v;
-	-moz-box-shadow: $v;
 	box-shadow: $v;
-}
-
-@mixin border-radius($values...) {
-	-webkit-border-radius: $values;
-	-moz-border-radius: $values;
-	border-radius: $values;
 }
 
 @mixin filter($v...) {
@@ -35,34 +20,29 @@
 
 @mixin keyframes($name) {
 	@-webkit-keyframes #{$name} { @content; }
-	@-moz-keyframes #{$name} { @content; }
 	@keyframes #{$name} { @content; }
 }
 
 @mixin transform($v...) {
 	-webkit-transform: $v;
-	-moz-transform: $v;
+	-ms-transform: $v;
 	transform: $v;
 }
 
 @mixin transform-origin($v...) {
 	-webkit-transform-origin: $v;
-	-moz-transform-origin: $v;
+	-ms-transform-origin: $v;
 	transform-origin: $v;
 }
 
 @mixin transition($v...) {
 	-webkit-transition: $v;
-	-moz-transition: $v;
 	-o-transition: $v;
 	transition: $v;
 }
 
 @mixin user-select-none {
-	// http://stackoverflow.com/a/4407335/
-	-webkit-touch-callout: none;
 	-webkit-user-select: none;
-	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
