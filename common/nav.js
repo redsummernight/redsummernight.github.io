@@ -17,9 +17,13 @@ if (sessionStorage) {
 	if (lastVisited.indexOf(current) < 0) {
 		lastVisited.push(current);
 	}
-	lastVisited.splice(0, lastVisited.length - 5);
+
+	// Don't jump to the last X visited pages in this session.
+	// Cap X at 3/4 of the total page count.
+	// In other words, you have to go through 75% of the pages
+	// before seeing an old one again.
+	lastVisited.splice(0, lastVisited.length - pages.length * 0.75);
 	sessionStorage.setItem('lastVisited', JSON.stringify(lastVisited));
 
-	// Don't jump to the last 5 visited pages in this session
 	pages = pages.filter(function(x) { return lastVisited.indexOf(x) < 0; });
 }
