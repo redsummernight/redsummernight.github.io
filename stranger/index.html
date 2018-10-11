@@ -99,6 +99,7 @@ references: |
 <div class="props" id="mine">
 	{% include kid.html id="shadow" %}
 </div>
+<div class="props" id="timer"></div>
 
 {% unless page.embed %}
 <!-- DEBUG -->
@@ -223,6 +224,8 @@ setPlayState(false);
 		update();
 	}
 
+	var timer = document.getElementById('timer');
+
 	function update() {
 		var time = player.getCurrentTime();
 		for (var i = 0; i < scenes.length; i++) {
@@ -234,6 +237,10 @@ setPlayState(false);
 				setScene(scene);
 				break;
 			}
+		}
+
+		if (i === 0) {
+			timer.innerText = Math.ceil(scenes[i + 1].time - time);
 		}
 	}
 

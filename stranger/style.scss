@@ -156,6 +156,17 @@ $duration-whole-note: 2285ms;
 	background-position: center center;
 }
 
+.scene-intro #timer {
+	font-family: monospace;
+	font-size: 150%;
+	font-weight: bold;
+	display: block;
+	position: absolute;
+	width: 100%;
+	top: 500px;
+	text-align: center;
+}
+
 .scene-hit {
 	// http://lea.verou.me/css3patterns/#starry-night
 	color: white;
