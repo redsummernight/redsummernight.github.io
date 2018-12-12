@@ -21,6 +21,7 @@ Patched:
 - Automatically add new fireworks at intervals, cap the particle count.
 - Resize canvas when window is resized.
 - Allow pausing canvas updates.
+- Save and restore canvas context less often.
 */
 var Fireworks = (function() {
 
@@ -183,6 +184,9 @@ var Fireworks = (function() {
   function drawFireworks() {
     var a = particles.length;
 
+    mainContext.save();
+    mainContext.globalCompositeOperation = 'lighter';
+
     while(a--) {
       var firework = particles[a];
 
@@ -210,6 +214,8 @@ var Fireworks = (function() {
       // colours to the
       firework.render(mainContext, fireworkCanvas);
     }
+
+    mainContext.restore();
   }
 
   /**
@@ -351,8 +357,6 @@ Particle.prototype = {
         xVel = (x - this.lastPos.x) * -5,
         yVel = (y - this.lastPos.y) * -5;
 
-    context.save();
-    context.globalCompositeOperation = 'lighter';
     context.globalAlpha = Math.random() * this.alpha;
 
     // draw the line from where we were to where
@@ -371,8 +375,6 @@ Particle.prototype = {
       this.gridX, this.gridY, 12, 12,
       x - 6, y - 6, 12, 12);
     context.drawImage(Library.smallGlow, x - 3, y - 3);
-
-    context.restore();
   }
 
 };
