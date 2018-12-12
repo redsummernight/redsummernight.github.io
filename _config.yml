@@ -22,6 +22,7 @@ defaults:
       path: ""
     values:
       layout: default
+      lang: en
       author: [redsummernight]
       # Possible navigation links
       nav: [jump, credits]
