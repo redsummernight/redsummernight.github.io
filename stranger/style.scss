@@ -54,19 +54,20 @@ figure {
 	max-width: 630px;
 	position: relative;
 
-	div, figcaption, iframe { float: left; }
+	#player {
+		float: left;
+		border: none;
+		background-color: black;
+		@include filter(grayscale(1) brightness(120%));
+	}
+
+	figcaption { float: left; }
 
 	&:after {
 		content: '';
 		display: table;
 		clear: both;
 	}
-}
-
-#player {
-	border: none;
-	background-color: black;
-	@include filter(grayscale(1) brightness(120%));
 }
 
 #tracklist {

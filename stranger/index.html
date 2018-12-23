@@ -2,8 +2,12 @@
 title: stranger
 description: don't know you
 date: 2018-09-22
-embed: true
-embed_url: //www.youtube-nocookie.com/embed/vvkWaI91mLM?enablejsapi=1&modestbranding=1&loop=1&rel=0&iv_load_policy=3
+# Whether to embed an actual video, or have buttons to step through scenes for debugging
+video: true
+# Path to a video file, for embedding with a <video> element
+#video_url: Heize - Don't Know You.mp4
+# Path to a YouTube embed
+video_yt_url: //www.youtube-nocookie.com/embed/vvkWaI91mLM?enablejsapi=1&modestbranding=1&loop=1&rel=0&iv_load_policy=3
 credits: |
   - "[Don't know you](https://www.youtube.com/watch?v=vvkWaI91mLM)", Heize
   - "[skyscraper covered with fog at daytime](https://unsplash.com/photos/OrwkD-iWgqg)", Meiying Ng
@@ -45,12 +49,16 @@ references: |
 <h1>14 ways to lose your teddy bear</h1>
 
 <figure>
-	{% if page.embed %}
-	<iframe id="player" width="444" height="250" src="{{ page.embed_url | escape }}"
+	{% if page.video and page.video_url %}
+	<video id="player" controls width="444" height="250" src="{{ page.video_url | escape }}"></video>
+	{% elsif page.video and page.video_yt_url %}
+	<iframe id="player" width="444" height="250" src="{{ page.video_yt_url | escape }}"
 		allow="autoplay; encrypted-media" allowfullscreen>
 	</iframe>
 	{% else %}
+	<!-- DEBUG -->
 	<div id="player" style="width: 444px; height: 250px;"></div>
+	<!-- DEBUG -->
 	{% endif %}
 	<figcaption>
 		<ul id="tracklist">
@@ -101,7 +109,7 @@ references: |
 </div>
 <div class="props" id="timer"></div>
 
-{% unless page.embed %}
+{% unless page.video %}
 <!-- DEBUG -->
 <button style="position: absolute; bottom: 10px; left: 10px; color: black;" onclick="prev();">prev</button>
 <button style="position: absolute; bottom: 10px; left: 70px; color: black;" onclick="next();">next</button>
@@ -163,6 +171,7 @@ var scenes = [
 	new Scene('scene-outro', Number.MAX_VALUE, 187.378) // epilogue
 ];
 
+var timer = document.getElementById('timer');
 var tracks = document.querySelectorAll('#tracklist li');
 
 function setScene(scene) {
@@ -178,6 +187,23 @@ function setScene(scene) {
 	}
 
 	toggleFireworks();
+}
+
+function setSceneFromTime(time) {
+	for (var i = 0; i < scenes.length; i++) {
+		var scene = scenes[i];
+		// A scene is current if:
+		// - current time is past its start time, and...
+		// - current time is not past the next scene's start time, or there is no next scene
+		if (time >= scene.time && (i === scenes.length - 1 || time < scenes[i + 1].time)) {
+			setScene(scene);
+			break;
+		}
+	}
+
+	if (i === 0) {
+		timer.innerText = Math.ceil(scenes[i + 1].time - time);
+	}
 }
 
 function setPlayState(playing) {
@@ -196,7 +222,19 @@ function toggleFireworks() {
 setScene(scenes[0]);
 setPlayState(false);
 
-{% if page.embed %}
+{% if page.video and page.video_url %}
+
+	var video = document.getElementById('player');
+
+	setInterval(update, 50);
+
+	function update() {
+		var playing = video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2;
+		setPlayState(playing);
+		setSceneFromTime(video.currentTime);
+	}
+
+{% elsif page.video and page.video_yt_url %}
 
 	var tag = document.createElement('script');
 	tag.id = 'iframe-demo';
@@ -224,24 +262,8 @@ setPlayState(false);
 		update();
 	}
 
-	var timer = document.getElementById('timer');
-
 	function update() {
-		var time = player.getCurrentTime();
-		for (var i = 0; i < scenes.length; i++) {
-			var scene = scenes[i];
-			// A scene is current if:
-			// - current time is past its start time, and...
-			// - current time is not past the next scene's start time, or there is no next scene
-			if (time >= scene.time && (i === scenes.length - 1 || time < scenes[i + 1].time)) {
-				setScene(scene);
-				break;
-			}
-		}
-
-		if (i === 0) {
-			timer.innerText = Math.ceil(scenes[i + 1].time - time);
-		}
+		setSceneFromTime(player.getCurrentTime());
 	}
 
 {% else %}
