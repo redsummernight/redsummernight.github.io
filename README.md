@@ -21,6 +21,13 @@ bundle install
 bundle exec jekyll serve # http://localhost:4000
 ```
 
+### Building for Neocities
+
+Note:
+
+- The custom 404 page is `not_found.html` at the site root, unlike `404.html` for GitHub Pages.
+- Neocities has [restricted file types](https://neocities.org/site_files/allowed_types) for free accounts.
+
 ## Contributing
 
 If you like to make neat text/art/interactive things with HTML/CSS/JS, I'm happy to have you on board.
