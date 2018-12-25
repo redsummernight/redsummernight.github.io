@@ -14,6 +14,7 @@ Here's a template to get you started:
 ---
 title: trinket
 description: never leave home without it
+date: 20XX-MM-DD
 author: [matilda]
 credits: |
  - "[Portrait of a Homebody](http://example.com/)", Anonymous
@@ -42,6 +43,9 @@ is the [front matter](https://jekyllrb.com/docs/frontmatter/), where you define 
   ```html
   <meta name="description" content="never leave home without it">
   ```
+
+- date: When your page was created. The [index](https://redsummernight.github.io/) sorts pages
+  by this date, most recent first.
 
 - author: Your (nick)name, used in a `<meta>` element.
 
