@@ -4,6 +4,8 @@ description: it's a kitty!
 date: 2018-12-25
 credits: |
   - [@sarken](https://github.com/sarken), playtesting
+  - [Yarn Ball](https://thenounproject.com/term/yarn-ball/53199/), Jen Maestas
+    (<a rel="license" href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>)
 ---
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/common/lib/csshake/csshake-horizontal.min.css">
 <style>
@@ -87,9 +89,21 @@ credits: |
 			&.hl { right: 0; }
 		}
 	}
+
+	.yarn-ball {
+		width: 50px; height: 50px;
+		left: 50%; top: 50%;
+		margin-top: 20px;
+		margin-left: -100px;
+		position: absolute;
+		background-image: url('yarn-ball.svg');
+		background-repeat: no-repeat;
+	}
 	{% endcapture %}
 	{{ raw_scss | scssify }}
 </style>
+
+<div class="yarn-ball"></div>
 
 <div class="kitty">
 	<div class="ear right"></div>
