@@ -63,9 +63,16 @@ date: 2018-12-25
 		}
 
 		.tail {
-			width: 7px; height: 60px;
+			width: 7px; height: 45px;
+			top: -45px; right: 0;
+			pointer-events: none;
+		}
+
+		.tail-tip {
+			width: 7px; height: 15px;
 			top: -60px; right: 0;
 			pointer-events: none;
+			animation-duration: 8s !important;
 		}
 
 		.leg {
@@ -86,7 +93,8 @@ date: 2018-12-25
 	<div class="ear right"></div>
 	<div class="ear left"></div>
 	<div class="body shake-trigger">
-		<div class="tail shake-horizontal"></div>
+		<div class="tail"></div>
+		<div class="tail-tip shake-horizontal"></div>
 	</div>
 	<div class="leg fr"></div>
 	<div class="leg fl"></div>
