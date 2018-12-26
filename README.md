@@ -6,8 +6,8 @@
 
 My [Jekyll](http://jekyllrb.org) website:
 
-- https://redsummernight.neocities.org/
-- https://redsummernight.github.io/
+- Stable: https://redsummernight.neocities.org/
+- Latest: https://redsummernight.github.io/
 
 ## Setup
 

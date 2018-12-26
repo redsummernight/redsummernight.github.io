@@ -17,10 +17,10 @@ description: never leave home without it
 date: 20XX-MM-DD
 author: [matilda]
 credits: |
- - "[Portrait of a Homebody](http://example.com/)", Anonymous
-   (<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
+  - "[Portrait of a Homebody](http://example.com/)", Anonymous
+    (<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
 references: |
- - "[How to Add Cool Blinky Text](http://example.com/)", Webby Expert
+  - "[How to Add Cool Blinky Text](http://example.com/)", Webby Expert
 ---
 <link rel="stylesheet" href="style.css">
 <p>Hello!</p>
