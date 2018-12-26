@@ -1,0 +1,95 @@
+---
+title: kitty
+description: it's a kitty!
+date: 2018-12-25
+---
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/common/lib/csshake/csshake-horizontal.min.css">
+<style>
+	{% capture raw_scss %}
+	body {
+		background-color: #FFDC00;
+	}
+
+	$kitty-color: #2A0D45;
+	$kitty-face-color: red;
+
+	.kitty {
+		position: absolute;
+		left: 50%; top: 50%;
+		width: 150px;
+		height: 30px;
+
+		div {
+			background-color: $kitty-color;
+			position: absolute;
+		}
+
+		.body {
+			width: 100%; height: 100%;
+			cursor: grab;
+
+			&:before {
+				content: '0 v 0';
+				color: $kitty-face-color;
+				font-weight: bold;
+				font-size: 12px;
+				width: 40px;
+				position: absolute;
+				top: 2px;
+				text-align: center;
+				display: block;
+			}
+		}
+
+		.body:hover {
+			&:before {
+				content: '^ ω ^';
+			}
+		}
+
+		.ear {
+			width: 0; height: 0;
+			top: -20px;
+			background-color: transparent;
+			border-top: 20px solid transparent;
+
+			&.right {
+				border-left: 10px solid $kitty-color;
+			}
+			&.left {
+				left: 30px;
+				border-right: 10px solid $kitty-color;
+			}
+		}
+
+		.tail {
+			width: 7px; height: 60px;
+			top: -60px; right: 0;
+			pointer-events: none;
+		}
+
+		.leg {
+			width: 10px; height: 10px;
+			bottom: -10px;
+
+			&.fr { left: 20px; }
+			&.fl { left: 50px; }
+			&.hr { right: 30px; }
+			&.hl { right: 0; }
+		}
+	}
+	{% endcapture %}
+	{{ raw_scss | scssify }}
+</style>
+
+<div class="kitty">
+	<div class="ear right"></div>
+	<div class="ear left"></div>
+	<div class="body shake-trigger">
+		<div class="tail shake-horizontal"></div>
+	</div>
+	<div class="leg fr"></div>
+	<div class="leg fl"></div>
+	<div class="leg hr"></div>
+	<div class="leg hl"></div>
+</div>
