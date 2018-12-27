@@ -14,7 +14,7 @@ My [Jekyll](http://jekyllrb.org) website:
 To view the site on your machine:
 
 ```sh
-git clone git@github.com:redsummernight/redsummernight.github.io.git
+git clone https://github.com/redsummernight/redsummernight.github.io.git
 cd redsummernight.github.io
 gem install bundler
 bundle install
