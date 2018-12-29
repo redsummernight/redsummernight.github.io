@@ -2,8 +2,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-{% if page.title and page.title != site.title %}
-<title>{{ page.title | append: ' | ' | append: site.title }}</title>
+{% if page.title %}
+<title>{{ page.title }}</title>
 {% else %}
 <title>{{ site.title }}</title>
 {% endif %}
