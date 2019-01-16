@@ -19,6 +19,7 @@ HTMLProofer.check_directory('./_site', {
 		/martin.ankerl.com/,
 		/openclipart.org/,
 		/soundcloud.com/,
+		/web.archive.org/,
 	],
 	:validation => {
 		:report_missing_names => true,
