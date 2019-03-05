@@ -27,6 +27,9 @@ Note:
 
 - The custom 404 page is `not_found.html` at the site root, unlike `404.html` for GitHub Pages.
 - Neocities has [restricted file types](https://neocities.org/site_files/allowed_types) for free accounts.
+- SVG files should have the XML declaration (e.g. `<?xml version="1.0" encoding="UTF-8"?>`), since
+  certain MIME type detection tools (including the one used by Neocities)
+  [will not recognize SVGs without it](https://github.com/svg/svgo/issues/836).
 
 ## Contributing
 
