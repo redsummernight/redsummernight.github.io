@@ -8,6 +8,8 @@ video: true
 #video_url: Heize - Don't Know You.mp4
 # Path to a YouTube embed
 video_yt_url: //www.youtube-nocookie.com/embed/vvkWaI91mLM?enablejsapi=1&modestbranding=1&loop=1&rel=0&iv_load_policy=3
+video_width: 480
+video_height: 270
 credits: |
   - "[Don't know you](https://www.youtube.com/watch?v=vvkWaI91mLM)", Heize
   - "[skyscraper covered with fog at daytime](https://unsplash.com/photos/OrwkD-iWgqg)", Meiying Ng
@@ -50,14 +52,15 @@ references: |
 
 <figure>
 	{% if page.video and page.video_url %}
-	<video id="player" controls width="444" height="250" src="{{ page.video_url | escape }}"></video>
+	<video id="player" width="{{ page.video_width }}" height="{{ page.video_height }}"
+		src="{{ page.video_url | escape }}" controls></video>
 	{% elsif page.video and page.video_yt_url %}
-	<iframe id="player" width="444" height="250" src="{{ page.video_yt_url | escape }}"
-		allow="autoplay; encrypted-media" allowfullscreen>
+	<iframe id="player" width="{{ page.video_width }}" height="{{ page.video_height }}"
+		src="{{ page.video_yt_url | escape }}" allow="autoplay; encrypted-media" allowfullscreen>
 	</iframe>
 	{% else %}
 	<!-- DEBUG -->
-	<div id="player" style="width: 444px; height: 250px;"></div>
+	<div id="player" style="width: {{ page.video_width }}px; height: {{ page.video_height }}px;"></div>
 	<!-- DEBUG -->
 	{% endif %}
 	<figcaption>

@@ -41,17 +41,21 @@ html.playing * {
 	animation-play-state: running !important;
 }
 
+$content-width: 630px;
+$kid-top: 500px;
+
 h1 {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $content-width;
 	margin-top: 0;
 	padding-top: 2em;
-	text-align: center;
-	font-family: monospace;
 	position: relative;
 }
 
 figure {
 	margin: 0 auto;
-	max-width: 630px;
+	max-width: $content-width;
 	position: relative;
 
 	#player {
@@ -72,7 +76,6 @@ figure {
 
 #tracklist {
 	margin: 5px 0;
-	font-family: monospace;
 	list-style: none;
 	padding-left: 1em;
 
@@ -107,7 +110,7 @@ figure {
 #splatter {
 	width: 168px;
 	height: 115px;
-	left: 50%; top: 440px;
+	left: 50%; top: $kid-top;
 	background-image: url('{{ page.image_url.splatter }}');
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -130,7 +133,7 @@ $duration-whole-note: 2285ms;
 
 .kid {
 	position: absolute;
-	left: 50%; top: 440px;
+	left: 50%; top: $kid-top;
 	margin-left: -15px;
 
 	.scene-intro & {
@@ -158,13 +161,11 @@ $duration-whole-note: 2285ms;
 }
 
 .scene-intro #timer {
-	font-family: monospace;
-	font-size: 150%;
 	font-weight: bold;
 	display: block;
 	position: absolute;
 	width: 100%;
-	top: 500px;
+	top: $kid-top + 60px;
 	text-align: center;
 }
 
@@ -245,7 +246,7 @@ $duration-whole-note: 2285ms;
 		display: block;
 		width: 100px;
 		height: 100px;
-		left: 50%; top: 440px;
+		left: 50%; top: $kid-top;
 		margin-top: -30px;
 		background-image: url('{{ page.image_url.hammer }}');
 		background-repeat: no-repeat;
@@ -365,7 +366,7 @@ $duration-whole-note: 2285ms;
 
 @include keyframes(shrink) {
 	0% { left: 0; right: 0; top: 0; bottom: 0; }
-	100% { left: 50%; right: 50%; top: 440px; bottom: 100%; }
+	100% { left: 50%; right: 50%; top: $kid-top; bottom: 100%; }
 }
 
 .scene-swing, .scene-humiliate, .scene-push {
@@ -378,7 +379,7 @@ $duration-whole-note: 2285ms;
 	#box {
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='96' viewBox='0 0 60 96'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23fe7146' fill-opacity='0.4'%3E%3Cpath d='M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 		background-color: #FEC446;
-		left: 50%; right: 50%; top: 440px; bottom: 100%;
+		left: 50%; right: 50%; top: $kid-top; bottom: 100%;
 	}
 }
 
@@ -425,7 +426,7 @@ $duration-whole-note: 2285ms;
 
 @include keyframes(exit-top) {
 	0% { @include transform(none); }
-	100% { @include transform(translateY(-540px)); }
+	100% { @include transform(translateY(-100px - $kid-top)); }
 }
 
 .scene-shoot {
@@ -448,7 +449,7 @@ $duration-whole-note: 2285ms;
 .scene-shoot.fear, .scene-shoot.bullets {
 	#dialog {
 		display: block;
-		left: 50%; top: 440px;
+		left: 50%; top: $kid-top;
 		margin-left: 40px;
 		margin-top: 35px;
 		color: red;
@@ -466,7 +467,7 @@ $duration-whole-note: 2285ms;
 
 	#bullet {
 		display: block;
-		left: 50%; top: 440px;
+		left: 50%; top: $kid-top;
 		color: #FFDC00;
 		font-weight: bold;
 
@@ -510,7 +511,7 @@ $duration-whole-note: 2285ms;
 	#markup {
 		display: block;
 		position: absolute;
-		left: 50%; top: 440px;
+		left: 50%; top: $kid-top;
 		margin-left: -85px;
 
 		// Pygments style
@@ -559,7 +560,7 @@ $duration-whole-note: 2285ms;
 	#mine {
 		display: block;
 		position: absolute;
-		top: 480px;
+		top: $kid-top + 40px;
 		left: 0; right: 0; bottom: 0;
 		overflow: hidden;
 		background-color: black;
@@ -654,7 +655,7 @@ $duration-whole-note: 2285ms;
 
 	#flame {
 		display: block;
-		top: 440px; left: 50%;
+		top: $kid-top; left: 50%;
 		margin-top: -30px;
 		margin-left: -20px;
 		@include transform(rotate(35deg) scale(0.5));
