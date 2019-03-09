@@ -1,18 +1,24 @@
 language: ruby
 rvm:
-- 2.3.1
+  - 2.5
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+
+addons:
+  apt:
+    packages:
+      # https://github.com/gjtorikian/html-proofer/issues/376
+      # Avoid SSL errors
+      - libcurl4-openssl-dev
 
 before_script:
   - npm install -g jshint
 
-# Since bundler is used, the `install` step will run `bundle install` by default.
 script: ./script/cibuild.sh
-
-env:
-  global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
 
 cache:
   bundler: true
   directories:
-  - tmp/.htmlproofer # cache external link checks
+    - tmp/.htmlproofer # cache external link checks

@@ -3,25 +3,22 @@
 require 'html-proofer'
 
 HTMLProofer.check_directory('./_site', {
-	:check_html => true,
-	:cache => {
-		:timeframe => '1w',
+	check_html: true,
+	check_img_http: true,
+	cache: {
+		timeframe: '1w',
 	},
-	:parallel => {
-		:in_processes => 4,
+	parallel: {
+		in_processes: 4,
 	},
-	:typhoeus => {
-		:ssl_verifypeer => false,
-		:ssl_verifyhost => 0,
-		:timeout => 15, # seconds
+	typhoeus: {
+		ssl_verifypeer: false,
+		ssl_verifyhost: 0,
+		timeout: 15, # seconds
 	},
-	:url_ignore => [
-		/martin.ankerl.com/,
-		/openclipart.org/,
-		/soundcloud.com/,
-		/web.archive.org/,
+	url_ignore: [
 	],
-	:validation => {
-		:report_missing_names => true,
+	validation: {
+		report_missing_names: true,
 	},
 }).run

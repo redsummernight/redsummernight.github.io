@@ -39,5 +39,5 @@ Please check out the [contributing guide](https://github.com/redsummernight/reds
 ## License
 
 [MIT](https://github.com/redsummernight/redsummernight.github.io/blob/master/LICENSE) for code
-and [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/) for art/text/sound,
+and [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) for art/text/sound,
 unless [otherwise noted](https://redsummernight.github.io/credits/).
