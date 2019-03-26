@@ -17,6 +17,7 @@ HTMLProofer.check_directory('./_site', {
 		timeout: 15, # seconds
 	},
 	url_ignore: [
+		/web.archive.org/,
 	],
 	validation: {
 		report_missing_names: true,
