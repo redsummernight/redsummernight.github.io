@@ -18,6 +18,7 @@ HTMLProofer.check_directory('./_site', {
 	},
 	url_ignore: [
 		/web.archive.org/,
+		/codepen.io/,
 	],
 	validation: {
 		report_missing_names: true,
