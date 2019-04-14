@@ -12,9 +12,7 @@ references: |
    <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>)
    - heavily modified:
    [traced](https://inkscape.org/en/doc/tutorials/tracing/tutorial-tracing.html) (brightness cutoff),
-   repeatedly [simplified](https://inkscape.org/en/doc/tutorials/advanced/tutorial-advanced.html),
-   and [inverted](https://graphicdesign.stackexchange.com/q/48748/)
-   (which is a lot of work for some splotches)
+   repeatedly [simplified](https://inkscape.org/en/doc/tutorials/advanced/tutorial-advanced.html)
 ---
 <style>
 	{% capture raw_scss %}
@@ -25,17 +23,25 @@ references: |
 		height: 100%;
 		overflow: hidden;
 		font-size: 24px;
-		background-color: powderblue;
-		background-image: url('blotch.svg');
-		background-repeat: no-repeat;
+		background-color: black;
 		background-position: right bottom;
-		background-size: auto 5em;
 		font-family: verdana, arial, sans-serif;
 	}
 
 	@mixin sel {
 		background-color: #3399FF;
 		color: white;
+	}
+
+	#wheel {
+		width: 120%; height: 120%;
+		position: absolute;
+		right: 0; bottom: 0;
+		background-color: powderblue;
+		background-image: url('london-eye.min.svg');
+		background-repeat: no-repeat;
+		background-position: right bottom;
+		background-size: cover;
 	}
 
 	h1 {
@@ -56,11 +62,12 @@ references: |
 
 	audio {
 		width: 200px;
+		position: absolute;
 		margin: 4em 1em;
 	}
 
-	#color-name {
-		color: powderblue;
+	.shadow {
+		color: white;
 		text-shadow: 3px 2px 0 #000,
 			-1px -1px 0 #000, 1px -1px 0 #000,
 			-1px 1px 0 #000, 1px 1px 0 #000;
@@ -71,6 +78,7 @@ references: |
 	{% endcapture %}
 	{{ raw_scss | scssify }}
 </style>
-<h1>you're the only one who knows my favorite color...<br>
-and it's <span id="color-name">#B0E0E6</span></h1>
+<div id="wheel"></div>
+<h1 class="shadow">you're the only one who knows my favorite color...<br>
+and it's <span style="color: powderblue;">#B0E0E6</span></h1>
 <audio src="mr-watson.mp3" preload="auto" controls loop></audio>
