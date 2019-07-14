@@ -1,0 +1,91 @@
+---
+title: sandwich
+description: sudo make me a depression meal
+date: 2019-07-14
+credits: |
+  - [Moon Flower](https://www.dafont.com/moon-flower.font) font, [Denise Bentulan](https://douxiegirl.com)
+    (free for personal use)
+  - [Bread](https://pixabay.com/photos/approach-detail-bread-integral-1824051/), padrinan
+    (<a rel="license" href="https://pixabay.com/service/license/">Pixabay</a>)
+  - [One whole, deli dill pickle](https://commons.wikimedia.org/wiki/File:Pickle.jpg), Renee Comet
+    (public domain)
+  - [Lisbon pattern](https://www.heropatterns.com/), Steve Schoger
+    (<a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
+---
+<link rel="stylesheet" href="style.css">
+
+<div id="wrapper">
+	<p id="text">
+		bread! now let's put cheese on it.
+	</p>
+	<div id="sandwich">
+		<div id="bread1"></div>
+		<div id="cheese"></div>
+		<div id="meat"></div>
+		<div id="pickle"></div>
+		<div id="bread2"></div>
+	</div>
+</div>
+
+<script>
+(function() {
+	'use strict';
+
+	var sandwich = document.getElementById('sandwich'),
+		bread1 = document.getElementById('bread1'),
+		cheese = document.getElementById('cheese'),
+		meat = document.getElementById('meat'),
+		pickle = document.getElementById('pickle'),
+		bread2 = document.getElementById('bread2'),
+		t = document.getElementById('text');
+
+	function show() {
+		for (var i = 0; i < arguments.length; i++) {
+			arguments[i].style.display = 'block';
+		}
+	}
+
+	function hide() {
+		for (var i = 0; i < arguments.length; i++) {
+			arguments[i].style.display = 'none';
+		}
+	}
+
+	var step = 0, initialText = t.textContent;
+	sandwich.onclick = function() {
+		step++;
+		switch (step) {
+			case 0:
+			default:
+				show(bread1);
+				hide(cheese, meat, pickle, bread2);
+				t.textContent = initialText;
+				break;
+			case 1:
+				show(bread1, cheese);
+				hide(meat, pickle, bread2);
+				t.textContent = 'now we need meat!';
+				break;
+			case 2:
+				show(bread1, cheese, meat);
+				hide(pickle, bread2);
+				t.textContent = 'then some pickle...';
+				break;
+			case 3:
+				show(bread1, cheese, meat, pickle);
+				hide(bread2);
+				t.textContent = 'that should be enough.';
+				break;
+			case 4:
+				show(bread1, cheese, meat, pickle, bread2);
+				t.textContent = 'bone appleteeth!';
+				break;
+			case 5:
+				show(bread1, cheese, meat, pickle, bread2);
+				t.textContent = 'not happy with this sandwich? no problem! we can start over.';
+				step = -1;
+				break;
+		}
+	};
+})();
+</script>
