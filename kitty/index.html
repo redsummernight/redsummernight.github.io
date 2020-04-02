@@ -12,12 +12,32 @@ credits: |
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/common/lib/csshake/csshake-horizontal.min.css">
 <style>
 	{% capture raw_scss %}
+
 	body {
+		/* Default theme */
 		background-color: #FFDC00;
+		.kitty {
+			div { background-color: #2A0D45; }
+			.body:before { color: red; }
+		}
 	}
 
-	$kitty-color: #2A0D45;
-	$kitty-face-color: red;
+	body.night {
+		/* Night mode! */
+		background-color: #2A0D45;
+		.kitty {
+			div { background-color: black; }
+			.body:before { color: red; }
+		}
+		.moon { display: block; }
+		.spotlight { display: block; background-color: #FFDC00; }
+	}
+
+	/* Common style */
+
+	body {
+		div { position: absolute; }
+	}
 
 	.kitty {
 		position: absolute;
@@ -25,18 +45,12 @@ credits: |
 		width: 150px;
 		height: 30px;
 
-		div {
-			background-color: $kitty-color;
-			position: absolute;
-		}
-
 		.body {
 			width: 100%; height: 100%;
 			cursor: grab;
 
 			&:before {
 				content: '0 v 0';
-				color: $kitty-face-color;
 				font-weight: bold;
 				font-size: 12px;
 				width: 40px;
@@ -47,24 +61,27 @@ credits: |
 			}
 		}
 
-		.body:hover {
-			&:before {
-				content: '^ ω ^';
-			}
+		.body:hover:before {
+			content: '^ ω ^';
 		}
 
 		.ear {
 			width: 0; height: 0;
 			top: -18px;
-			background-color: transparent;
 			border-top: 20px solid transparent;
+			border-bottom: none;
 
 			&.right {
-				border-left: 10px solid $kitty-color;
+				background-color: transparent;
+				border-left-width: 10px;
+				border-left-style: solid;
 			}
+
 			&.left {
 				left: 30px;
-				border-right: 10px solid $kitty-color;
+				background-color: transparent;
+				border-right-width: 10px;
+				border-right-style: solid;
 			}
 		}
 
@@ -97,16 +114,42 @@ credits: |
 		left: 50%; top: 50%;
 		margin-top: 20px;
 		margin-left: -100px;
-		position: absolute;
 		background-image: url('yarn-ball.svg');
 		background-repeat: no-repeat;
 	}
+
+	.moon {
+		display: none;
+		width: 100px; height: 100px;
+		left: 50%; top: 20%;
+		margin-left: -200px;
+		background-color: transparent;
+		border-radius: 50%;
+		box-shadow: 15px 10px 0px 0px rgba(#fff, 0.8);
+	}
+
+	.spotlight {
+		display: none;
+		width: 400px; height: 50px;
+		left: 50%; top: 50%;
+		margin-left: -200px; margin-top: 20px;
+		border-radius: 50%;
+	}
+
 	{% endcapture %}
 	{{ raw_scss | scssify }}
 </style>
 
+<body class="night">
+
+<!-- scenery -->
+<div class="moon"></div>
+<div class="spotlight"></div>
+
+<!-- props -->
 <div class="yarn-ball"></div>
 
+<!-- the star! -->
 <div class="kitty">
 	<div class="ear right"></div>
 	<div class="ear left"></div>
