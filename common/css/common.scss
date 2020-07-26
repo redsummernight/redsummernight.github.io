@@ -5,6 +5,16 @@
 
 /* Site common styles */
 
+* {
+	/* Firefox */
+	scrollbar-width: thin;
+
+	/* Chrome/Edge/Safari */
+	&::-webkit-scrollbar { width: 8px; }
+	&::-webkit-scrollbar-track { background: #f0f0f0; }
+	&::-webkit-scrollbar-thumb { background-color: #a6a6a6; }
+}
+
 html {
 	font-family: verdana, arial, sans-serif;
 	font-size: 12px;
