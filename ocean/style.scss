@@ -7,6 +7,14 @@ body {
 	overflow: hidden;
 }
 
+#message {
+	position: absolute;
+	top: 30%; left: 20%;
+	background-color: #B80D46;
+	padding: 1em;
+	color: white;
+}
+
 .table {
 	display: table;
 	border-collapse: collapse;

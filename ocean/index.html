@@ -14,7 +14,7 @@ references: |
  - "[CSS Noise](https://web.archive.org/web/20190205200617/http://www.mightymeta.co.uk/css-noise/)", MightyMeta
 ---
 <link rel="stylesheet" href="style.css">
-<div id="scene">
+<div id="scene" class="frozen">
 <div class="sky"></div>
 <div class="table">
 	{% if page.swinging %}
@@ -41,14 +41,17 @@ references: |
 	</div>
 </div>
 <div class="noise"></div>
+<div id="message">click anywhere to wake</div>
 </div>
-<audio id="waves" src="calm_ocean_waves_on_shore_001.mp3" preload="auto" autoplay loop></audio>
+<audio id="waves" src="calm_ocean_waves_on_shore_001.mp3" preload="auto" loop></audio>
 <script>
+var message = document.getElementById('message');
 var scene = document.getElementById('scene');
 var waves = document.getElementById('waves');
 var disabledKeys = new Array(33,34,35,36,37,38,39,40); // pgup,pgdn,end,home,left,up,right,down
 
 function freeze() {
+	message.style.display = 'none';
 	if (scene.className === 'frozen') {
 		scene.className = '';
 		waves.play();
