@@ -1,5 +1,219 @@
 ---
-layout: redirect
-redirect_to: /persona/mindful
-jump_allowed: false
+title: persona
+description: reinvent yourself!
+date: 2020-07-28
+credits: |
+  - Images from avatar makers by [ummmmandy](https://ummmmandy.tumblr.com/),
+    [hetarage](https://twitter.com/hetarage),
+    [chemicataclysm](https://chemicataclysm.tumblr.com/),
+    and [alohasushicore](https://twitter.com/alohasushicore)
+    (OK for non-commercial, personal use)
+  - [Glow Flicker](https://codepen.io/KevinOgden/details/JEwjBB), Kevin Ogden
+    (<a rel="license" href="https://codepen.io/KevinOgden/details/JEwjBB">MIT</a>)
+  - [Monoton](https://fonts.google.com/specimen/Monoton) font, Vernon Adams
+    (<a rel="license" href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">OFL</a>)
+  - [Gochi Hand](https://fonts.google.com/specimen/Gochi+Hand) font, Huerta Tipográfica
+    (<a rel="license" href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">OFL</a>)
+  - [Brick Wall Pattern](https://pixabay.com/photos/brick-wall-pattern-texture-white-2172682/), jeonsango
+    (<a rel="license" href="https://pixabay.com/service/license/">Pixabay</a>)
 ---
+<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+<style>
+{% capture raw_scss %}
+@import "base";
+
+body {
+	background-color: black;
+	background-image: url('brick.jpg');
+	color: white;
+}
+
+header {
+	margin: 70px 0;
+	text-align: center;
+
+	p { font-family: monospace; }
+}
+
+.sign {
+	min-width: 700px;
+	display: inline-block;
+	margin: 0 auto;
+	text-align: center;
+	text-transform: uppercase;
+	border: 5px solid #32daf3;
+	border-radius: 20px;
+	background-color: rgba(#000, 0.5);
+	@include box-shadow(0px 0px 78px 4px rgba(#32daf3, 0.73));
+	@include animation(border-flicker 3s linear infinite);
+
+	h1 {
+		font-family: 'Monoton', cursive;
+		font-size: 40px;
+		letter-spacing: 5px;
+		margin: 0.5em 1em;
+		color: #ff1493;
+		text-shadow: 0px 0px 10px #f21616;
+	}
+
+	.offset {
+		@include animation(letter-flicker 2s linear infinite);
+	}
+}
+
+@include keyframes(border-flicker) {
+	0% { opacity: 0.5; }
+	2% { opacity: 1; }
+	4% { opacity: 0.5; }
+	8% { opacity: 1; }
+	70% { opacity: 0.7; }
+	100% { opacity: 1; }
+}
+
+@include keyframes(letter-flicker) {
+	0% { opacity: 0.1; }
+	2% { opacity: 0.1; }
+	4% { opacity: 1; }
+	19% { opacity: 1; }
+	21% { opacity: 0.1; }
+	23% { opacity: 1; }
+	80% { opacity: 1; }
+	83% { opacity: 0.4; }
+	87% { opacity: 1; }
+}
+
+section {
+	font-family: 'Gochi Hand', cursive;
+	font-size: 16px;
+	width: 700px;
+	margin: 0 auto;
+	margin-bottom: 70px;
+
+	img {
+		float: left;
+		border: 10px solid white;
+		@include box-shadow(5px 5px 5px 0px rgba(0,0,0,0.75));
+
+		&:hover { @include filter(hue-rotate(270deg) saturate(200%)); }
+	}
+
+	&:nth-child(odd) {
+		img { @include transform(rotate(0.5deg)); }
+		img:hover { @include transform(none); }
+	}
+
+	&:nth-child(even) {
+		img { @include transform(rotate(-0.3deg)); }
+		img:hover { @include transform(none); }
+	}
+
+	ul {
+		display: table;
+		padding-top: 15px;
+		list-style-type: '- ';
+
+		li.credits {
+			list-style-type: 'x ';
+		}
+	}
+
+	a {
+		border-bottom: 1px dotted;
+		line-height: 1.5;
+		text-decoration: none;
+		color: cyan;
+	}
+
+	&::after {
+		/* clearfix */
+		content: '';
+		clear: both;
+		display: table;
+	}
+}
+
+{% endcapture %}
+{{ raw_scss | scssify }}
+</style>
+
+<header>
+	<div class="sign">
+		<h1>rein<span class="offset">v</span>ent yourself!</h1>
+	</div>
+	<p>worst case scenario you get an OC out of the process</p>
+</header>
+
+<section>
+	<img src="picrew-114808.png" width="300" height="300" alt="cold-blooded" title="cold-blooded">
+	<!--
+		https://picrew.me/share?cd=O3ajXMrYYI
+		https://picrew.me/share?cd=ANo12EqxtK
+	-->
+	<ul>
+		<li class="credits">
+			<a href="https://picrew.me/image_maker/114808">avatar maker</a>
+			by <a href="https://ummmmandy.tumblr.com/">ummmmandy</a>
+		</li>
+		<li>can pass for an artist, can't draw for shit</li>
+		<li>infra developer (i.e. no idea what the infra is for)</li>
+		<li>cold-blooded, jacket not optional</li>
+		<li>likes exactly 1 (one) <a href="{{ site.baseurl }}/stranger">solo artist</a></li>
+		<li>behind on dishes but bathroom is always spotless</li>
+		<li>almost successfully strangled themself with the umbilical cord before birth</li>
+	</ul>
+</section>
+
+<section>
+	<img src="picrew-37328.png" width="300" height="300" alt="featherweight" title="featherweight">
+	<!-- https://picrew.me/share?cd=evQYIV91hd -->
+	<ul>
+		<li class="credits">
+			<a href="https://picrew.me/image_maker/37328">avatar maker</a>
+			by <a href="https://twitter.com/hetarage">hetarage</a>
+		</li>
+		<li>her weight, soaking wet &le; the weight of her favorite summer dress, soaking wet</li>
+		<li>stable career: has been with the same CRUD app for 16 months</li>
+		<li>drinks sweetened condensed milk straight from the can</li>
+		<li>draws alternate (better!) endings for harem manga (fav girls keep losing)</li>
+		<li>was caregiver of her grandma for four years</li>
+		<li>streams sometimes, keeps being mistaken for a vtuber</li>
+	</ul>
+</section>
+
+<section>
+	<img src="picrew-230257.png" width="300" height="300" alt="four-eyes" title="four-eyes">
+	<!--
+		https://picrew.me/share?cd=AW5MDdAIVV
+		https://picrew.me/share?cd=B68hxzmZgT
+	-->
+	<ul>
+		<li class="credits">
+			<a href="https://picrew.me/image_maker/230257">avatar maker</a>
+			by <a href="https://chemicataclysm.tumblr.com/">chemicataclysm</a>
+		</li>
+		<li>four-eyes</li>
+		<li>pre-med is hell, game dev is helter-skelter</li>
+		<li>has six unfinished dating sim concepts + one joke Metroidvania sleeper hit</li>
+		<li>never escaped her <a href="https://www.youtube.com/watch?v=Orb6mvWMyAs" title="&quot;Gimme×Gimme&quot;, 八王子P × Giga">vocaloid</a> phase; buys Miku shirts for mom and puppy-eyes her into wearing them at home</li>
+		<li>world class babysitter (has a client waitlist on summer breaks)</li>
+		<li>twice truly considered murder as a viable solution to personal struggles</li>
+	</ul>
+</section>
+
+<section>
+	<img src="picrew-257476.png" width="300" height="300" alt="half-mermaid" title="half-mermaid">
+	<!-- https://picrew.me/share?cd=SdFeoBlQur -->
+	<ul>
+		<li class="credits">
+			<a href="https://picrew.me/image_maker/257476">avatar maker</a>
+			by <a href="https://twitter.com/alohasushicore">alohasushicore</a>
+		</li>
+		<li>half-<a href="{{ site.baseurl }}/mermaid">mermaid</a> / third culture kid</li>
+		<li>studied art history then somehow became a software PM</li>
+		<li>has never misused "their", "there", and "they're", but has repeatedly pronounced awry as "<em>awww</em>-ree"</li>
+		<li>keeps being mistaken for drowning at the local pool</li>
+		<li>hobby hydroponic farmer</li>
+		<li>has one <a href="https://fanlore.org/wiki/Families_of_Choice">Found Family</a>&trade; but is looking for another completely separate one <a href="https://en.wikipedia.org/wiki/Redundancy_(engineering)">just to be safe</a></li>
+	</ul>
+</section>
