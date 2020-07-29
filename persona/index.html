@@ -17,14 +17,14 @@ credits: |
   - [Brick Wall Pattern](https://pixabay.com/photos/brick-wall-pattern-texture-white-2172682/), jeonsango
     (<a rel="license" href="https://pixabay.com/service/license/">Pixabay</a>)
 ---
-<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Monoton&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&amp;display=swap" rel="stylesheet">
 <style>
 {% capture raw_scss %}
 @import "base";
 
 body {
-	background-color: black;
+	background-color: #532e49;
 	background-image: url('brick.jpg');
 	color: white;
 }
@@ -33,26 +33,28 @@ header {
 	margin: 70px 0;
 	text-align: center;
 
-	p { font-family: monospace; }
+	p {
+		font-family: monospace;
+		margin: 1em;
+	}
 }
 
 .sign {
-	min-width: 700px;
+	width: 90%;
 	display: inline-block;
 	margin: 0 auto;
 	text-align: center;
 	text-transform: uppercase;
-	border: 5px solid #32daf3;
+	border: 5px solid #03fcf8;
 	border-radius: 20px;
 	background-color: rgba(#000, 0.5);
-	@include box-shadow(0px 0px 78px 4px rgba(#32daf3, 0.73));
+	@include box-shadow(0px 0px 78px 4px rgba(#03fcf8, 0.73));
 	@include animation(border-flicker 3s linear infinite);
 
 	h1 {
 		font-family: 'Monoton', cursive;
 		font-size: 40px;
 		letter-spacing: 5px;
-		margin: 0.5em 1em;
 		color: #ff1493;
 		text-shadow: 0px 0px 10px #f21616;
 	}
@@ -86,12 +88,12 @@ header {
 section {
 	font-family: 'Gochi Hand', cursive;
 	font-size: 16px;
-	width: 700px;
 	margin: 0 auto;
 	margin-bottom: 70px;
 
 	img {
-		float: left;
+		display: block;
+		margin: 0 auto;
 		border: 10px solid white;
 		@include box-shadow(5px 5px 5px 0px rgba(0,0,0,0.75));
 
@@ -100,17 +102,14 @@ section {
 
 	&:nth-child(odd) {
 		img { @include transform(rotate(0.5deg)); }
-		img:hover { @include transform(none); }
 	}
 
 	&:nth-child(even) {
 		img { @include transform(rotate(-0.3deg)); }
-		img:hover { @include transform(none); }
 	}
 
 	ul {
-		display: table;
-		padding-top: 15px;
+		padding: 0 40px;
 		list-style-type: '- ';
 
 		li.credits {
@@ -122,14 +121,31 @@ section {
 		border-bottom: 1px dotted;
 		line-height: 1.5;
 		text-decoration: none;
-		color: cyan;
+		color: #00ffff;
+	}
+}
+
+@media (min-width: 720px) {
+	.sign {
+		max-width: 700px;
 	}
 
-	&::after {
-		/* clearfix */
-		content: '';
-		clear: both;
-		display: table;
+	section {
+		width: 700px;
+
+		img { float: left; }
+
+		ul {
+			display: table;
+			padding-top: 15px;
+		}
+
+		&::after {
+			/* clearfix */
+			content: '';
+			clear: both;
+			display: table;
+		}
 	}
 }
 
