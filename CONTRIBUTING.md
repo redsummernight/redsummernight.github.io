@@ -94,3 +94,21 @@ bower-installer --remove-install-path
 
 Generally, we should keep things simple and avoid bringing in heavy artillery
 to do [simple things](http://youmightnotneedjquery.com/).
+
+## Optimizing images
+
+For [PNGs](https://github.com/google/zopfli):
+
+```sh
+find . -name '*.png' -print0 | xargs -0 -n1 -I{} sh -c 'zopflipng -m {} output.png; [ -f output.png ] && mv output.png {};'
+```
+
+For [SVGs](https://github.com/svg/svgo):
+
+```sh
+svgo test.svg -o test.min.svg
+```
+
+If we need to keep the original images around without serving them on the site
+(e.g. SVGs with Inkscape metadata), we can put them in an `assets/` directory
+to be [ignored by Jekyll](https://github.com/redsummernight/redsummernight.github.io/blob/49f8c413c3af76f0162b719fb667da2b1e165966/_config.yml#L45).
