@@ -15,11 +15,14 @@ image_url:
 html, body {
 	width: 100%;
 	height: 100%;
-	min-width: 700px;
-	min-height: 600px;
 	overflow: hidden;
 	background-color: black;
 	position: relative;
+}
+
+body {
+	min-width: 700px;
+	min-height: 600px;
 }
 
 body::after{
@@ -156,7 +159,6 @@ $duration-whole-note: 2285ms;
 	background-image: url('{{ page.image_url.cityscape }}');
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	background-position: center center;
 }
 
@@ -304,7 +306,6 @@ $duration-whole-note: 2285ms;
 	// YYY
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='96' viewBox='0 0 60 96'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23b8dd3b' fill-opacity='0.4'%3E%3Cpath d='M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 	background-color: #D0F062;
-	background-attachment: fixed;
 
 	.kid {
 		svg { @include transform(rotate(116deg)); }
@@ -323,9 +324,11 @@ $duration-whole-note: 2285ms;
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='96' viewBox='0 0 60 96'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23b8dd3b' fill-opacity='0.4'%3E%3Cpath d='M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 		background-color: #D0F062;
 		// Fix the background in place while the box changes size.
-		// This doesn't always work, some browsers treat background-attachment:fixed
-		// inside a transform as if it was background-attachment:scroll.
+		// Some browsers treat background-attachment:fixed inside a transform
+		// as if it was background-attachment:scroll.
 		// https://bugzilla.mozilla.org/show_bug.cgi?id=1292499
+		// We need to animate the box's movements using a position property (top)
+		// instead of a transform (translateY).
 		background-attachment: fixed;
 
 		display: block;
@@ -379,7 +382,7 @@ $duration-whole-note: 2285ms;
 	#box {
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='96' viewBox='0 0 60 96'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23fe7146' fill-opacity='0.4'%3E%3Cpath d='M36 10a6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-12 0 6 6 0 0 0-6-6 6 6 0 0 1-6-6V10a6 6 0 1 1 12 0 6 6 0 0 0 12 0zm24 78a6 6 0 0 1-6-6 6 6 0 0 0-6-6 6 6 0 0 1-6-6V58a6 6 0 1 1 12 0 6 6 0 0 0 6 6v24zM0 88V64a6 6 0 0 0 6-6 6 6 0 0 1 12 0v12a6 6 0 0 1-6 6 6 6 0 0 0-6 6 6 6 0 0 1-6 6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 		background-color: #FEC446;
-		left: 50%; right: 50%; top: $kid-top; bottom: 100%;
+		left: 50%; right: 50%; top: $kid-top; bottom: auto;
 	}
 }
 
@@ -425,8 +428,8 @@ $duration-whole-note: 2285ms;
 }
 
 @include keyframes(exit-top) {
-	0% { @include transform(none); }
-	100% { @include transform(translateY(-100px - $kid-top)); }
+	0% { top: $kid-top; }
+	100% { top: -150px; }
 }
 
 .scene-shoot {
@@ -501,7 +504,6 @@ $duration-whole-note: 2285ms;
 	background-image: url('{{ page.image_url.cake }}');
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	background-position: center center;
 
 	.kid {
