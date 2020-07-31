@@ -2,7 +2,7 @@
 layout: null
 ---
 pages = [
-	{% for p in site.html_pages %}{% if p.jump_allowed and p.url != page.url %}'{{ p.url }}',{% endif %}{% endfor %}
+	{% for p in site.html_pages %}{% if p.jump_allowed %}'{{ p.url }}',{% endif %}{% endfor %}
 ];
 
 if (sessionStorage) {

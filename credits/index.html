@@ -36,7 +36,7 @@ jump_allowed: false
 
 <hr>
 {% assign pages = '' | split: ''  %}
-{% for p in site.pages %}
+{% for p in site.html_pages %}
 	{% if p.credits != "" or p.references != "" %}
 		{% assign pages = pages | push: p  %}
 	{% endif %}
