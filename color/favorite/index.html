@@ -2,8 +2,9 @@
 title: favorite
 description: sad sad girl
 date: 2016-12-26
+video_yt_url: //www.youtube-nocookie.com/embed/bqUZn0gWLk4?enablejsapi=1&modestbranding=1&loop=1&rel=0&iv_load_policy=3
 credits: |
- - "[Mr. Watson](https://www.youtube.com/watch?v=bqUZn0gWLk4)", Cruel Youth (sample)
+ - "[Mr. Watson](https://www.youtube.com/watch?v=bqUZn0gWLk4)", Cruel Youth
 references: |
  - "[Adding Stroke to Web Text](https://css-tricks.com/adding-stroke-to-web-text/)", Chris Coyier
  - "[low-angle photography of London Eye](https://unsplash.com/photos/D62hQefhteg/)", Ilya
@@ -60,10 +61,13 @@ references: |
 		&::-moz-selection { @include sel; }
 	}
 
-	audio {
-		width: 200px;
+	#player {
 		position: absolute;
+		max-width: 80%;
 		margin: 4em 1em;
+		border: 1px solid black;
+		background-color: black;
+		@include filter(sepia(100%) hue-rotate(150deg));
 	}
 
 	.shadow {
@@ -75,10 +79,63 @@ references: |
 		&::selection { @include sel; }
 		&::-moz-selection { @include sel; }
 	}
+
+	@include keyframes(color-wheel) {
+		0% { @include filter(hue-rotate(0deg) saturate(300%)); }
+		100% { @include filter(hue-rotate(360deg) saturate(300%)); }
+	}
+
+	/*
+	Flatten the video to sepia (one hue) before hue rotating (0 to 360deg).
+	The offset 150deg makes sepia match powderblue.
+	*/
+	@include keyframes(sepia-color-wheel) {
+		0% { @include filter(sepia(100%) hue-rotate(150deg) saturate(300%)); }
+		100% { @include filter(sepia(100%) hue-rotate(510deg) saturate(300%)); }
+	}
+
+	.playing {
+		h1, #wheel {
+			@include animation(color-wheel 15s linear infinite);
+		}
+		#player {
+			@include animation(sepia-color-wheel 15s linear infinite);
+		}
+	}
+
 	{% endcapture %}
 	{{ raw_scss | scssify }}
 </style>
 <div id="wheel"></div>
 <h1 class="shadow">you're the only one who knows my favorite color...<br>
 and it's <span style="color: powderblue;">#B0E0E6</span></h1>
-<audio src="mr-watson.mp3" preload="auto" controls loop></audio>
+
+{% if page.video_yt_url %}
+<iframe id="player" width="480" height="270"
+	src="{{ page.video_yt_url | escape }}" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+<script>
+	var tag = document.createElement('script');
+	tag.id = 'iframe-demo';
+	tag.src = 'https://www.youtube.com/iframe_api';
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	function onYouTubeIframeAPIReady() {
+		new YT.Player('player', {
+			events: {
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	}
+
+	function onPlayerStateChange(event) {
+		// Removing the "playing" class will reset the hue-rotate animation,
+		// we avoid that when the video is being seeked (paused > buffering > playing).
+		var playing = event.data === YT.PlayerState.PLAYING ||
+			event.data === YT.PlayerState.PAUSED ||
+			event.data === YT.PlayerState.BUFFERING;
+		document.body.className = playing ? 'playing' : '';
+	}
+</script>
+{% endif %}
