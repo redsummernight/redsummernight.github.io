@@ -48,7 +48,7 @@ references: |
 <div class="props" id="speedlines"></div>
 <div class="props" id="box"></div>
 
-<h1>14 ways to lose your teddy bear</h1>
+<h1>&nbsp;</h1>
 
 <figure>
 	{% if page.video and page.video_url %}
@@ -174,7 +174,24 @@ var scenes = [
 	new Scene('scene-outro', Number.MAX_VALUE, 187.378) // epilogue
 ];
 
+function Title(text, time) {
+	// <h1> content
+	this.text = text;
+	// Start time of title
+	this.time = time;
+}
+
+var titles = [
+	new Title('\u00a0', 0), // &nbsp; keeps the heading's height when empty
+	new Title('14 ways', 9.596),
+	new Title('14 ways to loose', 10.165),
+	new Title('14 ways to loose your', 10.757),
+	new Title('14 ways to loose your teddy bear', 11.250),
+	new Title('14 ways to lose your teddy bear', 11.850) // sorry Heize
+];
+
 var timer = document.getElementById('timer');
+var heading = document.querySelector('h1');
 var tracks = document.querySelectorAll('#tracklist li');
 
 function setScene(scene) {
@@ -192,6 +209,18 @@ function setScene(scene) {
 	toggleFireworks();
 }
 
+function setTitleFromTime(time) {
+	for (var i = 0; i < titles.length; i++) {
+		var title = titles[i];
+		if (time >= title.time && (i === titles.length - 1 || time < titles[i + 1].time)) {
+			if (heading.textContent !== title.text) {
+				heading.textContent = title.text;
+			}
+			break;
+		}
+	}
+}
+
 function setSceneFromTime(time) {
 	for (var i = 0; i < scenes.length; i++) {
 		var scene = scenes[i];
@@ -205,7 +234,10 @@ function setSceneFromTime(time) {
 	}
 
 	if (i === 0) {
-		timer.innerText = Math.ceil(scenes[i + 1].time - time);
+		var timerText = Math.ceil(scenes[i + 1].time - time).toString();
+		if (timer.textContent !== timerText) {
+			timer.textContent = timerText;
+		}
 	}
 }
 
@@ -232,9 +264,11 @@ setPlayState(false);
 	setInterval(update, 50);
 
 	function update() {
-		var playing = video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2;
+		var currentTime = video.currentTime;
+		var playing = currentTime > 0 && !video.paused && !video.ended && video.readyState > 2;
 		setPlayState(playing);
-		setSceneFromTime(video.currentTime);
+		setSceneFromTime(currentTime);
+		setTitleFromTime(currentTime);
 	}
 
 {% elsif page.video and page.video_yt_url %}
@@ -266,7 +300,9 @@ setPlayState(false);
 	}
 
 	function update() {
-		setSceneFromTime(player.getCurrentTime());
+		var currentTime = player.getCurrentTime();
+		setSceneFromTime(currentTime);
+		setTitleFromTime(currentTime);
 	}
 
 {% else %}
@@ -275,6 +311,7 @@ setPlayState(false);
 	var s = 0, min = 0, max = scenes.length - 1;
 	setScene(scenes[s]);
 	setPlayState(true);
+	setTitleFromTime(Number.MAX_VALUE); // show the full title
 
 	function prev() {
 		if (--s < min) s = max;
