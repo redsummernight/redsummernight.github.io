@@ -153,7 +153,7 @@ references: |
 	};
 
 	// Precomputed constants
-	var quarterPI = 0.5 * Math.PI; // 90 degrees
+	var quarterCircle = 0.5 * Math.PI; // 90 degrees
 	var travelAngle = 0.75 * Math.PI; // meteors will move forward at 135 degrees clockwise from x=0
 	var travelAngleCos = Math.cos(travelAngle); // for horizontal velocity
 	var travelAngleSin = Math.sin(travelAngle); // for vertical velocity
@@ -243,9 +243,9 @@ references: |
 	function drawMeteor(meteor) {
 		ctx.beginPath();
 		// Draw the half circle at the top, counterclockwise right to left.
-		ctx.arc(meteor.startX, meteor.startY, meteor.s, travelAngle - quarterPI, travelAngle + quarterPI, true);
+		ctx.arc(meteor.startX, meteor.startY, meteor.s, travelAngle - quarterCircle, travelAngle + quarterCircle, true);
 		// Draw the half circle at the bottom, counterclockwise left to right.
-		ctx.arc(meteor.x, meteor.y, meteor.s, travelAngle + quarterPI, travelAngle - quarterPI, true);
+		ctx.arc(meteor.x, meteor.y, meteor.s, travelAngle + quarterCircle, travelAngle - quarterCircle, true);
 		// Automatically join the 2 circle halves with 2 straight lines.
 		ctx.closePath();
 		ctx.fill();
