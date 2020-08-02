@@ -32,7 +32,7 @@ references: |
 	}
 
 	#canvas {
-		@include filter(blur(1px));
+		@include filter(blur(2px) saturate(200%));
 		position: absolute;
 		left: 0; right: 0; top: 0; bottom: 0;
 	}
@@ -268,7 +268,7 @@ references: |
 			var x = Math.random() * lastUpdateCanvasWidth * 2;
 			if (c === eraserColor) {
 				// "Eraser" meteors are thicker
-				s = s * 3;
+				s = s * 2.5;
 			}
 
 			var conflict = false;
