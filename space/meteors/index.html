@@ -10,6 +10,7 @@ credits: |
 references: |
  - [Dripping Paint](https://github.com/tholman/Dripping-Paint), Tim Holman
    (<a rel="license" href="https://github.com/tholman/Dripping-Paint/blob/master/README.md">MIT</a>)
+ - "[Detecting and avoiding synchronous reflow](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Performance_best_practices_for_Firefox_fe_engineers#Detecting_and_avoiding_synchronous_reflow)", MDN Web Docs
 ---
 <style>
 	{% capture raw_scss %}
@@ -115,103 +116,159 @@ references: |
 <script>
 (function() {
 	'use strict';
-
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	var canvasWidth, canvasHeight;
 
-	var audio = document.getElementById('audio');
-
-	// Constants
-	var tau = 2 * Math.PI;
-	var travelAngle = 0.75 * Math.PI; // 135 degrees from x=0, clockwise
-	var travelAngleCos = Math.cos(travelAngle);
-	var travelAngleSin = Math.sin(travelAngle);
-	var meteorSize = 10;
-	var eraserColor = '#000';
-
-	var meteors = [];
-	var lastUpdateTime = Date.now();
-
-	var drawCountPerUpdate = 100;
-	audio.muted = true;
-
-	function toggleAudio() {
-		audio.play();
-		if (audio.muted) {
-			drawCountPerUpdate = 1;
-			audio.muted = false;
-		} else {
-			drawCountPerUpdate = 100;
-			audio.muted = true;
-		}
+	// Avoiding synchronous style flushes by getting/setting dimensions outside
+	// of the render loop.
+	function resize() {
+		canvasWidth = canvas.width = window.innerWidth;
+		canvasHeight = canvas.height = window.innerHeight;
 	}
+	window.onresize = resize;
+	resize();
 
+	// Every animation frame, we can advance one step (+ 1x speed), or several.
+	// Increasing this setting creates a fast-forward effect.
+	var stepsPerUpdate = 100;
+
+	// Set up the audio control and one-time text.
+	var audio = document.getElementById('audio');
+	audio.muted = true;
 	document.getElementById('text').onclick = function() {
 		this.parentNode.removeChild(this);
+		function toggleAudio() {
+			audio.play();
+			if (audio.muted) {
+				stepsPerUpdate = 1;
+				audio.muted = false;
+			} else {
+				stepsPerUpdate = 100; // fast-forward when muted
+				audio.muted = true;
+			}
+		}
 		document.getElementById('frame').onclick = toggleAudio;
 		toggleAudio();
 	};
 
-	function drawMeteor(x, y, size, color) {
-		ctx.globalCompositeOperation = color == eraserColor ? 'destination-out' : 'source-over';
-		ctx.beginPath();
-		ctx.arc(x, y, size, 0, tau);
-		ctx.closePath();
-		ctx.fillStyle = color;
-		ctx.fill();
-	}
+	// Precomputed constants
+	var quarterPI = 0.5 * Math.PI; // 90 degrees
+	var travelAngle = 0.75 * Math.PI; // meteors will move forward at 135 degrees clockwise from x=0
+	var travelAngleCos = Math.cos(travelAngle); // for horizontal velocity
+	var travelAngleSin = Math.sin(travelAngle); // for vertical velocity
 
+	// The color to be drawn as "transparent"
+	var eraserColor = '#000';
+	// canvasWidth/canvasHeight are updated by resize events, but
+	// lastUpdateCanvasWidth/lastUpdateCanvasHeight are updated by the render loop.
+	// If they are different, we know we need to refill a recently resized canvas.
+	var lastUpdateCanvasWidth = canvasWidth, lastUpdateCanvasHeight = canvasHeight;
+	var meteors = [];
+
+	// Render loop
 	function update() {
-		var refillScreen = meteors.length == 0 || canvas.width < window.innerWidth || canvas.height < window.innerHeight;
+		var refillScreen = meteors.length == 0 ||
+			lastUpdateCanvasWidth < canvasWidth ||
+			lastUpdateCanvasHeight < canvasHeight;
 
-		var now = Date.now();
-		if (!refillScreen && now - lastUpdateTime < 50) {
-			// Throttle redraws
-			requestAnimationFrame(update);
-			return;
-		}
-		lastUpdateTime = now;
-
+		var meteor, i;
 		if (refillScreen) {
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
+			// First render, or a recent canvas resize. Clear all tracked meteors
+			// and start over. Note that the canvas itself is cleared when we reset
+			// its dimensions in the resize event handler.
+			lastUpdateCanvasWidth = canvasWidth;
+			lastUpdateCanvasHeight = canvasHeight;
 			meteors.length = 0;
-			var meteorCount = canvas.width / 50;
+			var meteorCount = lastUpdateCanvasWidth / 50;
 			for (var m = 0; m < meteorCount; m++) {
-				addMeteor();
+				if ((meteor = createMeteor()) !== false) {
+					meteors.push(meteor);
+				}
 			}
-		}
-
-		// On the first update, draw a bunch of times to immediately fill the screen.
-		// On each update, draw once, usually.
-		var drawCount = refillScreen ? 500 : drawCountPerUpdate;
-		for (var f = 0; f < drawCount; f++) {
-			for (var i = 0; i < meteors.length; i++) {
-				meteors[i].x = meteors[i].x + meteors[i].v * travelAngleCos;
-				meteors[i].y = meteors[i].y + meteors[i].v * travelAngleSin;
-				if (meteors[i].y > canvas.height + 60) {
+		} else {
+			// Otherwise, check if we have out-of-bounds meteors and remove/splice them.
+			// Loop backwards so our indices are correct even with in-loop removals.
+			for (i = meteors.length - 1; i >= 0; i--) {
+				if (meteors[i].done) {
+					// Out-of-bounds, discard the current meteor and append a new one.
 					meteors.splice(i, 1);
-					addMeteor();
-				} else {
-					drawMeteor(meteors[i].x, meteors[i].y, meteors[i].s, meteors[i].c);
+					if ((meteor = createMeteor()) !== false) {
+						meteors.push(meteor);
+					}
 				}
 			}
 		}
 
+		// On the first render, step a bunch of times to immediately fill the screen.
+		var stepCount = refillScreen ? 500 : stepsPerUpdate;
+		for (var step = 0; step < stepCount; step++) {
+			for (i = 0; i < meteors.length; i++) {
+				meteors[i].x = meteors[i].x + meteors[i].vX;
+				meteors[i].y = meteors[i].y + meteors[i].vY;
+				if (meteors[i].y > lastUpdateCanvasHeight + 60) {
+					// When a meteor is out of bounds, we want to draw it one last time
+					// to make sure its trail extend past the screen bottom. We'll remove
+					// the out-of-bounds meteors in the next frame.
+					meteors[i].done = true;
+				}
+			}
+		}
+
+		// All meteors are in position, we can draw them.
+		ctx.globalCompositeOperation = 'source-over';
+		for (i = 0; i < meteors.length; i++) {
+			if (meteors[i].c !== eraserColor) {
+				ctx.fillStyle = meteors[i].c;
+				drawMeteor(meteors[i]);
+			}
+		}
+
+		// Now for the "eraser" meteors, batched together to minimize context changes.
+		ctx.globalCompositeOperation = 'destination-out';
+		for (i = 0; i < meteors.length; i++) {
+			if (meteors[i].c === eraserColor) {
+				drawMeteor(meteors[i]);
+			}
+		}
+
+		// Until next time!
 		requestAnimationFrame(update);
 	}
 
-	function addMeteor() {
+	// Start the render loop.
+	requestAnimationFrame(update);
+
+	// A meteor is like a circular brush dragged from its start to its current position.
+	function drawMeteor(meteor) {
+		ctx.beginPath();
+		// Draw the half circle at the top, counterclockwise right to left.
+		ctx.arc(meteor.startX, meteor.startY, meteor.s, travelAngle - quarterPI, travelAngle + quarterPI, true);
+		// Draw the half circle at the bottom, counterclockwise left to right.
+		ctx.arc(meteor.x, meteor.y, meteor.s, travelAngle + quarterPI, travelAngle - quarterPI, true);
+		// Automatically join the 2 circle halves with 2 straight lines.
+		ctx.closePath();
+		ctx.fill();
+	}
+
+	// Return a new meteor property hash and avoid positioning it too close
+	// to any existing meteors. Give up (return false) after a number of tries
+	// if the screen is too crowded.
+	function createMeteor() {
 		var maxTries = 25;
+
+		var c = '#' + (Math.random() * 0x313131 + 0xaaaaaa | 0).toString(16);
+		if (Math.random() > 0.3) {
+			// Small chance of being a transparent "eraser" meteor
+			c = eraserColor;
+		}
+
 		for (var i = 0; i < maxTries; i++) {
-			var s = Math.random() * meteorSize + 5;
-			var x = Math.random() * canvas.width * 2;
-			var c = '#' + (Math.random() * 0x313131 + 0xaaaaaa | 0).toString(16);
-			if (Math.random() > 0.3) {
+			var s = Math.random() * 10 + 5; // radius
+			var x = Math.random() * lastUpdateCanvasWidth * 2;
+			if (c === eraserColor) {
+				// "Eraser" meteors are thicker
 				s = s * 3;
-				c = eraserColor;
 			}
 
 			var conflict = false;
@@ -234,19 +291,31 @@ references: |
 			}
 
 			if (!conflict) {
-				meteors.push({
+				var speed = Math.random() * 3 + 0.1;
+				return {
+					// Radius (s for size)
 					s: s,
+					// Current x (will be updated every animation frame)
 					x: x,
+					// Starting x (constant)
 					startX: x,
+					// Current y (will be updated every animation frame)
 					y: -2 * s,
-					v: (Math.random() * 3) + 1,
+					// Starting y (constant),
+					// initially twice the radius to hide the brush offscreen
+					startY: -2 * s,
+					// Velocity
+					vX: speed * travelAngleCos,
+					vY: speed * travelAngleSin,
+					// Color
 					c:  c,
-				});
-				break;
+					// Whether the meteor is past the bottom of the screen
+					done: false
+				};
 			}
 		}
-	}
 
-	requestAnimationFrame(update);
+		return false;
+	}
 })();
 </script>
