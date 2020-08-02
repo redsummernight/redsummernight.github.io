@@ -47,7 +47,6 @@ references: |
 var message = document.getElementById('message');
 var scene = document.getElementById('scene');
 var waves = document.getElementById('waves');
-var disabledKeys = new Array(33,34,35,36,37,38,39,40); // pgup,pgdn,end,home,left,up,right,down
 
 function freeze() {
 	message.style.display = 'none';
@@ -64,13 +63,10 @@ function init() {
 	scene.onclick = freeze;
 	waves.volume = 0.2;
 	document.onkeydown = function(e) {
-		var i, k = e ? e.which : window.event.keyCode;
-		if (k == 32) { // space
+		if (e.key == " ") {
 			e.preventDefault();
 			freeze();
 		}
-		for (i = 0; i < disabledKeys.length; i++)
-			if (k == disabledKeys[i]) e.preventDefault();
 	};
 }
 
