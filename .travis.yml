@@ -13,8 +13,9 @@ addons:
       # Avoid SSL errors
       - libcurl4-openssl-dev
 
-before_script:
+before_install:
   - npm install -g jshint
+  - pip install --user html5validator
 
 script: ./script/cibuild.sh
 
@@ -22,3 +23,4 @@ cache:
   bundler: true
   directories:
     - tmp/.htmlproofer # cache external link checks
+  pip: true

@@ -76,7 +76,7 @@ background: -webkit-gradient(radial, center center, 0px, center center, 100%, co
 background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,0) 60%,rgba(255,255,255,0) 100%);
 background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,0) 60%,rgba(255,255,255,0) 100%);
 background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,0) 60%,rgba(255,255,255,0) 100%);
-background: radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,0) 60%,rgba(255,255,255,0) 100%);
+background: radial-gradient(ellipse, rgba(255,255,255,0.5) 0%,rgba(255,255,255,0) 60%,rgba(255,255,255,0) 100%);
 }
 .cloud { width: 130px; height: 110px; }
 .cloud:after {
