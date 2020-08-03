@@ -106,7 +106,7 @@ find . -name '*.png' -print0 | xargs -0 -n1 -I{} sh -c 'zopflipng -m {} output.p
 For [SVGs](https://github.com/svg/svgo):
 
 ```sh
-svgo test.svg -o test.min.svg
+svgo test.svg -o test.min.svg --config .svgo.yml
 ```
 
 If we need to keep the original images around without serving them on the site

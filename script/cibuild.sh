@@ -18,3 +18,5 @@ ignore_re=(
 )
 
 html5validator --also-check-css --root _site/ --ignore-re "${ignore_re[@]}" --log INFO
+
+html5validator --skip-non-svg --root _site/ --log INFO

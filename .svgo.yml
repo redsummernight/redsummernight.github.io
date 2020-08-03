@@ -1,0 +1,6 @@
+plugins:
+  # Remove editors namespaces, elements, and attributes
+  - removeEditorsNSData:
+      additionalNamespaces:
+        # https://wiki.inkscape.org/wiki/index.php/Swatch_Book
+        - http://www.openswatchbook.org/uri/2009/osb
