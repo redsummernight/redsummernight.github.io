@@ -44,9 +44,6 @@ var Fireworks = (function() {
       return; // already initialized
     }
 
-    // start by measuring the viewport
-    onWindowResize();
-
     // create a canvas for the fireworks
     mainCanvas = document.getElementById('canvas');
     mainContext = mainCanvas.getContext('2d');
@@ -60,7 +57,8 @@ var Fireworks = (function() {
     createFireworkPalette(12);
 
     // set the dimensions on the canvas
-    setMainCanvasDimensions();
+    window.onresize = onWindowResize;
+    onWindowResize();
 
     // and now we set off
     update();
@@ -81,11 +79,7 @@ var Fireworks = (function() {
       },
       color: Math.floor(Math.random() * 100) * 12,
     };
-    if (Math.random() < 0.8) {
-      FireworkExplosions.star(firework);
-    } else {
-      FireworkExplosions.circle(firework);
-    }
+    FireworkExplosions.circle(firework);
   }
 
   /**
@@ -117,30 +111,15 @@ var Fireworks = (function() {
   }
 
   /**
-   * Update the canvas based on the
-   * detected viewport size
-   */
-  function setMainCanvasDimensions() {
-    if (mainCanvas.width !== viewportWidth) {
-      mainCanvas.width = viewportWidth;
-    }
-    if (mainCanvas.height !== viewportHeight) {
-      mainCanvas.height = viewportHeight;
-    }
-  }
-
-  /**
    * The main loop where everything happens
    */
   function update() {
     if (paused) {
       return;
     }
-    onWindowResize();
-    setMainCanvasDimensions();
     clearContext();
-    requestAnimationFrame(update);
     drawFireworks();
+    requestAnimationFrame(update);
   }
 
   function pause() {
@@ -164,7 +143,7 @@ var Fireworks = (function() {
     }
 
     if (mainCanvas) {
-      update();
+      requestAnimationFrame(update);
     }
   }
 
@@ -210,8 +189,6 @@ var Fireworks = (function() {
         }
       }
 
-      // pass the canvas context and the firework
-      // colours to the
       firework.render(mainContext, fireworkCanvas);
     }
 
@@ -257,12 +234,8 @@ var Fireworks = (function() {
    * sets the viewport dimensions
    */
   function onWindowResize() {
-    if (viewportWidth !== window.innerWidth) {
-      viewportWidth = window.innerWidth;
-    }
-    if (viewportHeight !== window.innerHeight) {
-      viewportHeight = window.innerHeight;
-    }
+    viewportWidth = mainCanvas.width = window.innerWidth;
+    viewportHeight = mainCanvas.height = window.innerHeight;
   }
 
   // declare an API
@@ -400,7 +373,7 @@ var FireworkExplosions = {
    */
   circle: function(firework) {
 
-    var count = 100;
+    var count = 20;
     var angle = (Math.PI * 2) / count;
     while(count--) {
 
