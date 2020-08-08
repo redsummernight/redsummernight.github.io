@@ -26,8 +26,9 @@ credits: |
 	h1 {
 		font-family: 'Sedgwick Ave', cursive;
 		font-size: 40px;
+		display: inline-block;
 		margin-left: -0.75em;
-		margin-bottom: 0.5em;
+		margin-bottom: 0;
 		color: cyan;
 		@include transform(rotate(-5deg));
 	}
@@ -41,7 +42,8 @@ credits: |
 	}
 
 	.start {
-		color: gray;
+		font-size: 80%;
+		color: #333;
 		position: relative;
 		margin-top: -{{ page.start.height }}px;
 		@include transition(all 0.3s);
@@ -51,7 +53,8 @@ credits: |
 		background-color: black;
 		display: block;
 		position: relative;
-		padding: 0.25em 0;
+		top: 100%;
+		padding: 0.25em;
 		text-align: right;
 	}
 
