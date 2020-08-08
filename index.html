@@ -1,9 +1,6 @@
 ---
 title: redsummernight
 description: what a horrible night to make a website
-start:
-  width: 500
-  height: 400
 credits: |
   - [Sedgwick Ave](https://fonts.google.com/specimen/Sedgwick+Ave) font, Google Doodle Team UK
     (<a rel="license" href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">OFL</a>)
@@ -14,13 +11,28 @@ credits: |
 	@import "base";
 
 	body {
-		background-repeat: no-repeat;
+		background-repeat: repeat-x;
 		background-color: rgb(34,9,51);
 		background-image: -moz-linear-gradient(0deg, rgba(34,9,51,1) 0%, rgba(0,0,0,1) 60%);
 		background-image: -webkit-linear-gradient(0deg, rgba(34,9,51,1) 0%, rgba(0,0,0,1) 60%);
 		background-image: linear-gradient(0deg, rgba(34,9,51,1) 0%, rgba(0,0,0,1) 60%);
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#220933",endColorstr="#000000",GradientType=1);
-		color: yellow;
+		color: pink;
+	}
+
+	.wrapper {
+		margin: 20px auto;
+		margin-bottom: 2em;
+		padding: 20px;
+		max-width: 460px;
+		line-height: 1.6;
+
+		&::after {
+			/* clearfix */
+			content: '';
+			clear: both;
+			display: table;
+		}
 	}
 
 	h1 {
@@ -37,51 +49,18 @@ credits: |
 		color: red;
 	}
 
-	a {
-		color: cyan;
-	}
+	a { color: cyan; }
 
-	.start {
-		font-size: 80%;
-		color: #333;
-		position: relative;
-		margin-top: -{{ page.start.height }}px;
-		@include transition(all 0.3s);
-	}
-
-	.start span {
-		background-color: black;
-		display: block;
-		position: relative;
-		top: 100%;
-		padding: 0.25em;
-		text-align: right;
-	}
-
-	.start:hover, .start:active, .start:focus {
-		background-color: cyan;
-		color: cyan;
-	}
-
-	.start, iframe {
-		display: block;
-		max-width: 100%;
-		width: {{ page.start.width }}px;
-		height: {{ page.start.height }}px;
-	}
-
-	.frame {
-		/* Prevent blur effects from spilling out. */
-		overflow: hidden;
-	}
-
-	iframe {
-		border: none;
-		pointer-events: none;
-		@include filter(blur(10px));
+	.contact, .contact a {
+		color: pink;
 	}
 
 	table {
+		margin-right: 1em;
+		color: yellow;
+	}
+
+	table.second {
 		margin-bottom: 2em;
 	}
 
@@ -93,6 +72,26 @@ credits: |
 
 	td:first-child {
 		color: magenta;
+	}
+
+	@media (max-width: 999px) {
+		td:nth-child(2) {
+			width: 80px;
+		}
+	}
+
+	@media (min-width: 1000px) {
+		.wrapper {
+			max-width: 960px;
+		}
+
+		.wrapper > * {
+			float: left;
+		}
+
+		table.first, p {
+			clear: left;
+		}
 	}
 
 {% endcapture %}
@@ -107,21 +106,38 @@ credits: |
 {% endfor %}
 {% assign pages = pages | sort: 'date', 'first' | reverse %}
 
-<div class="center-text">
-	<div class="frame">
-		<iframe src="{{ site.baseurl }}{{ pages.first.url }}" scrolling="no" tabindex="-1"></iframe>
-	</div>
-	<a class="start" href="{{ site.baseurl }}{{ pages.first.url }}"><span>start</span></a>
-
+<div class="wrapper">
 	<h1>#ff0000 <span class="heart">&lt;3</span></h1>
 
-	<table>
+	<table class="first">
 		{% for p in pages %}
+			{% if forloop.index <= forloop.rindex %}
 			<tr>
 				<td>{{ p.date }}</td>
 				<td><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></td>
 				<td>{{ p.description }}</td>
 			</tr>
+			{% endif %}
 		{% endfor %}
 	</table>
+
+	<table class="second">
+		{% for p in pages %}
+			{% if forloop.index > forloop.rindex %}
+			<tr>
+				<td>{{ p.date }}</td>
+				<td><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></td>
+				<td>{{ p.description }}</td>
+			</tr>
+			{% endif %}
+		{% endfor %}
+	</table>
+
+	<p class="contact">
+		<a href="https://twitter.com/redsummernight0">twitter</a>,
+		<a href="https://redsummernight.tumblr.com/">tumblr</a>,<br>
+		talk to <a href="https://neocities.org/site/redsummernight">me</a> ██████████,<br>
+		<a href="https://www.youtube.com/watch?v=R5RkXUC5Xa4" title="tell me tell me">tell me</a>
+		all about it!
+	</p>
 </div>
