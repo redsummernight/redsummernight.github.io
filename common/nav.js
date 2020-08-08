@@ -27,3 +27,8 @@ if (sessionStorage) {
 
 	pages = pages.filter(function(x) { return lastVisited.indexOf(x) < 0; });
 }
+
+if (window.frameElement) {
+	// Hide navigation if this page is in an iframe on the same site
+	document.getElementsByClassName('nav-bar')[0].style.display = 'none';
+}

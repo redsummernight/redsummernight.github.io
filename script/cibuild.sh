@@ -15,6 +15,10 @@ ignore_re=(
 	# Allow scrollbar-width, which is still in working draft
 	# https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width
 	"CSS: \"scrollbar-width\": Property \"scrollbar-width\" doesn't exist."
+	# The CSS alternative (overflow:hidden) on iframe elements apparently
+	# doesn't work if container elements inside still have default overflow.
+	# scrolling="no" is still the easiest way to do this.
+	"The \"scrolling\" attribute on the \"iframe\" element is obsolete. Use CSS instead."
 )
 
 html5validator --also-check-css --root _site/ --ignore-re "${ignore_re[@]}" --log INFO
