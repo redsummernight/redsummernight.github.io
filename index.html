@@ -4,25 +4,35 @@ description: what a horrible night to make a website
 credits: |
   - [Sedgwick Ave](https://fonts.google.com/specimen/Sedgwick+Ave) font, Google Doodle Team UK
     (<a rel="license" href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">OFL</a>)
+  - [Image](https://unsplash.com/photos/jy6BJNpEPHI) by Jr Korpa
+    (<a rel="license" href="https://unsplash.com/license">Unsplash</a>)
 ---
 <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&amp;display=swap" rel="stylesheet">
 <style>
 {% capture raw_scss %}
 	@import "base";
 
-	body {
-		background-repeat: repeat-x;
+	html, body {
+		width: 100%;
+		height: 100%;
 		background-color: rgb(34,9,51);
-		background-image: -moz-linear-gradient(0deg, rgba(34,9,51,1) 0%, rgba(0,0,0,1) 60%);
-		background-image: -webkit-linear-gradient(0deg, rgba(34,9,51,1) 0%, rgba(0,0,0,1) 60%);
-		background-image: linear-gradient(0deg, rgba(34,9,51,1) 0%, rgba(0,0,0,1) 60%);
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#220933",endColorstr="#000000",GradientType=1);
 		color: pink;
 	}
 
+	.bg {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: center center;
+		background-image: url('{{ site.baseurl }}/common/img/jr-korpa-jy6BJNpEPHI-unsplash-640x426.jpg');
+		@include filter(blur(5px) brightness(0.6));
+	}
+
 	.wrapper {
-		margin: 20px auto;
-		margin-bottom: 2em;
+		position: relative;
+		margin: 0 auto;
 		padding: 20px;
 		max-width: 460px;
 		line-height: 1.6;
@@ -35,10 +45,15 @@ credits: |
 		}
 	}
 
+	.wrapper p {
+		margin-bottom: 4em;
+	}
+
 	h1 {
 		font-family: 'Sedgwick Ave', cursive;
 		font-size: 40px;
 		display: inline-block;
+		margin-top: 1.5em;
 		margin-left: -0.75em;
 		margin-bottom: 0;
 		color: cyan;
@@ -49,11 +64,7 @@ credits: |
 		color: red;
 	}
 
-	a { color: cyan; }
-
-	.contact, .contact a {
-		color: pink;
-	}
+	a { color: pink; }
 
 	table {
 		margin-right: 1em;
@@ -70,12 +81,16 @@ credits: |
 		vertical-align: top;
 	}
 
-	td:first-child {
+	td.date {
 		color: magenta;
 	}
 
+	td.title a {
+		color: cyan;
+	}
+
 	@media (max-width: 999px) {
-		td:nth-child(2) {
+		td.title {
 			width: 80px;
 		}
 	}
@@ -106,6 +121,7 @@ credits: |
 {% endfor %}
 {% assign pages = pages | sort: 'date', 'first' | reverse %}
 
+<div class="bg"></div>
 <div class="wrapper">
 	<h1>#ff0000 <span class="heart">&lt;3</span></h1>
 
@@ -113,8 +129,8 @@ credits: |
 		{% for p in pages %}
 			{% if forloop.index <= forloop.rindex %}
 			<tr>
-				<td>{{ p.date }}</td>
-				<td><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></td>
+				<td class="date">{{ p.date }}</td>
+				<td class="title"><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></td>
 				<td>{{ p.description }}</td>
 			</tr>
 			{% endif %}
@@ -125,15 +141,15 @@ credits: |
 		{% for p in pages %}
 			{% if forloop.index > forloop.rindex %}
 			<tr>
-				<td>{{ p.date }}</td>
-				<td><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></td>
+				<td class="date">{{ p.date }}</td>
+				<td class="title"><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></td>
 				<td>{{ p.description }}</td>
 			</tr>
 			{% endif %}
 		{% endfor %}
 	</table>
 
-	<p class="contact">
+	<p>
 		<a href="https://twitter.com/redsummernight0">twitter</a>,
 		<a href="https://redsummernight.tumblr.com/">tumblr</a>,<br>
 		talk to <a href="https://neocities.org/site/redsummernight">me</a> ██████████,<br>
