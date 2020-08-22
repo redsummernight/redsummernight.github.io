@@ -4,7 +4,7 @@
 set -e
 
 bundle exec jekyll build
-bundle exec ruby script/htmlproof.rb
+bundle exec ruby _script/htmlproof.rb
 
 jshint --verbose --extract=auto --extra-ext=html,js _site/
 

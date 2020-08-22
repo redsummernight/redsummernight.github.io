@@ -17,7 +17,7 @@ before_install:
   - npm install -g jshint
   - pip install --user html5validator
 
-script: ./script/cibuild.sh
+script: ./_script/cibuild.sh
 
 cache:
   bundler: true
