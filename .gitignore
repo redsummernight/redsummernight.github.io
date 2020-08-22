@@ -1,13 +1,15 @@
-tmp/
-tmp*/
-*.tmp
 *.bat
-.*project
+*.log
 *.sublime*
-bower_components/
-
-# jekyll
-_site/
-.sass-cache/
+*.tmp
+.*project
+.DS_Store
+.idea
 .jekyll-metadata
+.sass-cache/
+_site/
+bower_components/
 Gemfile.lock
+Gemfile.vm*
+node_modules/
+tmp/
