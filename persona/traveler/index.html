@@ -7,7 +7,7 @@ credits: |
     (<a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
 ---
 <style>
-	{% capture raw_scss %}
+{% capture raw_scss %}
 	@import "base";
 
 	body {
@@ -53,8 +53,7 @@ credits: |
 			@include animation(2s poppin 2s linear infinite);
 		}
 	}
-	{% endcapture %}
-	{{ raw_scss | scssify }}
+{% endcapture %}{{ raw_scss | scssify }}
 </style>
 <p>
 	you forgot your <a href="{{ site.baseurl }}/persona/superego">id</a>

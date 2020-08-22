@@ -16,7 +16,7 @@ references: |
    repeatedly [simplified](https://inkscape.org/en/doc/tutorials/advanced/tutorial-advanced.html)
 ---
 <style>
-	{% capture raw_scss %}
+{% capture raw_scss %}
 	@import "base";
 
 	html, body {
@@ -104,8 +104,7 @@ references: |
 		}
 	}
 
-	{% endcapture %}
-	{{ raw_scss | scssify }}
+{% endcapture %}{{ raw_scss | scssify }}
 </style>
 <div id="wheel"></div>
 <div id="text">

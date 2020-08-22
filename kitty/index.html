@@ -11,7 +11,7 @@ credits: |
 ---
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/common/lib/csshake/csshake-horizontal.min.css">
 <style>
-	{% capture raw_scss %}
+{% capture raw_scss %}
 	body {
 		background-color: #FFDC00;
 	}
@@ -101,8 +101,7 @@ credits: |
 		background-image: url('yarn-ball.svg');
 		background-repeat: no-repeat;
 	}
-	{% endcapture %}
-	{{ raw_scss | scssify }}
+{% endcapture %}{{ raw_scss | scssify }}
 </style>
 
 <div class="yarn-ball"></div>

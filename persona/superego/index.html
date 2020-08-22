@@ -7,7 +7,7 @@ credits: |
    (<a rel="license" href="https://github.com/LeaVerou/css3patterns/blob/master/license.txt">MIT</a>)
 ---
 <style>
-	{% capture raw_scss %}
+{% capture raw_scss %}
 	body {
 		margin: 1em;
 		background:
@@ -49,8 +49,7 @@ credits: |
 			text-decoration: none;
 		}
 	}
-	{% endcapture %}
-	{{ raw_scss | scssify }}
+{% endcapture %}{{ raw_scss | scssify }}
 </style>
 <figure>
 	<img src="superego.png" alt="Superego" width="500">

@@ -13,7 +13,7 @@ references: |
  - "[Detecting and avoiding synchronous reflow](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Performance_best_practices_for_Firefox_fe_engineers#Detecting_and_avoiding_synchronous_reflow)", MDN Web Docs
 ---
 <style>
-	{% capture raw_scss %}
+{% capture raw_scss %}
 	@import "base";
 
 	html, body {
@@ -65,8 +65,7 @@ references: |
 	audio {
 		display: none;
 	}
-	{% endcapture %}
-	{{ raw_scss | scssify }}
+{% endcapture %}{{ raw_scss | scssify }}
 </style>
 
 <canvas id="canvas"></canvas>

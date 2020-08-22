@@ -7,7 +7,7 @@ credits: |
  - [Random](https://source.unsplash.com/) images from [Unsplash](https://unsplash.com/license)
 ---
 <style>
-	{% capture raw_scss %}
+{% capture raw_scss %}
 	@import "base";
 
 	html, body {
@@ -38,8 +38,7 @@ credits: |
 		background-color: black;
 		color: white;
 	}
-	{% endcapture %}
-	{{ raw_scss | scssify }}
+{% endcapture %}{{ raw_scss | scssify }}
 </style>
 <div id="view"></div>
 <p id="text">Did I unplug the hair dryer before I left?</p>

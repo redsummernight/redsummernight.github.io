@@ -12,7 +12,7 @@ credits: |
    (author’s permissions)
 ---
 <style>
-	{% capture raw_scss %}
+{% capture raw_scss %}
 	@import "base";
 
 	html, body {
@@ -65,8 +65,7 @@ credits: |
 			color: white;
 		}
 	}
-	{% endcapture %}
-	{{ raw_scss | scssify }}
+{% endcapture %}{{ raw_scss | scssify }}
 </style>
 <img id="jenny" src="jenny.svg" alt="intrusive thoughts jenny">
 <div id="message">time for mindfulness...</div>
