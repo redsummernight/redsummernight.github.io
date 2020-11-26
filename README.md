@@ -1,8 +1,8 @@
 # redsummernight
 
-[![Build Status](https://travis-ci.org/redsummernight/redsummernight.github.io.svg?branch=master)][travis]
+[![Build Status](https://travis-ci.com/redsummernight/redsummernight.github.io.svg?branch=master)][travis]
 
-[travis]: https://travis-ci.org/redsummernight/redsummernight.github.io
+[travis]: https://travis-ci.com/github/redsummernight/redsummernight.github.io
 
 My [Jekyll](http://jekyllrb.org) website:
 
