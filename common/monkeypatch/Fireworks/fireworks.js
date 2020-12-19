@@ -79,7 +79,11 @@ var Fireworks = (function() {
       },
       color: Math.floor(Math.random() * 100) * 12,
     };
-    FireworkExplosions.circle(firework);
+    if (Math.random() < 0.8) {
+      FireworkExplosions.star(firework);
+    } else {
+      FireworkExplosions.circle(firework);
+    }
   }
 
   /**
@@ -373,7 +377,7 @@ var FireworkExplosions = {
    */
   circle: function(firework) {
 
-    var count = 20;
+    var count = 100;
     var angle = (Math.PI * 2) / count;
     while(count--) {
 
