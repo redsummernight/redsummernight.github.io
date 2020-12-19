@@ -7,9 +7,11 @@
 .idea
 .jekyll-metadata
 .sass-cache/
+.vscode/
 _site/
 bower_components/
 Gemfile.lock
 Gemfile.vm*
 node_modules/
 tmp/
+vendor/
