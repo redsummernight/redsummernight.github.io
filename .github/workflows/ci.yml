@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: cibuild.sh
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run apt-get update
+        run: sudo apt-get update
+
+      - name: Set up Ruby and run bundle install
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.5.3
+          bundler-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '2.x'
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install dependencies
+        run: |
+          # Avoid SSL errors
+          # https://github.com/gjtorikian/html-proofer/issues/376
+          sudo apt-get install -y libcurl4-openssl-dev
+
+          python -m pip install --upgrade pip
+          pip install html5validator
+
+          npm install -g jshint
+
+      - name: Cache external link check results
+        uses: actions/cache@v2
+        with:
+          path: tmp/.htmlproofer
+          key: htmlproofer
+
+      - name: Run tests
+        run: ./_script/cibuild.sh

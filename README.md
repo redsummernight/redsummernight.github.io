@@ -1,8 +1,6 @@
 # redsummernight
 
-[![Build Status](https://travis-ci.com/redsummernight/redsummernight.github.io.svg?branch=master)][travis]
-
-[travis]: https://travis-ci.com/github/redsummernight/redsummernight.github.io
+[![Build Status](https://github.com/redsummernight/redsummernight.github.io/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/redsummernight/redsummernight.github.io/actions/workflows/ci.yml?query=branch%3Amaster)
 
 My [Jekyll](http://jekyllrb.org) website:
 
