@@ -33,20 +33,8 @@ credits: |
 	.wrapper {
 		position: relative;
 		margin: 0 auto;
-		padding: 20px;
-		max-width: 460px;
-		line-height: 1.6;
-
-		&::after {
-			/* clearfix */
-			content: '';
-			clear: both;
-			display: table;
-		}
-	}
-
-	.wrapper p {
-		margin-bottom: 4em;
+		width: 50%;
+		line-height: 2;
 	}
 
 	h1 {
@@ -54,58 +42,65 @@ credits: |
 		font-size: 40px;
 		display: inline-block;
 		margin-top: 1.5em;
-		margin-left: -0.75em;
-		margin-bottom: 0;
 		color: cyan;
 		@include transform(rotate(-5deg));
 	}
 
-	h1 .heart {
+	.heart {
 		color: red;
 	}
 
-	a { color: pink; }
-
-	table {
-		margin-right: 1em;
-		color: yellow;
-	}
-
-	table.second {
-		margin-bottom: 2em;
-	}
-
-	td {
-		padding: 0.25em 0;
-		padding-right: 1em;
-		vertical-align: top;
-	}
-
-	td.date {
+	.date {
 		color: magenta;
 	}
 
-	td.title a {
+	.title {
 		color: cyan;
 	}
 
-	@media (max-width: 999px) {
-		td.title {
-			width: 80px;
-		}
+	a {
+		color: pink;
 	}
 
-	@media (min-width: 1000px) {
+	iframe {
+		position: relative;
+		width: 100%;
+		border: none;
+	}
+
+	.preview {
+		position: relative;
+		transition: all 0.5s ease;
+		&:hover { @include filter(saturate(150%)); }
+	}
+
+	.preview a {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+	}
+
+	ul {
+		margin-bottom: 2em;
+		padding-left: 0;
+		list-style-type: none;
+	}
+
+	li {
+		/* Hanging indent */
+		padding-left: 1em;
+		text-indent: -1em;
+	}
+
+	footer {
+		margin-bottom: 4em;
+	}
+
+	@media (max-width: 600px) {
 		.wrapper {
-			max-width: 960px;
-		}
-
-		.wrapper > * {
-			float: left;
-		}
-
-		table.first, p {
-			clear: left;
+			width: 90%;
 		}
 	}
 
@@ -119,40 +114,33 @@ credits: |
 	{% endif %}
 {% endfor %}
 {% assign pages = pages | sort: 'date', 'first' | reverse %}
+{% assign preview = pages.first %}
 
 <div class="bg"></div>
 <div class="wrapper">
 	<h1>#ff0000 <span class="heart">&lt;3</span></h1>
-
-	<table class="first">
+</div>
+<div class="preview">
+	<iframe src="{{ site.baseurl }}{{ preview.url }}"
+		height="400" scrolling="no"></iframe>
+	<a href="{{ site.baseurl }}{{ preview.url }}" title="{{ preview.description }}"
+		target="_blank" rel="noopener"></a>
+</div>
+<div class="wrapper">
+	<ul>
 		{% for p in pages %}
-			{% if forloop.index <= forloop.rindex %}
-			<tr>
-				<td class="date">{{ p.date }}</td>
-				<td class="title"><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></td>
-				<td>{{ p.description }}</td>
-			</tr>
-			{% endif %}
+		<li>
+			{% if p.date %}<span class="date">{{ p.date }}</span>: {% endif %}
+			<a class="title" href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
+			{% if p.description %}- {{ p.description }}{% endif %}
+		</li>
 		{% endfor %}
-	</table>
-
-	<table class="second">
-		{% for p in pages %}
-			{% if forloop.index > forloop.rindex %}
-			<tr>
-				<td class="date">{{ p.date }}</td>
-				<td class="title"><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></td>
-				<td>{{ p.description }}</td>
-			</tr>
-			{% endif %}
-		{% endfor %}
-	</table>
-
-	<p>
+	</ul>
+	<footer>
 		<a href="https://twitter.com/redsummernight0">twitter</a>,
 		<a href="https://redsummernight.tumblr.com/">tumblr</a>,<br>
 		talk to <a href="https://neocities.org/site/redsummernight">me</a> ██████████,<br>
 		<a href="https://www.youtube.com/watch?v=R5RkXUC5Xa4" title="tell me tell me">tell me</a>
 		all about it!
-	</p>
+	</footer>
 </div>
