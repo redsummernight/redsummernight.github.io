@@ -1,6 +1,6 @@
 # redsummernight
 
-[![Build Status](https://github.com/redsummernight/redsummernight.github.io/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/redsummernight/redsummernight.github.io/actions/workflows/ci.yml?query=branch%3Amaster)
+[![Build Status](https://github.com/redsummernight/redsummernight.github.io/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/redsummernight/redsummernight.github.io/actions/workflows/ci.yml?query=branch%3Amain)
 
 My [Jekyll](http://jekyllrb.org) website:
 
@@ -32,10 +32,10 @@ Note:
 ## Contributing
 
 If you like to make neat text/art/interactive things with HTML/CSS/JS, I'm happy to have you on board.
-Please check out the [contributing guide](https://github.com/redsummernight/redsummernight.github.io/blob/master/CONTRIBUTING.md) for more info.
+Please check out the [contributing guide](https://github.com/redsummernight/redsummernight.github.io/blob/main/CONTRIBUTING.md) for more info.
 
 ## License
 
-[MIT](https://github.com/redsummernight/redsummernight.github.io/blob/master/LICENSE) for code
+[MIT](https://github.com/redsummernight/redsummernight.github.io/blob/main/LICENSE) for code
 and [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) for art/text/sound,
 unless [otherwise noted](https://redsummernight.github.io/credits/).
