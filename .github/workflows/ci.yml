@@ -29,9 +29,9 @@ jobs:
           bundler-cache: true
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
-          python-version: '2.x'
+          python-version: '3.x'
 
       - name: Use Node.js
         uses: actions/setup-node@v1
