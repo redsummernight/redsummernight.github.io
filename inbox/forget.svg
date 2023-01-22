@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="120" height="20">
-<text font-size="15" font-family="sans-serif" fill="rgba(27, 183, 119, 0.7)">
+<text font-size="12" font-family="verdana, sans-serif" fill="rgba(27, 183, 119, 0.7)">
 <tspan dx="5" dy="15">please forget me.</tspan>
 </text>
 </svg>
