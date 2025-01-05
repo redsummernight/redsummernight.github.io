@@ -19,6 +19,7 @@ HTMLProofer.check_directory('./_site', {
 	url_ignore: [
 		/codepen.io/,
 		/deviantart.com/,
+		/picrew.me/,
 		/pixabay.com/,
 		/twitter.com/,
 		/web.archive.org/,
